@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BADDD24C-D663-4611-8C74-4BEBEA033A32}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TATLeerCorreo</RootNamespace>
+    <AssemblyName>TATLeerCorreo</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AE.Net.Mail, Version=1.7.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AE.Net.Mail.1.7.10.0\lib\net45\AE.Net.Mail.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\ACCION.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\APPSETTING.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CAMPOS.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CAMPOZKE24.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CAMPOZKE24T.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CANAL.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CARPETA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CARPETAT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CARPETAV.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CARTA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CARTAP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CATEGORIA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CATEGORIAT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CITy.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CLIENTE.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CLIENTEI.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CONFDIST_CAT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CONMAIL.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CONPOSAPH.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CONPOSAPP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CONSOPORTE.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CONTACTOC.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\COUNTRy.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CPS_LISTA_CLI_PRO_Result.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CREADOR.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CREADOR2.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CSP_CAMBIO_Result.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CSP_CARPETA_Result.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CSP_CONSULTARPRESUPUESTO_Result.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CSP_PERMISO_Result.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CSP_PRESUPUESTO_ADDP_Result.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CSP_PRESU_CLIENT_Result.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CSP_USUARIO_Result.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\CUENTA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DELEGAR.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_AGENTE.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_AGENTEC.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_AGENTEH.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_AGENTEP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_APROB.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_APROBH.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_APROBP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_APROBV.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_TAX.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_TAXEO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_TAXEOC.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTBORR.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOBORRF.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOBORRM.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOBORRN.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOBORRP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOF.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOM.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTON.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOR.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOREC.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOSAP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOV.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\FACTURASCONF.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\FLUJNEGO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\FLUJO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\GALL.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\GALLT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\GAUTORIZACION.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IIMPUESTO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\IMPUESTO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\LEYENDA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MATERIAL.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MATERIALGP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MATERIALGPT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MATERIALT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MATERIALVKE.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MENSAJE.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MIEMBRO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\MONEDA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\NEGOCIACION.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\NOTICIA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PAGINA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PAGINAT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PAGINAV.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PAI.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PERIODO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PERIODO445.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PERIODOT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PERMISO_PAGINA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\POSICION.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PRESUPSAPH.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PRESUPSAPP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PRESUPUESTOH.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PRESUPUESTOP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\PROVEEDOR.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PUESTO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\PUESTOT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RANGO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\REGION.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RETENCION.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RETENCIONT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ROL.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ROLT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ArchivosContable.cs" />
+    <Compile Include="Services\LeerCorreos.cs" />
+    <Compile Include="Services\ProcesaFlujo2.cs" />
+    <Compile Include="Services\Recurrente.cs" />
+    <Compile Include="Entities\SOCIEDAD.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\split_Result.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SPRA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sp_helpdiagrams_Result.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\STATE.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\sysdiagram.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TALL.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TALLT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TAT001.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TAT001.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TAT001.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TAT001.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TAT001.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TAXEOH.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TAXEOP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TAX_LAND.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TCAMBIO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TCLIENTE.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TCLIENTET.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TEXTO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TEXTOCV.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TRETENCION.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TRETENCIONT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TREVERSA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TREVERSAT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TSOL.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TSOLT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TSOPORTE.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TSOPORTET.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TS_FORM.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TS_FORMT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TX_CONCEPTO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TX_CONCEPTOT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TX_NOTAT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TX_TNOTA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\UMEDIDA.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\UMEDIDAT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\USUARIO.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\USUARIOSAP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\WARNING.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\WARNINGV.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\WORKFH.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\WORKFP.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\WORKFT.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\WORKFV.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ZBRAND.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ZCTGR.cs">
+      <DependentUpon>TAT001.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="Entities\TAT001.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TAT001.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entities\TAT001.edmx.diagram">
+      <DependentUpon>TAT001.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entities\TAT001.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TAT001.edmx</DependentUpon>
+      <LastGenOutput>TAT001.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entities\TAT001.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TAT001.edmx</DependentUpon>
+      <LastGenOutput>TAT001.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\Model\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

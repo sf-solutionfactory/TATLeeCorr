@@ -1,0 +1,66 @@
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojResolveAssemblyReference.cache
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.CoreCompileInputs.cache
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe.config
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.pdb
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\bin\Debug\AE.Net.Mail.dll
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.dll
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\bin\Debug\AE.Net.Mail.pdb
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.xml
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.CopyComplete
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.exe
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.pdb
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe.config
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.pdb
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\bin\Debug\AE.Net.Mail.dll
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.dll
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\bin\Debug\AE.Net.Mail.pdb
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.xml
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.CoreCompileInputs.cache
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.exe
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.pdb
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe.config
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.pdb
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\bin\Debug\AE.Net.Mail.dll
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.dll
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\bin\Debug\AE.Net.Mail.pdb
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.xml
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojResolveAssemblyReference.cache
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.CoreCompileInputs.cache
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.CopyComplete
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.exe
+C:\Users\SF-0013\Downloads\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.pdb
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.CoreCompileInputs.cache
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe.config
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\bin\Debug\TATLeerCorreo.pdb
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\bin\Debug\AE.Net.Mail.dll
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.dll
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\bin\Debug\AE.Net.Mail.pdb
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.xml
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.exe
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.pdb
+C:\Users\SF-0022\Documents\TAT001_Catálogos\Cambios3007\Nueva carpeta\TATLeerCorreo\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojResolveAssemblyReference.cache
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe.config
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\TATLeerCorreo.pdb
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\AE.Net.Mail.dll
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFramework.dll
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\AE.Net.Mail.pdb
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFramework.xml
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojResolveAssemblyReference.cache
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.CoreCompileInputs.cache
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.exe
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.pdb
