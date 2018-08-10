@@ -45,23 +45,30 @@ namespace TATLeerCorreo.Services
                 for (int i = 0; i < mx.Count; i++)
                 {
                     AE.Net.Mail.MailMessage mm = mx[i];
-                    string[] arrAsunto = mm.Subject.Split(']');
-                    //Recupero el asunto y lo separo del numdoc y pos
-                    string[] arrAprNum = arrAsunto[1].Split('-');
-                    string[] arrClaves = arrAprNum[1].Split('.');
-                    //Valido que tenga los datos necesarios para el req 17
-                    if (arrClaves.Length > 1)
+                    try
                     {
-                        decimal numdoc = Decimal.Parse(arrClaves[1]);
+                        string[] arrAsunto = mm.Subject.Split(']');
+                        //Recupero el asunto y lo separo del numdoc y pos
+                        string[] arrAprNum = arrAsunto[1].Split('-');
+                        string[] arrClaves = arrAprNum[1].Split('.');
+                        //Valido que tenga los datos necesarios para el req 17
+                        if (arrClaves.Length > 1)
+                        {
+                            decimal numdoc = Decimal.Parse(arrClaves[1]);
+                        }
+                        var xy = arrAprNum[0].Trim();
+                        if (arrAprNum[0].Trim() == "De Acuerdo" | arrAprNum[0].Trim() == "DeAcuerdo")
+                        {
+                            emRq17.Add(mm);
+                        }
+                        else if (arrAprNum[0].Trim() == "Tengo Observaciones" | arrAprNum[0].Trim() == "TengoObservaciones")
+                        {
+                            emRq17.Add(mm);
+                        }
                     }
-                    var xy = arrAprNum[0].Trim();
-                    if (arrAprNum[0].Trim() == "De Acuerdo" | arrAprNum[0].Trim() == "DeAcuerdo")
+                    catch
                     {
-                        emRq17.Add(mm);
-                    }
-                    else if (arrAprNum[0].Trim() == "Tengo Observaciones" | arrAprNum[0].Trim() == "TengoObservaciones")
-                    {
-                        emRq17.Add(mm);
+                        ic.AddFlags(Flags.Seen, mm);
                     }
                 }
                 //Correos de FLUJO DE APROBACIÓN y RECURRENTE-----------------------------------------------------2 y 3
