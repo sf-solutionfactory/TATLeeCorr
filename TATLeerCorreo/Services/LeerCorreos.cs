@@ -65,7 +65,7 @@ namespace TATLeerCorreo.Services
                     }
                 }
                 //Correos de FLUJO DE APROBACIÓN y RECURRENTE-----------------------------------------------------2 y 3
-                if (false)
+                if (true)
                 {
                     for (int i = 0; i < mx.Count; i++)
                     {
@@ -79,24 +79,27 @@ namespace TATLeerCorreo.Services
                         string[] arrApr = arrAprNum[0].Split(':');
                         if (arrApr.Length > 1)
                         {
-                            ProcesaFlujo2 pF = new ProcesaFlujo2();
+                            ProcesaFlujo pF = new ProcesaFlujo();
                             if (arrApr[1] == "Approved" | arrApr[1] == "Rejected")
                             {
                                 int pos = Convert.ToInt32(arrAprNum[2]);
                                 FLUJO fl = db.FLUJOes.Where(x => x.NUM_DOC == numdoc && x.POS == pos).FirstOrDefault();
-                                fl.ESTATUS = arrApr[1].Substring(0, 1);
-                                fl.FECHAM = DateTime.Now;
-                                fl.COMENTARIO = mm.Body;
-                                var res = pF.procesa(fl, "");
-                                if (res == "1")
+                                if (fl != null)
                                 {
-                                    enviarCorreo(fl.NUM_DOC, 1);
+                                    fl.ESTATUS = arrApr[1].Substring(0, 1);
+                                    fl.FECHAM = DateTime.Now;
+                                    fl.COMENTARIO = mm.Body;
+                                    var res = pF.procesa(fl, "");
+                                    if (res == "1")
+                                    {
+                                        enviarCorreo(fl.NUM_DOC, 1, pos);
+                                    }
+                                    else if (res == "3")
+                                    {
+                                        enviarCorreo(fl.NUM_DOC, 3, pos);
+                                    }
+                                    //para marcar el mensaje como leido
                                 }
-                                else if (res == "3")
-                                {
-                                    enviarCorreo(fl.NUM_DOC, 3);
-                                }
-                                //para marcar el mensaje como leido
                                 ic.AddFlags(Flags.Seen, mm);
                             }
                             ////else if (arrApr[1] == "Rejected")
@@ -235,14 +238,14 @@ namespace TATLeerCorreo.Services
                                 fn.KUNNR = arrPiNN[0];
                                 var cm = arrAprNum[0].ToString();
                                 cm += " - " + mm.Body;
-                                var cpos = db.FLUJNEGOes.Where(h=>h.NUM_DOC.Equals(fn.NUM_DOC)).ToList().Count;
+                                var cpos = db.FLUJNEGOes.Where(h => h.NUM_DOC.Equals(fn.NUM_DOC)).ToList().Count;
                                 fn.POS = cpos + 1;
                                 fn.COMENTARIO = cm;
                                 db.FLUJNEGOes.Add(fn);
                                 db.SaveChanges();
                             }
                         }
-                        else if (arrAprNum[0].Trim() == "TengoObservaciones"| arrAprNum[0].Trim() == "Tengo Observaciones")
+                        else if (arrAprNum[0].Trim() == "TengoObservaciones" | arrAprNum[0].Trim() == "Tengo Observaciones")
                         {
                             for (int x = 0; x < lstD.Count; x++)
                             {
@@ -281,12 +284,12 @@ namespace TATLeerCorreo.Services
             }
         }
 
-        public void enviarCorreo(decimal nd, int c)
+        public void enviarCorreo(decimal nd, int c, int pos)
         {
 
             try
             {
-                var workflow = db.FLUJOes.Where(a => a.NUM_DOC.Equals(nd)).OrderByDescending(a => a.POS).FirstOrDefault();
+                var workflow = db.FLUJOes.Where(a => a.NUM_DOC.Equals(nd) & a.POS == pos).OrderByDescending(a => a.POS).FirstOrDefault();
                 APPSETTING mailtC = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("mail") & x.ACTIVO).FirstOrDefault();
                 string mailt = mailtC.VALUE;
                 APPSETTING mailTestC = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("mailTest") & x.ACTIVO).FirstOrDefault();

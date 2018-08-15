@@ -368,6 +368,7 @@
     </Compile>
     <Compile Include="Services\ArchivosContable.cs" />
     <Compile Include="Services\LeerCorreos.cs" />
+    <Compile Include="Services\ProcesaFlujo.cs" />
     <Compile Include="Services\ProcesaFlujo2.cs" />
     <Compile Include="Services\Recurrente.cs" />
     <Compile Include="Entities\SOCIEDAD.cs">
@@ -516,7 +517,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <EntityDeploy Include="Entities\TAT001.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
