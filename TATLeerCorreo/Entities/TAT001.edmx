@@ -721,6 +721,8 @@
           <Property Name="OBJETIVOQ" Type="bit" />
           <Property Name="FRECUENCIA_LIQ" Type="int" />
           <Property Name="OBJQ_PORC" Type="decimal" Precision="13" Scale="5" />
+          <Property Name="CUENTAP" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="CUENTAPL" Type="numeric" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="DOCUMENTOA">
           <Key>
@@ -924,6 +926,7 @@
           <Property Name="LIFNR" Type="nchar" MaxLength="10" />
           <Property Name="KUNNR" Type="nchar" MaxLength="10" />
           <Property Name="IMPORTE" Type="decimal" Precision="13" Scale="5" />
+          <Property Name="DESCR" Type="nvarchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="DOCUMENTOTS">
           <Key>
@@ -960,6 +963,7 @@
         </EntityType>
         <EntityType Name="FLUJNEGO">
           <Key>
+            <PropertyRef Name="NUM_DOC" />
             <PropertyRef Name="POS" />
           </Key>
           <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
@@ -1212,6 +1216,7 @@
           <Property Name="DIA_NATURAL" Type="int" Nullable="false" />
           <Property Name="PERIODO" Type="int" Nullable="false" />
           <Property Name="ACTIVO" Type="bit" Nullable="false" />
+          <Property Name="SUMA" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PERIODOT">
           <Key>
@@ -1666,6 +1671,8 @@
           <Property Name="TSOLC" Type="nvarchar" MaxLength="10" />
           <Property Name="TRECU" Type="nchar" MaxLength="1" />
           <Property Name="NEGO" Type="bit" Nullable="false" />
+          <Property Name="CARTA" Type="bit" Nullable="false" />
+          <Property Name="REVERSO" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TSOLT">
           <Key>
@@ -5901,6 +5908,8 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
           <Property Name="OBJETIVOQ" Type="Boolean" />
           <Property Name="FRECUENCIA_LIQ" Type="Int32" />
           <Property Name="OBJQ_PORC" Type="Decimal" Precision="13" Scale="5" />
+          <Property Name="CUENTAP" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="CUENTAPL" Type="Decimal" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="DOCUMENTOA">
           <Key>
@@ -6119,6 +6128,7 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
           <Property Name="LIFNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="KUNNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="IMPORTE" Type="Decimal" Precision="13" Scale="5" />
+          <Property Name="DESCR" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DOCUMENTOT">
           <Key>
@@ -6158,6 +6168,7 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
         <EntityType Name="FLUJNEGO">
           <Key>
             <PropertyRef Name="POS" />
+            <PropertyRef Name="NUM_DOC" />
           </Key>
           <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="POS" Type="Int32" Nullable="false" />
@@ -6464,6 +6475,7 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
           <Property Name="DIA_NATURAL" Type="Int32" Nullable="false" />
           <Property Name="PERIODO" Type="Int32" Nullable="false" />
           <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <Property Name="SUMA" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="PERIODOT">
           <Key>
@@ -7039,6 +7051,8 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
           <NavigationProperty Name="TSOL1" Relationship="Self.FK_TSOL_TSOL" FromRole="TSOL" ToRole="TSOL1" />
           <NavigationProperty Name="TSOL2" Relationship="Self.FK_TSOL_TSOL" FromRole="TSOL1" ToRole="TSOL" />
           <NavigationProperty Name="TSOLTs" Relationship="Self.FK_TSOLT_TSOL" FromRole="TSOL" ToRole="TSOLT" />
+          <Property Name="CARTA" Type="Boolean" Nullable="false" />
+          <Property Name="REVERSO" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TSOLT">
           <Key>
@@ -11105,6 +11119,8 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
           <EntitySetMapping Name="DOCUMENTOes">
             <EntityTypeMapping TypeName="TAT001Model.DOCUMENTO">
               <MappingFragment StoreEntitySet="DOCUMENTO">
+                <ScalarProperty Name="CUENTAPL" ColumnName="CUENTAPL" />
+                <ScalarProperty Name="CUENTAP" ColumnName="CUENTAP" />
                 <ScalarProperty Name="OBJQ_PORC" ColumnName="OBJQ_PORC" />
                 <ScalarProperty Name="FRECUENCIA_LIQ" ColumnName="FRECUENCIA_LIQ" />
                 <ScalarProperty Name="OBJETIVOQ" ColumnName="OBJETIVOQ" />
@@ -11369,6 +11385,7 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
           <EntitySetMapping Name="DOCUMENTOSAPs">
             <EntityTypeMapping TypeName="TAT001Model.DOCUMENTOSAP">
               <MappingFragment StoreEntitySet="DOCUMENTOSAP">
+                <ScalarProperty Name="DESCR" ColumnName="DESCR" />
                 <ScalarProperty Name="IMPORTE" ColumnName="IMPORTE" />
                 <ScalarProperty Name="KUNNR" ColumnName="KUNNR" />
                 <ScalarProperty Name="LIFNR" ColumnName="LIFNR" />
@@ -11671,6 +11688,7 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
           <EntitySetMapping Name="PERIODO445">
             <EntityTypeMapping TypeName="TAT001Model.PERIODO445">
               <MappingFragment StoreEntitySet="PERIODO445">
+                <ScalarProperty Name="SUMA" ColumnName="SUMA" />
                 <ScalarProperty Name="EJERCICIO" ColumnName="EJERCICIO" />
                 <ScalarProperty Name="MES_NATURAL" ColumnName="MES_NATURAL" />
                 <ScalarProperty Name="DIA_NATURAL" ColumnName="DIA_NATURAL" />
@@ -12120,6 +12138,8 @@ advertencia 6002: La tabla o vista 'TAT001.dbo.WARNINGV' no tiene definida ningu
           <EntitySetMapping Name="TSOLs">
             <EntityTypeMapping TypeName="TAT001Model.TSOL">
               <MappingFragment StoreEntitySet="TSOL">
+                <ScalarProperty Name="REVERSO" ColumnName="REVERSO" />
+                <ScalarProperty Name="CARTA" ColumnName="CARTA" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="TSOLR" ColumnName="TSOLR" />

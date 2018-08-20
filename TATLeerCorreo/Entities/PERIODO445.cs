@@ -19,5 +19,6 @@ namespace TATLeerCorreo.Entities
         public int DIA_NATURAL { get; set; }
         public int PERIODO { get; set; }
         public bool ACTIVO { get; set; }
+        public int SUMA { get; set; }
     }
 }

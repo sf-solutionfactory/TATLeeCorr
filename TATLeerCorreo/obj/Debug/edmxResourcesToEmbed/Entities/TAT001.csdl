@@ -797,6 +797,8 @@
     <Property Name="OBJETIVOQ" Type="Boolean" />
     <Property Name="FRECUENCIA_LIQ" Type="Int32" />
     <Property Name="OBJQ_PORC" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="CUENTAP" Type="Decimal" Precision="10" Scale="0" />
+    <Property Name="CUENTAPL" Type="Decimal" Precision="10" Scale="0" />
   </EntityType>
   <EntityType Name="DOCUMENTOA">
     <Key>
@@ -1015,6 +1017,7 @@
     <Property Name="LIFNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="KUNNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="IMPORTE" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="DESCR" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="DOCUMENTOT">
     <Key>
@@ -1054,6 +1057,7 @@
   <EntityType Name="FLUJNEGO">
     <Key>
       <PropertyRef Name="POS" />
+      <PropertyRef Name="NUM_DOC" />
     </Key>
     <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="POS" Type="Int32" Nullable="false" />
@@ -1360,6 +1364,7 @@
     <Property Name="DIA_NATURAL" Type="Int32" Nullable="false" />
     <Property Name="PERIODO" Type="Int32" Nullable="false" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <Property Name="SUMA" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="PERIODOT">
     <Key>
@@ -1935,6 +1940,8 @@
     <NavigationProperty Name="TSOL1" Relationship="Self.FK_TSOL_TSOL" FromRole="TSOL" ToRole="TSOL1" />
     <NavigationProperty Name="TSOL2" Relationship="Self.FK_TSOL_TSOL" FromRole="TSOL1" ToRole="TSOL" />
     <NavigationProperty Name="TSOLTs" Relationship="Self.FK_TSOLT_TSOL" FromRole="TSOL" ToRole="TSOLT" />
+    <Property Name="CARTA" Type="Boolean" Nullable="false" />
+    <Property Name="REVERSO" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="TSOLT">
     <Key>

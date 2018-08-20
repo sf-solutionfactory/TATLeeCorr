@@ -151,7 +151,7 @@ namespace TATLeerCorreo.Services
                     }
                 }
                 //req17
-                FLUJNEGO fn = new FLUJNEGO();
+                //FLUJNEGO fn = new FLUJNEGO();
                 for (int i = 0; i < emRq17.Count; i++)
                 {
                     AE.Net.Mail.MailMessage mm = emRq17[i];
@@ -281,7 +281,7 @@ namespace TATLeerCorreo.Services
                         {
                             for (int x = 0; x < lstD.Count; x++)
                             {
-                                fn = new FLUJNEGO();
+                                FLUJNEGO fn = new FLUJNEGO();
                                 fn.NUM_DOC = lstD[x].NUM_DOC;
                                 DateTime fecham = mm.Date;
                                 fn.FECHAM = fecham;
@@ -300,7 +300,7 @@ namespace TATLeerCorreo.Services
                         {
                             for (int x = 0; x < lstD.Count; x++)
                             {
-                                fn = new FLUJNEGO();
+                                FLUJNEGO fn = new FLUJNEGO();
                                 fn.NUM_DOC = lstD[x].NUM_DOC;
                                 fn.FECHAC = lstD[x].FECHAC;
                                 DateTime fecham = mm.Date;

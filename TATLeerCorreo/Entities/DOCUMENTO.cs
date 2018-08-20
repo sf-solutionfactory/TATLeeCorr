@@ -103,6 +103,8 @@ namespace TATLeerCorreo.Entities
         public Nullable<bool> OBJETIVOQ { get; set; }
         public Nullable<int> FRECUENCIA_LIQ { get; set; }
         public Nullable<decimal> OBJQ_PORC { get; set; }
+        public Nullable<decimal> CUENTAP { get; set; }
+        public Nullable<decimal> CUENTAPL { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CARTA> CARTAs { get; set; }
