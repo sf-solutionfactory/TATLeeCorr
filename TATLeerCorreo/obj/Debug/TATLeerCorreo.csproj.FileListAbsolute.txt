@@ -64,3 +64,15 @@ C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorr
 C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.exe
 C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.pdb
 C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojResolveAssemblyReference.cache
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe.config
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.exe
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.pdb
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\TATLeerCorreo.pdb
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\AE.Net.Mail.dll
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFramework.dll
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.dll
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\AE.Net.Mail.pdb
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFramework.xml
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.xml
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojResolveAssemblyReference.cache

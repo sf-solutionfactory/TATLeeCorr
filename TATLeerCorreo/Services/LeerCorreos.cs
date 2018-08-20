@@ -96,6 +96,8 @@ namespace TATLeerCorreo.Services
                                     fl.ESTATUS = arrApr[1].Substring(0, 1);
                                     fl.FECHAM = DateTime.Now;
                                     fl.COMENTARIO = mm.Body;
+                                    if (fl.COMENTARIO.Length > 255)
+                                        fl.COMENTARIO = fl.COMENTARIO.Substring(0, 252) + "...";
                                     var res = pF.procesa(fl, "");
                                     if (res == "1")
                                     {

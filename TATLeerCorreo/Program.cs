@@ -20,8 +20,8 @@ namespace TATLeerCorreo
                 lc.correos2();
             }, null, startTimeSpan, periodTimeSpan);
             //lc.correo();
-            //Console.Write("Terminar?");
-            //Console.ReadKey();
+            Console.Write("Terminar?");
+            Console.ReadKey();
         }
     }
 }
