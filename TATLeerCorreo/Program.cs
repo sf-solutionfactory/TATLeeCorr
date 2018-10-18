@@ -14,14 +14,14 @@ namespace TATLeerCorreo
             var startTimeSpan = TimeSpan.Zero;
             var periodTimeSpan = TimeSpan.FromMinutes(1);
 
-            var timer = new System.Threading.Timer((e) =>
-            {
+            ////var timer = new System.Threading.Timer((e) =>
+            ////{
                 LeerCorreos lc = new LeerCorreos();
                 lc.correos2();
-            }, null, startTimeSpan, periodTimeSpan);
+            ////}, null, startTimeSpan, periodTimeSpan);
             //lc.correo();
-            Console.Write("Terminar?");
-            Console.ReadKey();
+            //Console.Write("Terminar?");
+            //Console.ReadKey();
         }
     }
 }
