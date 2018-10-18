@@ -63,7 +63,6 @@ C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFrame
 C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.CoreCompileInputs.cache
 C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.exe
 C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.pdb
-C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojResolveAssemblyReference.cache
 F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\TATLeerCorreo.exe.config
 F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.exe
 F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.pdb

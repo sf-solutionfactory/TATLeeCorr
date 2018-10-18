@@ -24,5 +24,6 @@ namespace TATLeerCorreo.Entities
         public bool ACTIVO { get; set; }
     
         public virtual DOCUMENTO DOCUMENTO { get; set; }
+        public virtual TSOPORTE TSOPORTE { get; set; }
     }
 }

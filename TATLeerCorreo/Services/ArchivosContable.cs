@@ -8,7 +8,7 @@ using System.Reflection;
 using TATLeerCorreo;
 using TATLeerCorreo.Entities;
 
-namespace TAT001.Services
+namespace TATLeerCorreo.Services
 {
     public class ArchivoContable
     {

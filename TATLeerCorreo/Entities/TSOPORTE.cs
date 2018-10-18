@@ -18,6 +18,7 @@ namespace TATLeerCorreo.Entities
         public TSOPORTE()
         {
             this.CONSOPORTEs = new HashSet<CONSOPORTE>();
+            this.DOCUMENTOAs = new HashSet<DOCUMENTOA>();
             this.TSOPORTETs = new HashSet<TSOPORTET>();
         }
     
@@ -27,6 +28,8 @@ namespace TATLeerCorreo.Entities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CONSOPORTE> CONSOPORTEs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DOCUMENTOA> DOCUMENTOAs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TSOPORTET> TSOPORTETs { get; set; }
     }

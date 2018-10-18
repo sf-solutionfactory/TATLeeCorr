@@ -18,6 +18,7 @@ namespace TATLeerCorreo.Entities
         public string TSOL_ID { get; set; }
         public string TXT020 { get; set; }
         public string TXT50 { get; set; }
+        public string TXT010 { get; set; }
     
         public virtual SPRA SPRA { get; set; }
         public virtual TSOL TSOL { get; set; }

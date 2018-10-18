@@ -14,24 +14,14 @@ namespace TATLeerCorreo.Entities
     
     public partial class TS_FORM
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TS_FORM()
-        {
-            this.DOCUMENTOTS = new HashSet<DOCUMENTOT>();
-            this.TS_FORMT = new HashSet<TS_FORMT>();
-        }
-    
         public int ID { get; set; }
         public string BUKRS_ID { get; set; }
         public string LAND_ID { get; set; }
         public int POS { get; set; }
         public string CAMPO { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DOCUMENTOT> DOCUMENTOTS { get; set; }
         public virtual PAI PAI { get; set; }
         public virtual SOCIEDAD SOCIEDAD { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TS_FORMT> TS_FORMT { get; set; }
+        public virtual TS_CAMPO TS_CAMPO { get; set; }
     }
 }

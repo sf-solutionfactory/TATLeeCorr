@@ -20,9 +20,9 @@ namespace TATLeerCorreo.Entities
             this.CARTAs = new HashSet<CARTA>();
             this.DOCUMENTOAs = new HashSet<DOCUMENTOA>();
             this.DOCUMENTOFs = new HashSet<DOCUMENTOF>();
+            this.DOCUMENTOLs = new HashSet<DOCUMENTOL>();
             this.DOCUMENTONs = new HashSet<DOCUMENTON>();
             this.DOCUMENTOPs = new HashSet<DOCUMENTOP>();
-            this.DOCUMENTORs = new HashSet<DOCUMENTOR>();
             this.DOCUMENTORECs = new HashSet<DOCUMENTOREC>();
             this.DOCUMENTOTS = new HashSet<DOCUMENTOT>();
             this.FLUJOes = new HashSet<FLUJO>();
@@ -105,10 +105,13 @@ namespace TATLeerCorreo.Entities
         public Nullable<decimal> OBJQ_PORC { get; set; }
         public Nullable<decimal> CUENTAP { get; set; }
         public Nullable<decimal> CUENTAPL { get; set; }
+        public string EXCEDE_PRES { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CARTA> CARTAs { get; set; }
         public virtual CLIENTE CLIENTE { get; set; }
+        public virtual CUENTAGL CUENTAGL { get; set; }
+        public virtual CUENTAGL CUENTAGL1 { get; set; }
         public virtual GALL GALL { get; set; }
         public virtual PAI PAI { get; set; }
         public virtual SOCIEDAD SOCIEDAD { get; set; }
@@ -120,11 +123,12 @@ namespace TATLeerCorreo.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCUMENTOF> DOCUMENTOFs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DOCUMENTOL> DOCUMENTOLs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCUMENTON> DOCUMENTONs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCUMENTOP> DOCUMENTOPs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DOCUMENTOR> DOCUMENTORs { get; set; }
+        public virtual DOCUMENTOR DOCUMENTOR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCUMENTOREC> DOCUMENTORECs { get; set; }
         public virtual DOCUMENTOSAP DOCUMENTOSAP { get; set; }

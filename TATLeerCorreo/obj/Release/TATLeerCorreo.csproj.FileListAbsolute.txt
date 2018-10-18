@@ -1,0 +1,12 @@
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\TATLeerCorreo.exe.config
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\TATLeerCorreo.exe
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\TATLeerCorreo.pdb
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\AE.Net.Mail.dll
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\EntityFramework.dll
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\AE.Net.Mail.pdb
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\EntityFramework.xml
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerCorreo.csproj.CoreCompileInputs.cache
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerCorreo.exe
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerCorreo.pdb

@@ -28,6 +28,10 @@ namespace TATLeerCorreo.Entities
         }
     
         public virtual DbSet<ACCION> ACCIONs { get; set; }
+        public virtual DbSet<ACCIONT> ACCIONTs { get; set; }
+        public virtual DbSet<APPSETTING> APPSETTINGs { get; set; }
+        public virtual DbSet<CALENDARIO_AC> CALENDARIO_AC { get; set; }
+        public virtual DbSet<CALENDARIO_EX> CALENDARIO_EX { get; set; }
         public virtual DbSet<CAMPOS> CAMPOS { get; set; }
         public virtual DbSet<CAMPOZKE24> CAMPOZKE24 { get; set; }
         public virtual DbSet<CAMPOZKE24T> CAMPOZKE24T { get; set; }
@@ -40,7 +44,10 @@ namespace TATLeerCorreo.Entities
         public virtual DbSet<CATEGORIAT> CATEGORIATs { get; set; }
         public virtual DbSet<CITy> CITIES { get; set; }
         public virtual DbSet<CLIENTE> CLIENTEs { get; set; }
+        public virtual DbSet<CLIENTEF> CLIENTEFs { get; set; }
         public virtual DbSet<CLIENTEI> CLIENTEIs { get; set; }
+        public virtual DbSet<CONDICION> CONDICIONs { get; set; }
+        public virtual DbSet<CONDICIONT> CONDICIONTs { get; set; }
         public virtual DbSet<CONFDIST_CAT> CONFDIST_CAT { get; set; }
         public virtual DbSet<CONMAIL> CONMAILs { get; set; }
         public virtual DbSet<CONPOSAPH> CONPOSAPHs { get; set; }
@@ -49,6 +56,7 @@ namespace TATLeerCorreo.Entities
         public virtual DbSet<CONTACTOC> CONTACTOCs { get; set; }
         public virtual DbSet<COUNTRy> COUNTRIES { get; set; }
         public virtual DbSet<CUENTA> CUENTAs { get; set; }
+        public virtual DbSet<CUENTAGL> CUENTAGLs { get; set; }
         public virtual DbSet<DELEGAR> DELEGARs { get; set; }
         public virtual DbSet<DET_AGENTE> DET_AGENTE { get; set; }
         public virtual DbSet<DET_AGENTEC> DET_AGENTEC { get; set; }
@@ -67,11 +75,14 @@ namespace TATLeerCorreo.Entities
         public virtual DbSet<DOCUMENTOBORRM> DOCUMENTOBORRMs { get; set; }
         public virtual DbSet<DOCUMENTOBORRN> DOCUMENTOBORRNs { get; set; }
         public virtual DbSet<DOCUMENTOBORRP> DOCUMENTOBORRPs { get; set; }
+        public virtual DbSet<DOCUMENTOBORRREC> DOCUMENTOBORRRECs { get; set; }
         public virtual DbSet<DOCUMENTOF> DOCUMENTOFs { get; set; }
+        public virtual DbSet<DOCUMENTOL> DOCUMENTOLs { get; set; }
         public virtual DbSet<DOCUMENTOM> DOCUMENTOMs { get; set; }
         public virtual DbSet<DOCUMENTON> DOCUMENTONs { get; set; }
         public virtual DbSet<DOCUMENTOP> DOCUMENTOPs { get; set; }
         public virtual DbSet<DOCUMENTOR> DOCUMENTORs { get; set; }
+        public virtual DbSet<DOCUMENTORAN> DOCUMENTORANs { get; set; }
         public virtual DbSet<DOCUMENTOREC> DOCUMENTORECs { get; set; }
         public virtual DbSet<DOCUMENTOSAP> DOCUMENTOSAPs { get; set; }
         public virtual DbSet<DOCUMENTOT> DOCUMENTOTS { get; set; }
@@ -119,6 +130,7 @@ namespace TATLeerCorreo.Entities
         public virtual DbSet<SPRA> SPRAS { get; set; }
         public virtual DbSet<STATE> STATES { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<TAB> TABs { get; set; }
         public virtual DbSet<TALL> TALLs { get; set; }
         public virtual DbSet<TALLT> TALLTs { get; set; }
         public virtual DbSet<TAX_LAND> TAX_LAND { get; set; }
@@ -133,9 +145,13 @@ namespace TATLeerCorreo.Entities
         public virtual DbSet<TRETENCIONT> TRETENCIONTs { get; set; }
         public virtual DbSet<TREVERSA> TREVERSAs { get; set; }
         public virtual DbSet<TREVERSAT> TREVERSATs { get; set; }
+        public virtual DbSet<TS_CAMPO> TS_CAMPO { get; set; }
         public virtual DbSet<TS_FORM> TS_FORM { get; set; }
         public virtual DbSet<TS_FORMT> TS_FORMT { get; set; }
         public virtual DbSet<TSOL> TSOLs { get; set; }
+        public virtual DbSet<TSOL_GROUP> TSOL_GROUP { get; set; }
+        public virtual DbSet<TSOL_GROUPT> TSOL_GROUPT { get; set; }
+        public virtual DbSet<TSOL_TREE> TSOL_TREE { get; set; }
         public virtual DbSet<TSOLT> TSOLTs { get; set; }
         public virtual DbSet<TSOPORTE> TSOPORTEs { get; set; }
         public virtual DbSet<TSOPORTET> TSOPORTETs { get; set; }
@@ -146,14 +162,19 @@ namespace TATLeerCorreo.Entities
         public virtual DbSet<UMEDIDA> UMEDIDAs { get; set; }
         public virtual DbSet<UMEDIDAT> UMEDIDATs { get; set; }
         public virtual DbSet<USUARIO> USUARIOs { get; set; }
+        public virtual DbSet<USUARIOF> USUARIOFs { get; set; }
         public virtual DbSet<USUARIOSAP> USUARIOSAPs { get; set; }
         public virtual DbSet<WARNING> WARNINGs { get; set; }
+        public virtual DbSet<WARNING_COND> WARNING_COND { get; set; }
+        public virtual DbSet<WARNINGP> WARNINGPs { get; set; }
+        public virtual DbSet<WARNINGPT> WARNINGPTs { get; set; }
         public virtual DbSet<WORKFH> WORKFHs { get; set; }
         public virtual DbSet<WORKFP> WORKFPs { get; set; }
         public virtual DbSet<WORKFT> WORKFTs { get; set; }
         public virtual DbSet<WORKFV> WORKFVs { get; set; }
         public virtual DbSet<ZBRAND> ZBRANDs { get; set; }
         public virtual DbSet<ZCTGR> ZCTGRs { get; set; }
+        public virtual DbSet<TAB_CAMPO> TAB_CAMPO { get; set; }
         public virtual DbSet<CARPETAV> CARPETAVs { get; set; }
         public virtual DbSet<CREADOR> CREADORs { get; set; }
         public virtual DbSet<CREADOR2> CREADOR2 { get; set; }
@@ -161,7 +182,6 @@ namespace TATLeerCorreo.Entities
         public virtual DbSet<DOCUMENTOV> DOCUMENTOVs { get; set; }
         public virtual DbSet<PAGINAV> PAGINAVs { get; set; }
         public virtual DbSet<WARNINGV> WARNINGVs { get; set; }
-        public virtual DbSet<APPSETTING> APPSETTINGs { get; set; }
     
         [DbFunction("TAT001Entities", "split")]
         public virtual IQueryable<split_Result> split(string delimited, string delimiter)
@@ -182,9 +202,13 @@ namespace TATLeerCorreo.Entities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CPS_LISTA_CLI_PRO_Result>("CPS_LISTA_CLI_PRO");
         }
     
-        public virtual ObjectResult<string> CSP_BANNERSINCANAL()
+        public virtual ObjectResult<CSP_BANNERSINCANAL_Result> CSP_BANNERSINCANAL(string sociedad)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CSP_BANNERSINCANAL");
+            var sociedadParameter = sociedad != null ?
+                new ObjectParameter("sociedad", sociedad) :
+                new ObjectParameter("sociedad", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CSP_BANNERSINCANAL_Result>("CSP_BANNERSINCANAL", sociedadParameter);
         }
     
         public virtual ObjectResult<CSP_CAMBIO_Result> CSP_CAMBIO(string sociedad)
@@ -244,6 +268,19 @@ namespace TATLeerCorreo.Entities
                 new ObjectParameter("CPT", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CSP_CONSULTARPRESUPUESTO_Result>("CSP_CONSULTARPRESUPUESTO", sOCIEDADParameter, aNIOCParameter, aNIOSParameter, pERIODOCParameter, pERIODOSParameter, mONEDADParameter, mONEDAAParameter, cPTParameter);
+        }
+    
+        public virtual ObjectResult<CSP_DOCUMENTOSXUSER_Result> CSP_DOCUMENTOSXUSER(string uSUARIO, string sPRAS)
+        {
+            var uSUARIOParameter = uSUARIO != null ?
+                new ObjectParameter("USUARIO", uSUARIO) :
+                new ObjectParameter("USUARIO", typeof(string));
+    
+            var sPRASParameter = sPRAS != null ?
+                new ObjectParameter("SPRAS", sPRAS) :
+                new ObjectParameter("SPRAS", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<CSP_DOCUMENTOSXUSER_Result>("CSP_DOCUMENTOSXUSER", uSUARIOParameter, sPRASParameter);
         }
     
         public virtual ObjectResult<CSP_PERMISO_Result> CSP_PERMISO(string iD, Nullable<int> aCCION)

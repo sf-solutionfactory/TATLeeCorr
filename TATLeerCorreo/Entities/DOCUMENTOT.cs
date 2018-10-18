@@ -19,6 +19,6 @@ namespace TATLeerCorreo.Entities
         public Nullable<bool> CHECKS { get; set; }
     
         public virtual DOCUMENTO DOCUMENTO { get; set; }
-        public virtual TS_FORM TS_FORM { get; set; }
+        public virtual TS_CAMPO TS_CAMPO { get; set; }
     }
 }

@@ -31,5 +31,6 @@ namespace TATLeerCorreo.Entities
         public bool PAYER { get; set; }
         public bool DESCRIPCION { get; set; }
         public bool SOCIEDAD { get; set; }
+        public bool ACTIVO { get; set; }
     }
 }

@@ -19,6 +19,6 @@ namespace TATLeerCorreo.Entities
         public string TXT100 { get; set; }
     
         public virtual SPRA SPRA { get; set; }
-        public virtual TS_FORM TS_FORM { get; set; }
+        public virtual TS_CAMPO TS_CAMPO { get; set; }
     }
 }
