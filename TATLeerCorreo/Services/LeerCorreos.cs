@@ -1,4 +1,4 @@
-﻿using AE.Net.Mail;
+using AE.Net.Mail;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -49,7 +49,7 @@ namespace TATLeerCorreo.Services
                     {
                         string[] arrAsunto = mm.Subject.Split(']');
                         //Recupero el asunto y lo separo del numdoc y pos
-                        string[] arrAprNum = arrAsunto[1].Split('-');
+                        string[] arrAprNum = arrAsunto[0].Split('-');
                         string[] arrClaves = arrAprNum[1].Split('.');
                         //Valido que tenga los datos necesarios para el req 17
                         if (arrClaves.Length > 1)
@@ -79,7 +79,7 @@ namespace TATLeerCorreo.Services
                         AE.Net.Mail.MailMessage mm = mx[i];
                         string[] arrAsunto = mm.Subject.Split(']');
                         //Recupero el asunto y lo separo del numdoc y pos
-                        string[] arrAprNum = arrAsunto[1].Split('-');
+                        string[] arrAprNum = arrAsunto[0].Split('-');
                         string[] arrClaves = arrAprNum[1].Split('.');
                         decimal numdoc = Decimal.Parse(arrClaves[0]);
                         //Si el Texto es Aprobado, Rechazado o Recurrente
