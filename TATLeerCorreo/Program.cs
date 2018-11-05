@@ -12,7 +12,7 @@ namespace TATLeerCorreo
         static void Main(string[] args)
         {
             var startTimeSpan = TimeSpan.Zero;
-            var periodTimeSpan = TimeSpan.FromMinutes(0.5);
+            var periodTimeSpan = TimeSpan.FromMinutes(100);
             //LeerCorreos lc = new LeerCorreos();
             var timer = new System.Threading.Timer((e) =>
             {

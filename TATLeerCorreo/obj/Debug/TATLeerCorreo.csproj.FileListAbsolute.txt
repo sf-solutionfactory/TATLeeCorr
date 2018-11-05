@@ -75,3 +75,5 @@ F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\AE.Net.Mail.pdb
 F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFramework.xml
 F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFramework.SqlServer.xml
 F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojResolveAssemblyReference.cache
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.CopyComplete
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojAssemblyReference.cache
