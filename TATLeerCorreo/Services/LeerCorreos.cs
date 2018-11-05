@@ -17,39 +17,49 @@ namespace TATLeerCorreo.Services
         private TAT001Entities db = new TAT001Entities();
         public void correos2()
         {
-            CONMAIL conmail = db.CONMAILs.Find("LE");
-            if (conmail == null) { Console.WriteLine("Falta configurar inbox."); return; }
-            //ImapClient ic = new ImapClient("outlook.office365.com", "LA_TAT@kellogg.com", "Wpbcgc9*",
-            //      AuthMethods.Login, 993, true);
-            ImapClient ic = new ImapClient(conmail.HOST, conmail.MAIL, conmail.PASS,
-                              AuthMethods.Login, (int)conmail.PORT, conmail.SSL);
-
-            // Select a mailbox. Case-insensitive
-            ic.SelectMailbox("INBOX");
-
-            //for (int i = 0; i < ic.GetMessageCount(); i++)
-            //{
-            //    AE.Net.Mail.MailMessage mm = ic.GetMessage(i);
-            //    string[] asunto = mm.Subject.Split(']');
-            //}
-
-            //Esto traera los emails recibidos y no leidos
-            List<AE.Net.Mail.MailMessage> mx = ic.GetMessages(0, ic.GetMessageCount() - 1, false, false)
-                                            .Where(m => !m.Flags.HasFlag(Flags.Seen) && !m.Flags.HasFlag(Flags.Deleted)).ToList();
-
-            //En esta lista ingresaremos a los mails que sean recibidos como cc
+            ImapClient ic = new ImapClient();
+            List<AE.Net.Mail.MailMessage> mx = new List<AE.Net.Mail.MailMessage>();
             List<AE.Net.Mail.MailMessage> emRq17 = new List<AE.Net.Mail.MailMessage>();
             try
             {
-                //ingresamos los correos CORREO
-                for (int i = 0; i < mx.Count; i++)
+                CONMAIL conmail = db.CONMAILs.Find("LE");
+                if (conmail == null) { Console.WriteLine("Falta configurar inbox."); return; }
+                //ImapClient ic = new ImapClient("outlook.office365.com", "LA_TAT@kellogg.com", "Wpbcgc9*",
+                //      AuthMethods.Login, 993, true);
+                ic = new ImapClient(conmail.HOST, conmail.MAIL, conmail.PASS,
+                                  AuthMethods.Login, (int)conmail.PORT, conmail.SSL);
+
+                // Select a mailbox. Case-insensitive
+                ic.SelectMailbox("INBOX");
+
+                //for (int i = 0; i < ic.GetMessageCount(); i++)
+                //{
+                //    AE.Net.Mail.MailMessage mm = ic.GetMessage(i);
+                //    string[] asunto = mm.Subject.Split(']');
+                //}
+
+                //Esto traera los emails recibidos y no leidos
+                mx = ic.GetMessages(0, ic.GetMessageCount() - 1, false, false)
+                                                .Where(m => !m.Flags.HasFlag(Flags.Seen) && !m.Flags.HasFlag(Flags.Deleted)).ToList();
+
+                //En esta lista ingresaremos a los mails que sean recibidos como cc
+                emRq17 = new List<AE.Net.Mail.MailMessage>();
+            }catch
+            {
+                mx = new List<AE.Net.Mail.MailMessage>();
+                emRq17 = new List<AE.Net.Mail.MailMessage>();
+            }
+                try
+                {
+                    //ingresamos los correos CORREO
+                    for (int i = 0; i < mx.Count; i++)
                 {
                     AE.Net.Mail.MailMessage mm = mx[i];
                     try
                     {
                         string[] arrAsunto = mm.Subject.Split(']');
                         //Recupero el asunto y lo separo del numdoc y pos
-                        string[] arrAprNum = arrAsunto[0].Split('-');
+                        string[] arrAprNum = arrAsunto[1].Split('-');//RSG cambiar 0 a 1
                         string[] arrClaves = arrAprNum[1].Split('.');
                         //Valido que tenga los datos necesarios para el req 17
                         if (arrClaves.Length > 1)
@@ -79,7 +89,7 @@ namespace TATLeerCorreo.Services
                         AE.Net.Mail.MailMessage mm = mx[i];
                         string[] arrAsunto = mm.Subject.Split(']');
                         //Recupero el asunto y lo separo del numdoc y pos
-                        string[] arrAprNum = arrAsunto[0].Split('-');
+                        string[] arrAprNum = arrAsunto[1].Split('-');//RSG cambiar 0 a 1
                         string[] arrClaves = arrAprNum[1].Split('.');
                         decimal numdoc = Decimal.Parse(arrClaves[0]);
                         //Si el Texto es Aprobado, Rechazado o Recurrente
