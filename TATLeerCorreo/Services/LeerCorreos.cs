@@ -60,7 +60,7 @@ namespace TATLeerCorreo.Services
                     try
                     {
                         string[] arrAsunto = mm.Subject.Split(']');
-                        int a = arrAsunto.Length - 1;
+                        int a = arrAsunto.Length - 1+2;
                         //Recupero el asunto y lo separo del numdoc y pos
                         string[] arrAprNum = arrAsunto[a].Split('-');//RSG cambiar 0 a 1
                         string[] arrClaves = arrAprNum[1].Split('.');
@@ -172,8 +172,9 @@ namespace TATLeerCorreo.Services
                     if (true)
                     {
                         string[] arrAsunto = mm.Subject.Split(']');
+                        int isa = arrAsunto.Length - 1;
                         //Recupero el asunto y lo separo del numdoc y pos
-                        string[] arrAprNum = arrAsunto[1].Split('-');
+                        string[] arrAprNum = arrAsunto[isa].Split('-');
                         string[] arrPiNN = arrAprNum[1].Split('.');
                         var _id = int.Parse(arrPiNN[1]);
                         var vkorg = arrPiNN[2];
