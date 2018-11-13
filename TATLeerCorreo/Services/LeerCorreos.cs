@@ -25,19 +25,11 @@ namespace TATLeerCorreo.Services
                 List<CONMAIL> cc = db.CONMAILs.ToList();
                 CONMAIL conmail = cc.Where(x => x.ID == "LE").FirstOrDefault();
                 if (conmail == null) { Console.WriteLine("Falta configurar inbox."); return; }
-                //ImapClient ic = new ImapClient("outlook.office365.com", "LA_TAT@kellogg.com", "Wpbcgc9*",
-                //      AuthMethods.Login, 993, true);
                 ic = new ImapClient(conmail.HOST, conmail.MAIL, conmail.PASS,
                                   AuthMethods.Login, (int)conmail.PORT, conmail.SSL);
 
                 // Select a mailbox. Case-insensitive
                 ic.SelectMailbox("INBOX");
-
-                //for (int i = 0; i < ic.GetMessageCount(); i++)
-                //{
-                //    AE.Net.Mail.MailMessage mm = ic.GetMessage(i);
-                //    string[] asunto = mm.Subject.Split(']');
-                //}
 
                 //Esto traera los emails recibidos y no leidos
                 mx = ic.GetMessages(0, ic.GetMessageCount() - 1, false, false)
@@ -45,8 +37,18 @@ namespace TATLeerCorreo.Services
 
                 //En esta lista ingresaremos a los mails que sean recibidos como cc
                 emRq17 = new List<AE.Net.Mail.MailMessage>();
+
+                //for (int i = 0; i < mx.Count; i++)
+                //{
+                //    if (mx[i].ContentType != "text /plain" & mx[i].ContentType != "text/plain")
+                //    {
+                //        AE.Net.Mail.MailMessage mm = mx[i];
+                //        string a = mm.Body;
+                //    }
+
+                //}
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 mx = new List<AE.Net.Mail.MailMessage>();
                 emRq17 = new List<AE.Net.Mail.MailMessage>();
@@ -60,7 +62,7 @@ namespace TATLeerCorreo.Services
                     try
                     {
                         string[] arrAsunto = mm.Subject.Split(']');
-                        int a = arrAsunto.Length - 1+2;
+                        int a = arrAsunto.Length - 1;
                         //Recupero el asunto y lo separo del numdoc y pos
                         string[] arrAprNum = arrAsunto[a].Split('-');//RSG cambiar 0 a 1
                         string[] arrClaves = arrAprNum[1].Split('.');
@@ -107,21 +109,23 @@ namespace TATLeerCorreo.Services
                                 FLUJO fl = db.FLUJOes.Where(x => x.NUM_DOC == numdoc && x.POS == pos).FirstOrDefault();
                                 if (fl != null)
                                 {
-                                    fl.ESTATUS = arrApr[1].Substring(0, 1);
-                                    fl.FECHAM = DateTime.Now;
-                                    fl.COMENTARIO = mm.Body;
-                                    if (fl.COMENTARIO.Length > 255)
-                                        fl.COMENTARIO = fl.COMENTARIO.Substring(0, 252) + "...";
-                                    var res = pF.procesa(fl, "");
-                                    if (res == "1")
+                                    if (mm.From.Address.Trim() == fl.USUARIO.EMAIL | mm.From.Address.Trim() == fl.USUARIO1.EMAIL)
                                     {
-                                        enviarCorreo(fl.NUM_DOC, 1, pos);
+                                        fl.ESTATUS = arrApr[1].Substring(0, 1);
+                                        fl.FECHAM = DateTime.Now;
+                                        fl.COMENTARIO = mm.Body;
+                                        if (fl.COMENTARIO.Length > 255)
+                                            fl.COMENTARIO = fl.COMENTARIO.Substring(0, 252) + "...";
+                                        var res = pF.procesa(fl, "");
+                                        if (res == "1")
+                                        {
+                                            enviarCorreo(fl.NUM_DOC, 1, pos);
+                                        }
+                                        else if (res == "3")
+                                        {
+                                            enviarCorreo(fl.NUM_DOC, 3, pos);
+                                        }
                                     }
-                                    else if (res == "3")
-                                    {
-                                        enviarCorreo(fl.NUM_DOC, 3, pos);
-                                    }
-                                    //para marcar el mensaje como leido
                                 }
                                 ic.AddFlags(Flags.Seen, mm);
                             }
