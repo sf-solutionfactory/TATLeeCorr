@@ -40,12 +40,25 @@ namespace TATLeerCorreo.Services
 
                 //for (int i = 0; i < mx.Count; i++)
                 //{
+                //    string bodyHtml = "";
+                //    AE.Net.Mail.MailMessage mm = mx[i];
                 //    if (mx[i].ContentType != "text /plain" & mx[i].ContentType != "text/plain")
                 //    {
-                //        AE.Net.Mail.MailMessage mm = mx[i];
-                //        string a = mm.Body;
+                //        string[] bodyH = mm.Body.Split(new string[] { "<div class='WordSection1'>" }, StringSplitOptions.None);
+                //        if (bodyH.Length > 1)
+                //        {
+                //            string[] bb = bodyH[1].Split(new string[] { "</p" }, StringSplitOptions.None);
+                //            if (bb.Length > 1)
+                //            {
+                //                bodyHtml = bb[0] + "</p>";
+                //            }
+                //        }
                 //    }
+                //    else
+                //    {
 
+                //        bodyHtml = mm.Body;
+                //    }
                 //}
             }
             catch (Exception e)
@@ -109,8 +122,10 @@ namespace TATLeerCorreo.Services
                                 FLUJO fl = db.FLUJOes.Where(x => x.NUM_DOC == numdoc && x.POS == pos).FirstOrDefault();
                                 if (fl != null)
                                 {
+                                    Console.WriteLine(mm.From.Address.Trim()); Console.WriteLine(fl.USUARIO.EMAIL);
                                     if (mm.From.Address.Trim() == fl.USUARIO.EMAIL | mm.From.Address.Trim() == fl.USUARIO1.EMAIL)
                                     {
+                                        Console.WriteLine("true");
                                         fl.ESTATUS = arrApr[1].Substring(0, 1);
                                         fl.FECHAM = DateTime.Now;
                                         fl.COMENTARIO = mm.Body;
@@ -125,6 +140,17 @@ namespace TATLeerCorreo.Services
                                         {
                                             enviarCorreo(fl.NUM_DOC, 3, pos);
                                         }
+
+                                        using (TAT001Entities db1 = new TAT001Entities())
+                                        {
+                                            FLUJO ff = db1.FLUJOes.Where(x => x.NUM_DOC == fl.NUM_DOC).OrderByDescending(x => x.POS).FirstOrDefault();
+                                            Estatus es = new Estatus();//RSG 18.09.2018
+                                            DOCUMENTO ddoc = db1.DOCUMENTOes.Find(fl.NUM_DOC);
+                                            ff.STATUS = es.getEstatus(ddoc);
+                                            db1.Entry(ff).State = System.Data.Entity.EntityState.Modified;
+                                            db1.SaveChanges();
+                                        }
+                                        Console.WriteLine(res);
                                     }
                                 }
                                 ic.AddFlags(Flags.Seen, mm);
