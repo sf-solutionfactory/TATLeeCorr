@@ -15,14 +15,15 @@ namespace TATLeerCorreo.Services
     public class LeerCorreos
     {
         private TAT001Entities db = new TAT001Entities();
-        static string path = ConfigurationManager.AppSettings["path"].ToString();
-        Log log = new Log(path);
+        Log log = new Log();
         
         public void correos2()
         {
             ImapClient ic = new ImapClient();
             List<AE.Net.Mail.MailMessage> mx = new List<AE.Net.Mail.MailMessage>();
             List<AE.Net.Mail.MailMessage> emRq17 = new List<AE.Net.Mail.MailMessage>();
+            APPSETTING lg = db.APPSETTINGs.Where(x => x.NOMBRE == "logPath" & x.ACTIVO == true).FirstOrDefault();
+            log.ruta = lg.VALUE + "LeerCorreos_";
             log.escribeLog("-----------------------------------------------------------------------START");
             try
             {

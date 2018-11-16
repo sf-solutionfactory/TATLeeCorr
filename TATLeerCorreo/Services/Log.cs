@@ -14,7 +14,11 @@ namespace TATLeerCorreo.Services
 {
     public class Log
     {
-        public string ruta;
+        public string ruta { get; set; }
+        public Log()
+        {
+            ruta = "";
+        }
         public Log(string r)
         {
             ruta = r;
