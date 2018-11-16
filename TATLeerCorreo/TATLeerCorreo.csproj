@@ -578,6 +578,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ArchivosContable.cs" />
     <Compile Include="Services\Estatus.cs" />
+    <Compile Include="Services\Log.cs" />
     <Compile Include="Services\LeerCorreos.cs" />
     <Compile Include="Services\ProcesaFlujo.cs" />
     <Compile Include="Services\ProcesaFlujo2.cs" />

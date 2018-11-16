@@ -15,16 +15,18 @@ namespace TATLeerCorreo.Services
     public class LeerCorreos
     {
         private TAT001Entities db = new TAT001Entities();
+        Log log = new Log();
         public void correos2()
         {
             ImapClient ic = new ImapClient();
             List<AE.Net.Mail.MailMessage> mx = new List<AE.Net.Mail.MailMessage>();
             List<AE.Net.Mail.MailMessage> emRq17 = new List<AE.Net.Mail.MailMessage>();
+            log.escribeLog("-----------------------------------------------------------------------START");
             try
             {
                 List<CONMAIL> cc = db.CONMAILs.ToList();
                 CONMAIL conmail = cc.Where(x => x.ID == "LE").FirstOrDefault();
-                if (conmail == null) { Console.WriteLine("Falta configurar inbox."); return; }
+                if (conmail == null) { log.escribeLog("Falta configurar inbox."); return; }
                 ic = new ImapClient(conmail.HOST, conmail.MAIL, conmail.PASS,
                                   AuthMethods.Login, (int)conmail.PORT, conmail.SSL);
 
@@ -37,6 +39,7 @@ namespace TATLeerCorreo.Services
 
                 //En esta lista ingresaremos a los mails que sean recibidos como cc
                 emRq17 = new List<AE.Net.Mail.MailMessage>();
+                log.escribeLog("Leer inbox - numReg=(" + mx.Count + ")");
 
                 //for (int i = 0; i < mx.Count; i++)
                 //{
@@ -65,6 +68,7 @@ namespace TATLeerCorreo.Services
             {
                 mx = new List<AE.Net.Mail.MailMessage>();
                 emRq17 = new List<AE.Net.Mail.MailMessage>();
+                log.escribeLog("Error al leer");
             }
             try
             {
@@ -88,10 +92,12 @@ namespace TATLeerCorreo.Services
                         if (arrAprNum[0].Trim() == "De Acuerdo" | arrAprNum[0].Trim() == "DeAcuerdo")
                         {
                             emRq17.Add(mm);
+                            log.escribeLog("NEGO A - " + arrClaves[1]);
                         }
                         else if (arrAprNum[0].Trim() == "Tengo Observaciones" | arrAprNum[0].Trim() == "TengoObservaciones")
                         {
                             emRq17.Add(mm);
+                            log.escribeLog("NEGO O - " + arrClaves[1]);
                         }
                     }
                     catch
@@ -118,11 +124,13 @@ namespace TATLeerCorreo.Services
                             ProcesaFlujo pF = new ProcesaFlujo();
                             if (arrApr[1] == "Approved" | arrApr[1] == "Rejected")
                             {
+                                log.escribeLog("APPR AR - " + arrClaves[1]);
                                 int pos = Convert.ToInt32(arrAprNum[2]);
                                 FLUJO fl = db.FLUJOes.Where(x => x.NUM_DOC == numdoc && x.POS == pos).FirstOrDefault();
                                 if (fl != null)
                                 {
                                     Console.WriteLine(mm.From.Address.Trim()); Console.WriteLine(fl.USUARIO.EMAIL);
+                                    log.escribeLog("APPR mails - " + mm.From.Address.Trim() + " == " + fl.USUARIO.EMAIL);
                                     if (mm.From.Address.Trim() == fl.USUARIO.EMAIL | mm.From.Address.Trim() == fl.USUARIO1.EMAIL)
                                     {
                                         Console.WriteLine("true");
@@ -132,6 +140,7 @@ namespace TATLeerCorreo.Services
                                         if (fl.COMENTARIO.Length > 255)
                                             fl.COMENTARIO = fl.COMENTARIO.Substring(0, 252) + "...";
                                         var res = pF.procesa(fl, "");
+                                        log.escribeLog("APPR PROCESA - Res = " + res);
                                         if (res == "1")
                                         {
                                             enviarCorreo(fl.NUM_DOC, 1, pos);
