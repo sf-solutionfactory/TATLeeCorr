@@ -17,7 +17,7 @@ namespace TATLeerCorreo.Services
         public void escribeLog(string text)
         {
             //File.OpenWrite(DateTime.Now.ToShortDateString() + ".txt");
-            using (StreamWriter w = File.AppendText(DateTime.Now.Year.ToString()+"_"+ DateTime.Now.Month.ToString() + "_" + DateTime.Now.Day.ToString() + ".txt"))
+            using (StreamWriter w = File.AppendText("LOG/" + DateTime.Now.Year.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Day.ToString() + ".txt"))
             {
                 w.WriteLine(DateTime.Now.ToString() + "-" + text);
             }

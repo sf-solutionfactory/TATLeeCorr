@@ -103,6 +103,7 @@ namespace TATLeerCorreo.Services
                     catch
                     {
                         ic.AddFlags(Flags.Seen, mm);
+                        log.escribeLog("ERROR - " + mm.Subject);
                     }
                 }
                 //Correos de FLUJO DE APROBACIÓN y RECURRENTE-----------------------------------------------------2 y 3
@@ -381,6 +382,7 @@ namespace TATLeerCorreo.Services
             }
             catch (Exception ex)
             {
+                log.escribeLog("ERROR - " + ex.InnerException.ToString());
                 throw new Exception(ex.InnerException.ToString());
             }
             finally
@@ -470,6 +472,7 @@ namespace TATLeerCorreo.Services
             }
             catch (Exception ex)
             {
+                log.escribeLog("ERROR - " + ex.InnerException.ToString());
                 throw new Exception("No se ha podido enviar el email", ex.InnerException);
             }
         }
