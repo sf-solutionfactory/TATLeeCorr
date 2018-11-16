@@ -14,10 +14,15 @@ namespace TATLeerCorreo.Services
 {
     public class Log
     {
+        public string ruta;
+        public Log(string r)
+        {
+            ruta = r;
+        }
         public void escribeLog(string text)
         {
             //File.OpenWrite(DateTime.Now.ToShortDateString() + ".txt");
-            using (StreamWriter w = File.AppendText("LOG/" + DateTime.Now.Year.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Day.ToString() + ".txt"))
+            using (StreamWriter w = File.AppendText(ruta + DateTime.Now.Year.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Day.ToString() + ".txt"))
             {
                 w.WriteLine(DateTime.Now.ToString() + "-" + text);
             }
