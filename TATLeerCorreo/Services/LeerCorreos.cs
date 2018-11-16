@@ -15,7 +15,9 @@ namespace TATLeerCorreo.Services
     public class LeerCorreos
     {
         private TAT001Entities db = new TAT001Entities();
-        Log log = new Log();
+        static string path = ConfigurationManager.AppSettings["path"].ToString();
+        Log log = new Log(path);
+        
         public void correos2()
         {
             ImapClient ic = new ImapClient();
@@ -125,14 +127,14 @@ namespace TATLeerCorreo.Services
                             ProcesaFlujo pF = new ProcesaFlujo();
                             if (arrApr[1] == "Approved" | arrApr[1] == "Rejected")
                             {
-                                log.escribeLog("APPR AR - " + arrClaves[1]);
+                                log.escribeLog("APPR AR - " + arrClaves[0]);
                                 int pos = Convert.ToInt32(arrAprNum[2]);
                                 FLUJO fl = db.FLUJOes.Where(x => x.NUM_DOC == numdoc && x.POS == pos).FirstOrDefault();
                                 if (fl != null)
                                 {
                                     Console.WriteLine(mm.From.Address.Trim()); Console.WriteLine(fl.USUARIO.EMAIL);
                                     log.escribeLog("APPR mails - " + mm.From.Address.Trim() + " == " + fl.USUARIO.EMAIL);
-                                    if (mm.From.Address.Trim() == fl.USUARIO.EMAIL | mm.From.Address.Trim() == fl.USUARIO1.EMAIL)
+                                    if (mm.From.Address.Trim().ToLower() == fl.USUARIO.EMAIL.Trim().ToLower() | mm.From.Address.Trim().ToLower() == fl.USUARIO1.EMAIL.Trim().ToLower())
                                     {
                                         Console.WriteLine("true");
                                         fl.ESTATUS = arrApr[1].Substring(0, 1);
