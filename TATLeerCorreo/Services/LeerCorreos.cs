@@ -43,29 +43,7 @@ namespace TATLeerCorreo.Services
                 //En esta lista ingresaremos a los mails que sean recibidos como cc
                 emRq17 = new List<AE.Net.Mail.MailMessage>();
                 log.escribeLog("Leer inbox - numReg=(" + mx.Count + ")");
-
-                //for (int i = 0; i < mx.Count; i++)
-                //{
-                //    string bodyHtml = "";
-                //    AE.Net.Mail.MailMessage mm = mx[i];
-                //    if (mx[i].ContentType != "text /plain" & mx[i].ContentType != "text/plain")
-                //    {
-                //        string[] bodyH = mm.Body.Split(new string[] { "<div class='WordSection1'>" }, StringSplitOptions.None);
-                //        if (bodyH.Length > 1)
-                //        {
-                //            string[] bb = bodyH[1].Split(new string[] { "</p" }, StringSplitOptions.None);
-                //            if (bb.Length > 1)
-                //            {
-                //                bodyHtml = bb[0] + "</p>";
-                //            }
-                //        }
-                //    }
-                //    else
-                //    {
-
-                //        bodyHtml = mm.Body;
-                //    }
-                //}
+                
             }
             catch (Exception e)
             {
@@ -140,9 +118,11 @@ namespace TATLeerCorreo.Services
                                         Console.WriteLine("true");
                                         fl.ESTATUS = arrApr[1].Substring(0, 1);
                                         fl.FECHAM = DateTime.Now;
-                                        fl.COMENTARIO = mm.Body;
-                                        if (fl.COMENTARIO.Length > 255)
-                                            fl.COMENTARIO = fl.COMENTARIO.Substring(0, 252) + "...";
+                                        Comentario com = new Comentario();
+                                        fl.COMENTARIO = com.getComment(mm.Body, mm.ContentType);
+                                        //fl.COMENTARIO = mm.Body;
+                                        //if (fl.COMENTARIO.Length > 255)
+                                        //    fl.COMENTARIO = fl.COMENTARIO.Substring(0, 252) + "...";
                                         var res = pF.procesa(fl, "");
                                         log.escribeLog("APPR PROCESA - Res = " + res);
                                         if (res == "1")
@@ -346,7 +326,9 @@ namespace TATLeerCorreo.Services
                                 fn.FECHAC = lstD[x].FECHAC;
                                 fn.KUNNR = arrPiNN[0];
                                 var cm = arrAprNum[0].ToString();
-                                cm += " - " + mm.Body;
+                                Comentario com = new Comentario();
+                                cm += com.getComment(mm.Body, mm.ContentType);
+                                //cm += " - " + mm.Body;
                                 var cpos = db.FLUJNEGOes.Where(h => h.NUM_DOC.Equals(fn.NUM_DOC)).ToList().Count;
                                 fn.POS = cpos + 1;
                                 fn.COMENTARIO = cm;
@@ -365,7 +347,9 @@ namespace TATLeerCorreo.Services
                                 fn.FECHAM = fecham;
                                 fn.KUNNR = arrPiNN[0];
                                 var cm = arrAprNum[0] + " ";
-                                cm += " - " + mm.Body;
+                                Comentario com = new Comentario();
+                                cm += com.getComment(mm.Body, mm.ContentType);
+                                //cm += " - " + mm.Body;
                                 var cpos = db.FLUJNEGOes.Where(h => h.NUM_DOC.Equals(fn.NUM_DOC)).ToList().Count;
                                 fn.POS = cpos + 1;
                                 fn.COMENTARIO = cm;
