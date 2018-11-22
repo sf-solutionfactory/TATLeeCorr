@@ -1201,7 +1201,7 @@
     <Property Name="ESTATUS" Type="nchar" MaxLength="1" />
     <Property Name="FECHAC" Type="datetime" />
     <Property Name="FECHAM" Type="datetime" />
-    <Property Name="COMENTARIO" Type="nvarchar" MaxLength="255" />
+    <Property Name="COMENTARIO" Type="nvarchar(max)" />
     <Property Name="STATUS" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="GALL">
