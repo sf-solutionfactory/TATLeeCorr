@@ -234,7 +234,7 @@
     <Property Name="POS_ID" Type="Int32" Nullable="false" />
     <Property Name="POS" Type="Int32" Nullable="false" />
     <Property Name="MATNR" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="MATKL" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
+    <Property Name="MATKL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CANTIDAD" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
     <Property Name="MONTO" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
     <Property Name="PORC_APOYO" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
@@ -482,6 +482,7 @@
     <Property Name="BASE_UNIT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
     <Property Name="MATERIALGP" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="TAXCODEGP" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="ASIGNACIONTXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="CONSOPORTE">
     <Key>
@@ -510,6 +511,7 @@
     <Property Name="ACTIVO" Type="Boolean" />
     <Property Name="DEFECTO" Type="Boolean" />
     <NavigationProperty Name="CLIENTE" Relationship="Self.FK_CONTACTOC_CLIENTE" FromRole="CONTACTOC" ToRole="CLIENTE" />
+    <Property Name="CARTA" Type="Boolean" />
   </EntityType>
   <EntityType Name="COUNTRy">
     <Key>
@@ -766,6 +768,7 @@
     <Property Name="VERSION" Type="Int32" Nullable="false" />
     <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="PAI" Relationship="TAT001Model.FK_DET_TAXEOC_PAIS" FromRole="DET_TAXEOC" ToRole="PAI" />
   </EntityType>
   <EntityType Name="DOCUMENTBORR">
     <Key>
@@ -946,6 +949,7 @@
     <NavigationProperty Name="DOCUMENTOSAP" Relationship="Self.FK_DOCUMENTOSAP_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOSAP" />
     <NavigationProperty Name="DOCUMENTOTS" Relationship="Self.FK_DOCUMENTOTS_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOTS" />
     <NavigationProperty Name="FLUJOes" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="DOCUMENTO" ToRole="FLUJO" />
+    <Property Name="CUENTACL" Type="Decimal" Precision="10" Scale="0" />
   </EntityType>
   <EntityType Name="DOCUMENTOA">
     <Key>
@@ -1089,9 +1093,9 @@
     <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="POS" Type="Int32" Nullable="false" />
     <Property Name="FECHAF" Type="DateTime" Precision="0" />
-    <Property Name="MONTO_VENTA" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="MONTO_VENTA" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="ESTATUS" Type="Boolean" />
-    <Property Name="BACKORDER" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="BACKORDER" Type="Decimal" Precision="18" Scale="5" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOL_DOCUMENTO" FromRole="DOCUMENTOL" ToRole="DOCUMENTO" />
   </EntityType>
   <EntityType Name="DOCUMENTOM">
@@ -1104,12 +1108,12 @@
     <Property Name="POS_ID" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
     <Property Name="POS" Type="Int32" Nullable="false" />
     <Property Name="MATNR" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
-    <Property Name="PORC_APOYO" Type="Decimal" Precision="13" Scale="5" />
-    <Property Name="APOYO_EST" Type="Decimal" Precision="13" Scale="5" />
-    <Property Name="APOYO_REAL" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="PORC_APOYO" Type="Decimal" Precision="18" Scale="10" />
+    <Property Name="APOYO_EST" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="APOYO_REAL" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="VIGENCIA_DE" Type="DateTime" Precision="0" />
     <Property Name="VIGENCIA_A" Type="DateTime" Precision="0" />
-    <Property Name="VALORH" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="VALORH" Type="Decimal" Precision="18" Scale="5" />
     <NavigationProperty Name="DOCUMENTOP" Relationship="Self.FK_DOCUMENTOM_DOCUMENTOP" FromRole="DOCUMENTOM" ToRole="DOCUMENTOP" />
   </EntityType>
   <EntityType Name="DOCUMENTON">
@@ -1168,8 +1172,8 @@
     <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="POS" Type="Int32" Nullable="false" />
     <Property Name="LIN" Type="Int32" Nullable="false" />
-    <Property Name="OBJETIVOI" Type="Decimal" Precision="13" Scale="5" />
-    <Property Name="PORCENTAJE" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="OBJETIVOI" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="PORCENTAJE" Type="Decimal" Precision="18" Scale="5" />
     <NavigationProperty Name="DOCUMENTOREC" Relationship="Self.FK_DOCUMENTORAN_DOCUMENTOREC" FromRole="DOCUMENTORAN" ToRole="DOCUMENTOREC" />
   </EntityType>
   <EntityType Name="DOCUMENTOREC">
@@ -1249,6 +1253,7 @@
     <Property Name="DESCRIPCION" Type="Boolean" Nullable="false" />
     <Property Name="SOCIEDAD" Type="Boolean" Nullable="false" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="SOCIEDAD1" Relationship="TAT001Model.FK_FACTURASCONF_SOCIEDAD" FromRole="FACTURASCONF" ToRole="SOCIEDAD" />
   </EntityType>
   <EntityType Name="FLUJNEGO">
     <Key>
@@ -1505,6 +1510,9 @@
     <NavigationProperty Name="CARPETA" Relationship="Self.FK_PAGINA_CARPETA" FromRole="PAGINA" ToRole="CARPETA" />
     <NavigationProperty Name="PAGINATs" Relationship="Self.FK_PAGINAT_PAGINA" FromRole="PAGINA" ToRole="PAGINAT" />
     <NavigationProperty Name="PERMISO_PAGINA" Relationship="Self.FK_PERMISO_PAGINA_PAGINA" FromRole="PAGINA" ToRole="PERMISO_PAGINA" />
+    <Property Name="Mantenimiento" Type="Int32" />
+    <Property Name="Grupo" Type="Int32" />
+    <Property Name="Orden" Type="Int32" />
   </EntityType>
   <EntityType Name="PAGINAT">
     <Key>
@@ -1540,6 +1548,8 @@
     <NavigationProperty Name="TAX_LAND" Relationship="Self.FK_TAX_LAND_PAIS" FromRole="PAIS" ToRole="TAX_LAND" />
     <NavigationProperty Name="TAXEOHs" Relationship="Self.FK_TAXEOH_PAIS" FromRole="PAIS" ToRole="TAXEOH" />
     <NavigationProperty Name="TS_FORM" Relationship="Self.FK_TS_FORM_PAIS" FromRole="PAIS" ToRole="TS_FORM" />
+    <NavigationProperty Name="DET_TAXEOC" Relationship="TAT001Model.FK_DET_TAXEOC_PAIS" FromRole="PAI" ToRole="DET_TAXEOC" />
+    <NavigationProperty Name="LAYOUT_CARGA" Relationship="TAT001Model.FK_LAYOUT_CARGA_PAIS" FromRole="PAI" ToRole="LAYOUT_CARGA" />
   </EntityType>
   <EntityType Name="PERIODO">
     <Key>
@@ -1839,6 +1849,8 @@
     <NavigationProperty Name="TS_FORM" Relationship="Self.FK_TS_FORM_SOCIEDAD" FromRole="SOCIEDAD" ToRole="TS_FORM" />
     <NavigationProperty Name="USUARIOs" Relationship="Self.FK_USUARIO_SOCIEDAD" FromRole="SOCIEDAD" ToRole="USUARIO" />
     <NavigationProperty Name="USUARIOs1" Relationship="Self.USUARIOSOC" FromRole="SOCIEDAD" ToRole="USUARIO" />
+    <NavigationProperty Name="FACTURASCONFs" Relationship="TAT001Model.FK_FACTURASCONF_SOCIEDAD" FromRole="SOCIEDAD" ToRole="FACTURASCONF" />
+    <NavigationProperty Name="LAYOUT_CARGA" Relationship="TAT001Model.FK_LAYOUT_CARGA_SOCIEDAD" FromRole="SOCIEDAD" ToRole="LAYOUT_CARGA" />
   </EntityType>
   <EntityType Name="SPRA">
     <Key>
@@ -1875,6 +1887,7 @@
     <NavigationProperty Name="WARNINGs" Relationship="Self.FK_WARNING_SPRAS" FromRole="SPRAS" ToRole="WARNING" />
     <NavigationProperty Name="WARNINGPTs" Relationship="Self.FK_WARNINGPT_SPRAS" FromRole="SPRAS" ToRole="WARNINGPT" />
     <NavigationProperty Name="WORKFTs" Relationship="Self.FK_WORKFT_SPRAS" FromRole="SPRAS" ToRole="WORKFT" />
+    <NavigationProperty Name="ESTATUSTs" Relationship="TAT001Model.FK_ESTATUST_SPRAS" FromRole="SPRA" ToRole="ESTATUST" />
   </EntityType>
   <EntityType Name="STATE">
     <Key>
@@ -1912,7 +1925,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="DESCRIPCION" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="62" FixedLength="false" Unicode="true" />
     <Property Name="FECHAI" Type="DateTime" Precision="0" />
     <Property Name="FECHAF" Type="DateTime" Precision="0" />
     <Property Name="GALL_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
@@ -1929,7 +1942,7 @@
     </Key>
     <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="TALL_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="TXT50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TXT50" Type="String" MaxLength="62" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="SPRA" Relationship="Self.FK_TALLT_SPRAS" FromRole="TALLT" ToRole="SPRAS" />
     <NavigationProperty Name="TALL" Relationship="Self.FK_TALLT_TALL" FromRole="TALLT" ToRole="TALL" />
   </EntityType>
@@ -2338,6 +2351,7 @@
     <NavigationProperty Name="USUARIOFs" Relationship="Self.FK_USUARIOF_USUARIO" FromRole="USUARIO" ToRole="USUARIOF" />
     <NavigationProperty Name="GAUTORIZACIONs" Relationship="Self.USUARIOGA" FromRole="USUARIO" ToRole="GAUTORIZACION" />
     <NavigationProperty Name="SOCIEDADs" Relationship="Self.USUARIOSOC" FromRole="USUARIO" ToRole="SOCIEDAD" />
+    <NavigationProperty Name="USUARIOLOG" Relationship="TAT001Model.FK_USUARIOLOG_USUARIO" FromRole="USUARIO" ToRole="USUARIOLOG" />
   </EntityType>
   <EntityType Name="USUARIOF">
     <Key>
@@ -2670,6 +2684,11 @@
     <Property Name="PERMISO" Type="Boolean" />
     <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="USUARIO_SPRAS" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Mantenimiento" Type="Int32" />
+    <Property Name="ManttoText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Grupo" Type="Int32" />
+    <Property Name="GrupoText" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Orden" Type="Int32" />
   </EntityType>
   <EntityType Name="WARNINGV">
     <Key>
@@ -6081,6 +6100,56 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="DOCTOAYUDAs" EntityType="TAT001Model.DOCTOAYUDA" />
+    <EntitySet Name="DOCTOCLASIFs" EntityType="TAT001Model.DOCTOCLASIF" />
+    <EntitySet Name="DOCTOCLASIFTs" EntityType="TAT001Model.DOCTOCLASIFT" />
+    <EntitySet Name="ESTATUS" EntityType="TAT001Model.ESTATU" />
+    <EntitySet Name="ESTATUSRs" EntityType="TAT001Model.ESTATUSR" />
+    <EntitySet Name="ESTATUSTs" EntityType="TAT001Model.ESTATUST" />
+    <EntitySet Name="Grupoes" EntityType="TAT001Model.Grupo" />
+    <EntitySet Name="GrupoCats" EntityType="TAT001Model.GrupoCat" />
+    <EntitySet Name="LAYOUT_CARGA" EntityType="TAT001Model.LAYOUT_CARGA" />
+    <EntitySet Name="USUARIOLOGs" EntityType="TAT001Model.USUARIOLOG" />
+    <AssociationSet Name="FK_DET_TAXEOC_PAIS" Association="TAT001Model.FK_DET_TAXEOC_PAIS">
+      <End Role="PAI" EntitySet="PAIS" />
+      <End Role="DET_TAXEOC" EntitySet="DET_TAXEOC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCTOAYUDA_DOCTOCLASIF" Association="TAT001Model.FK_DOCTOAYUDA_DOCTOCLASIF">
+      <End Role="DOCTOCLASIF" EntitySet="DOCTOCLASIFs" />
+      <End Role="DOCTOAYUDA" EntitySet="DOCTOAYUDAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCTOCLASIFT_DOCTOCLASIF" Association="TAT001Model.FK_DOCTOCLASIFT_DOCTOCLASIF">
+      <End Role="DOCTOCLASIF" EntitySet="DOCTOCLASIFs" />
+      <End Role="DOCTOCLASIFT" EntitySet="DOCTOCLASIFTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ESTATUSR_ESTATUS" Association="TAT001Model.FK_ESTATUSR_ESTATUS">
+      <End Role="ESTATU" EntitySet="ESTATUS" />
+      <End Role="ESTATUSR" EntitySet="ESTATUSRs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ESTATUST_ESTATUS" Association="TAT001Model.FK_ESTATUST_ESTATUS">
+      <End Role="ESTATU" EntitySet="ESTATUS" />
+      <End Role="ESTATUST" EntitySet="ESTATUSTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ESTATUST_SPRAS" Association="TAT001Model.FK_ESTATUST_SPRAS">
+      <End Role="SPRA" EntitySet="SPRAS" />
+      <End Role="ESTATUST" EntitySet="ESTATUSTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FACTURASCONF_SOCIEDAD" Association="TAT001Model.FK_FACTURASCONF_SOCIEDAD">
+      <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
+      <End Role="FACTURASCONF" EntitySet="FACTURASCONFs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LAYOUT_CARGA_PAIS" Association="TAT001Model.FK_LAYOUT_CARGA_PAIS">
+      <End Role="PAI" EntitySet="PAIS" />
+      <End Role="LAYOUT_CARGA" EntitySet="LAYOUT_CARGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LAYOUT_CARGA_SOCIEDAD" Association="TAT001Model.FK_LAYOUT_CARGA_SOCIEDAD">
+      <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
+      <End Role="LAYOUT_CARGA" EntitySet="LAYOUT_CARGA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIOLOG_USUARIO" Association="TAT001Model.FK_USUARIOLOG_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIOs" />
+      <End Role="USUARIOLOG" EntitySet="USUARIOLOGs" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="CPS_LISTA_CLI_PRO_Result">
     <Property Type="String" Name="KUNNR" Nullable="false" MaxLength="10" />
@@ -6236,4 +6305,232 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="DOCTOAYUDA">
+    <Key>
+      <PropertyRef Name="ID_DOCUMENTO" />
+    </Key>
+    <Property Name="ID_DOCUMENTO" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_CLASIFICACION" Type="Int32" Nullable="false" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <Property Name="RUTA_DOCUMENTO" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DOCTOCLASIF" Relationship="TAT001Model.FK_DOCTOAYUDA_DOCTOCLASIF" FromRole="DOCTOAYUDA" ToRole="DOCTOCLASIF" />
+  </EntityType>
+  <EntityType Name="DOCTOCLASIF">
+    <Key>
+      <PropertyRef Name="ID_CLASIFICACION" />
+    </Key>
+    <Property Name="ID_CLASIFICACION" Type="Int32" Nullable="false" />
+    <Property Name="CLASIFICACION_DSC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DOCTOAYUDAs" Relationship="TAT001Model.FK_DOCTOAYUDA_DOCTOCLASIF" FromRole="DOCTOCLASIF" ToRole="DOCTOAYUDA" />
+    <NavigationProperty Name="DOCTOCLASIFTs" Relationship="TAT001Model.FK_DOCTOCLASIFT_DOCTOCLASIF" FromRole="DOCTOCLASIF" ToRole="DOCTOCLASIFT" />
+  </EntityType>
+  <EntityType Name="DOCTOCLASIFT">
+    <Key>
+      <PropertyRef Name="ID_CLASIFICACION" />
+      <PropertyRef Name="SPRAS_ID" />
+    </Key>
+    <Property Name="ID_CLASIFICACION" Type="Int32" Nullable="false" />
+    <Property Name="SPRAS_ID" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="TEXTO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DOCTOCLASIF" Relationship="TAT001Model.FK_DOCTOCLASIFT_DOCTOCLASIF" FromRole="DOCTOCLASIFT" ToRole="DOCTOCLASIF" />
+  </EntityType>
+  <EntityType Name="ESTATU">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CLASS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ESTATUSRs" Relationship="TAT001Model.FK_ESTATUSR_ESTATUS" FromRole="ESTATU" ToRole="ESTATUSR" />
+    <NavigationProperty Name="ESTATUSTs" Relationship="TAT001Model.FK_ESTATUST_ESTATUS" FromRole="ESTATU" ToRole="ESTATUST" />
+  </EntityType>
+  <EntityType Name="ESTATUSR">
+    <Key>
+      <PropertyRef Name="ESTATUS_ID" />
+      <PropertyRef Name="POS" />
+    </Key>
+    <Property Name="ESTATUS_ID" Type="Int32" Nullable="false" />
+    <Property Name="POS" Type="Int32" Nullable="false" />
+    <Property Name="REGEX" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ESTATU" Relationship="TAT001Model.FK_ESTATUSR_ESTATUS" FromRole="ESTATUSR" ToRole="ESTATU" />
+  </EntityType>
+  <EntityType Name="ESTATUST">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="ESTATUS_ID" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="ESTATUS_ID" Type="Int32" Nullable="false" />
+    <Property Name="TXT050" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ESTATU" Relationship="TAT001Model.FK_ESTATUST_ESTATUS" FromRole="ESTATUST" ToRole="ESTATU" />
+    <NavigationProperty Name="SPRA" Relationship="TAT001Model.FK_ESTATUST_SPRAS" FromRole="ESTATUST" ToRole="SPRA" />
+  </EntityType>
+  <EntityType Name="Grupo">
+    <Key>
+      <PropertyRef Name="Grupo_ID" />
+      <PropertyRef Name="SPRAS_ID" />
+    </Key>
+    <Property Name="Grupo_ID" Type="Int32" Nullable="false" />
+    <Property Name="SPRAS_ID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GrupoCat">
+    <Key>
+      <PropertyRef Name="Grupo_ID" />
+      <PropertyRef Name="SPRAS_ID" />
+    </Key>
+    <Property Name="Grupo_ID" Type="Int32" Nullable="false" />
+    <Property Name="SPRAS_ID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Mantto" Type="Int32" />
+  </EntityType>
+  <EntityType Name="LAYOUT_CARGA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LAND" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="SOCIEDAD_ID" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="RUTA" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FECHAC" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TIPO" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="PAI" Relationship="TAT001Model.FK_LAYOUT_CARGA_PAIS" FromRole="LAYOUT_CARGA" ToRole="PAI" />
+    <NavigationProperty Name="SOCIEDAD" Relationship="TAT001Model.FK_LAYOUT_CARGA_SOCIEDAD" FromRole="LAYOUT_CARGA" ToRole="SOCIEDAD" />
+  </EntityType>
+  <EntityType Name="USUARIOLOG">
+    <Key>
+      <PropertyRef Name="USUARIO_ID" />
+    </Key>
+    <Property Name="USUARIO_ID" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="POS" Type="Int32" />
+    <Property Name="SESION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NAVEGADOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UBICACION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FECHA" Type="DateTime" Precision="3" />
+    <Property Name="LOGIN" Type="Boolean" />
+    <NavigationProperty Name="USUARIO" Relationship="TAT001Model.FK_USUARIOLOG_USUARIO" FromRole="USUARIOLOG" ToRole="USUARIO" />
+  </EntityType>
+  <Association Name="FK_DET_TAXEOC_PAIS">
+    <End Type="TAT001Model.PAI" Role="PAI" Multiplicity="1" />
+    <End Type="TAT001Model.DET_TAXEOC" Role="DET_TAXEOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAI">
+        <PropertyRef Name="LAND" />
+      </Principal>
+      <Dependent Role="DET_TAXEOC">
+        <PropertyRef Name="PAIS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCTOAYUDA_DOCTOCLASIF">
+    <End Type="TAT001Model.DOCTOCLASIF" Role="DOCTOCLASIF" Multiplicity="1" />
+    <End Type="TAT001Model.DOCTOAYUDA" Role="DOCTOAYUDA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOCLASIF">
+        <PropertyRef Name="ID_CLASIFICACION" />
+      </Principal>
+      <Dependent Role="DOCTOAYUDA">
+        <PropertyRef Name="ID_CLASIFICACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCTOCLASIFT_DOCTOCLASIF">
+    <End Type="TAT001Model.DOCTOCLASIF" Role="DOCTOCLASIF" Multiplicity="1" />
+    <End Type="TAT001Model.DOCTOCLASIFT" Role="DOCTOCLASIFT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOCLASIF">
+        <PropertyRef Name="ID_CLASIFICACION" />
+      </Principal>
+      <Dependent Role="DOCTOCLASIFT">
+        <PropertyRef Name="ID_CLASIFICACION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ESTATUSR_ESTATUS">
+    <End Type="TAT001Model.ESTATU" Role="ESTATU" Multiplicity="1" />
+    <End Type="TAT001Model.ESTATUSR" Role="ESTATUSR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTATU">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ESTATUSR">
+        <PropertyRef Name="ESTATUS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ESTATUST_ESTATUS">
+    <End Type="TAT001Model.ESTATU" Role="ESTATU" Multiplicity="1" />
+    <End Type="TAT001Model.ESTATUST" Role="ESTATUST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTATU">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ESTATUST">
+        <PropertyRef Name="ESTATUS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ESTATUST_SPRAS">
+    <End Type="TAT001Model.SPRA" Role="SPRA" Multiplicity="1" />
+    <End Type="TAT001Model.ESTATUST" Role="ESTATUST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ESTATUST">
+        <PropertyRef Name="SPRAS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FACTURASCONF_SOCIEDAD">
+    <End Type="TAT001Model.SOCIEDAD" Role="SOCIEDAD" Multiplicity="1" />
+    <End Type="TAT001Model.FACTURASCONF" Role="FACTURASCONF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIEDAD">
+        <PropertyRef Name="BUKRS" />
+      </Principal>
+      <Dependent Role="FACTURASCONF">
+        <PropertyRef Name="SOCIEDAD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LAYOUT_CARGA_PAIS">
+    <End Type="TAT001Model.PAI" Role="PAI" Multiplicity="1" />
+    <End Type="TAT001Model.LAYOUT_CARGA" Role="LAYOUT_CARGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAI">
+        <PropertyRef Name="LAND" />
+      </Principal>
+      <Dependent Role="LAYOUT_CARGA">
+        <PropertyRef Name="LAND" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LAYOUT_CARGA_SOCIEDAD">
+    <End Type="TAT001Model.SOCIEDAD" Role="SOCIEDAD" Multiplicity="1" />
+    <End Type="TAT001Model.LAYOUT_CARGA" Role="LAYOUT_CARGA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIEDAD">
+        <PropertyRef Name="BUKRS" />
+      </Principal>
+      <Dependent Role="LAYOUT_CARGA">
+        <PropertyRef Name="SOCIEDAD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIOLOG_USUARIO">
+    <End Type="TAT001Model.USUARIO" Role="USUARIO" Multiplicity="1" />
+    <End Type="TAT001Model.USUARIOLOG" Role="USUARIOLOG" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USUARIOLOG">
+        <PropertyRef Name="USUARIO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

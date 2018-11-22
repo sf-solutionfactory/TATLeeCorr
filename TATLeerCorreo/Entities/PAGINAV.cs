@@ -24,5 +24,10 @@ namespace TATLeerCorreo.Entities
         public Nullable<bool> PERMISO { get; set; }
         public string SPRAS_ID { get; set; }
         public string USUARIO_SPRAS { get; set; }
+        public Nullable<int> Mantenimiento { get; set; }
+        public string ManttoText { get; set; }
+        public Nullable<int> Grupo { get; set; }
+        public string GrupoText { get; set; }
+        public Nullable<int> Orden { get; set; }
     }
 }

@@ -77,3 +77,6 @@ F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\EntityFramework.SqlSer
 F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojResolveAssemblyReference.cache
 C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.CopyComplete
 C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojAssemblyReference.cache
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\SimpleImpersonation.dll
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Debug\SimpleImpersonation.xml

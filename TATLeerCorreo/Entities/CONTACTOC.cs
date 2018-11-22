@@ -24,6 +24,7 @@ namespace TATLeerCorreo.Entities
         public string KUNNR { get; set; }
         public Nullable<bool> ACTIVO { get; set; }
         public Nullable<bool> DEFECTO { get; set; }
+        public Nullable<bool> CARTA { get; set; }
     
         public virtual CLIENTE CLIENTE { get; set; }
     }

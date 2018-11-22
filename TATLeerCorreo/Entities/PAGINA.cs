@@ -29,6 +29,9 @@ namespace TATLeerCorreo.Entities
         public string ICON { get; set; }
         public bool MOSTRAR { get; set; }
         public bool ACTIVO { get; set; }
+        public Nullable<int> Mantenimiento { get; set; }
+        public Nullable<int> Grupo { get; set; }
+        public Nullable<int> Orden { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CAMPOS> CAMPOS { get; set; }

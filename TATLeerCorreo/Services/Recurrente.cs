@@ -458,7 +458,7 @@ namespace TATLeerCorreo.Services
             }
             //RSG 28.05.2018-----------------------------------------------------
 
-            ProcesaFlujo2 pf = new ProcesaFlujo2();
+            ProcesaFlujo pf = new ProcesaFlujo();
             //db.DOCUMENTOes.Add(dOCUMENTO);
             //db.SaveChanges();
 

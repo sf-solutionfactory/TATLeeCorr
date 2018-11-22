@@ -23,5 +23,7 @@ namespace TATLeerCorreo.Entities
         public int VERSION { get; set; }
         public string USUARIOA_ID { get; set; }
         public bool ACTIVO { get; set; }
+    
+        public virtual PAI PAI { get; set; }
     }
 }

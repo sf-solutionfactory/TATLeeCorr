@@ -182,6 +182,16 @@ namespace TATLeerCorreo.Entities
         public virtual DbSet<DOCUMENTOV> DOCUMENTOVs { get; set; }
         public virtual DbSet<PAGINAV> PAGINAVs { get; set; }
         public virtual DbSet<WARNINGV> WARNINGVs { get; set; }
+        public virtual DbSet<DOCTOAYUDA> DOCTOAYUDAs { get; set; }
+        public virtual DbSet<DOCTOCLASIF> DOCTOCLASIFs { get; set; }
+        public virtual DbSet<DOCTOCLASIFT> DOCTOCLASIFTs { get; set; }
+        public virtual DbSet<ESTATU> ESTATUS { get; set; }
+        public virtual DbSet<ESTATUSR> ESTATUSRs { get; set; }
+        public virtual DbSet<ESTATUST> ESTATUSTs { get; set; }
+        public virtual DbSet<Grupo> Grupoes { get; set; }
+        public virtual DbSet<GrupoCat> GrupoCats { get; set; }
+        public virtual DbSet<LAYOUT_CARGA> LAYOUT_CARGA { get; set; }
+        public virtual DbSet<USUARIOLOG> USUARIOLOGs { get; set; }
     
         [DbFunction("TAT001Entities", "split")]
         public virtual IQueryable<split_Result> split(string delimited, string delimiter)
