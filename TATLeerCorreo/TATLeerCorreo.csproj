@@ -94,9 +94,6 @@
     <Compile Include="Entities\CARPETAT.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\CARPETAV.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\CARTA.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
@@ -148,42 +145,6 @@
     <Compile Include="Entities\COUNTRy.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\CPS_LISTA_CLI_PRO_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CREADOR.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CREADOR2.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CSP_BANNERSINCANAL_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CSP_CAMBIO_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CSP_CARPETA_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CSP_CONSULTARPRESUPUESTO_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CSP_DOCUMENTOSXUSER_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CSP_PERMISO_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CSP_PRESUPUESTO_ADDP_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CSP_PRESU_CLIENT_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CSP_USUARIO_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\CUENTA.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
@@ -214,9 +175,6 @@
     <Compile Include="Entities\DET_APROBP.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\DET_APROBV.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\DET_TAX.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
@@ -230,9 +188,6 @@
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DOCTOCLASIF.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\DOCTOCLASIFT.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DOCUMENTBORR.cs">
@@ -289,9 +244,6 @@
     <Compile Include="Entities\DOCUMENTOT.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\DOCUMENTOV.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\ESTATU.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
@@ -331,9 +283,6 @@
     <Compile Include="Entities\IMPUESTO.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\LAYOUT_CARGA.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\LEYENDA.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
@@ -371,9 +320,6 @@
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\PAGINAT.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\PAGINAV.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\PAI.cs">
@@ -436,16 +382,7 @@
     <Compile Include="Entities\SOCIEDAD.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\split_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\SPRA.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\sp_helpdiagrams_Result.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\STATE.cs">
@@ -586,9 +523,6 @@
     <Compile Include="Entities\WARNINGPT.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\WARNINGV.cs">
-      <DependentUpon>TAT001.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\WARNING_COND.cs">
       <DependentUpon>TAT001.tt</DependentUpon>
     </Compile>
@@ -617,6 +551,7 @@
     <Compile Include="Services\Estatus.cs" />
     <Compile Include="Services\Log.cs" />
     <Compile Include="Services\LeerCorreos.cs" />
+    <Compile Include="Services\PorEnviar.cs" />
     <Compile Include="Services\ProcesaFlujo.cs" />
     <Compile Include="Services\ProcesaFlujo2.cs" />
     <Compile Include="Services\Recurrente.cs" />

@@ -16,7 +16,7 @@ namespace TATLeerCorreo.Services
     {
         private TAT001Entities db = new TAT001Entities();
         Log log = new Log();
-        
+
         public void correos2()
         {
             ImapClient ic = new ImapClient();
@@ -43,7 +43,7 @@ namespace TATLeerCorreo.Services
                 //En esta lista ingresaremos a los mails que sean recibidos como cc
                 emRq17 = new List<AE.Net.Mail.MailMessage>();
                 log.escribeLog("Leer inbox - numReg=(" + mx.Count + ")");
-                
+
             }
             catch (Exception e)
             {
@@ -93,98 +93,105 @@ namespace TATLeerCorreo.Services
                     for (int i = 0; i < mx.Count; i++)
                     {
                         AE.Net.Mail.MailMessage mm = mx[i];
-                        string[] arrAsunto = mm.Subject.Split(']');
-                        int a = arrAsunto.Length - 1;
-                        //Recupero el asunto y lo separo del numdoc y pos
-                        string[] arrAprNum = arrAsunto[a].Split('-');//RSG cambiar 0 a 1
-                        string[] arrClaves = arrAprNum[1].Split('.');
-                        decimal numdoc = Decimal.Parse(arrClaves[0]);
-                        //Si el Texto es Aprobado, Rechazado o Recurrente
-                        string[] arrApr = arrAprNum[0].Split(':');
-                        if (arrApr.Length > 1)
+                        try
                         {
-                            ProcesaFlujo pF = new ProcesaFlujo();
-                            if (arrApr[1] == "Approved" | arrApr[1] == "Rejected")
+                            string[] arrAsunto = mm.Subject.Split(']');
+                            int a = arrAsunto.Length - 1;
+                            //Recupero el asunto y lo separo del numdoc y pos
+                            string[] arrAprNum = arrAsunto[a].Split('-');//RSG cambiar 0 a 1
+                            string[] arrClaves = arrAprNum[1].Split('.');
+                            decimal numdoc = Decimal.Parse(arrClaves[0]);
+                            //Si el Texto es Aprobado, Rechazado o Recurrente
+                            string[] arrApr = arrAprNum[0].Split(':');
+                            if (arrApr.Length > 1)
                             {
-                                log.escribeLog("APPR AR - " + arrClaves[0]);
-                                int pos = Convert.ToInt32(arrAprNum[2]);
-                                FLUJO fl = db.FLUJOes.Where(x => x.NUM_DOC == numdoc && x.POS == pos).FirstOrDefault();
-                                if (fl != null)
+                                ProcesaFlujo pF = new ProcesaFlujo();
+                                if (arrApr[1] == "Approved" | arrApr[1] == "Rejected")
                                 {
-                                    Console.WriteLine(mm.From.Address.Trim()); Console.WriteLine(fl.USUARIO.EMAIL);
-                                    log.escribeLog("APPR mails - " + mm.From.Address.Trim() + " == " + fl.USUARIO.EMAIL);
-                                    if (mm.From.Address.Trim().ToLower() == fl.USUARIO.EMAIL.Trim().ToLower() | mm.From.Address.Trim().ToLower() == fl.USUARIO1.EMAIL.Trim().ToLower())
+                                    log.escribeLog("APPR AR - " + arrClaves[0]);
+                                    int pos = Convert.ToInt32(arrAprNum[2]);
+                                    FLUJO fl = db.FLUJOes.Where(x => x.NUM_DOC == numdoc && x.POS == pos).FirstOrDefault();
+                                    if (fl != null)
                                     {
-                                        Console.WriteLine("true");
-                                        fl.ESTATUS = arrApr[1].Substring(0, 1);
-                                        fl.FECHAM = DateTime.Now;
-                                        Comentario com = new Comentario();
-                                        fl.COMENTARIO = com.getComment(mm.Body, mm.ContentType);
-                                        //fl.COMENTARIO = mm.Body;
-                                        //if (fl.COMENTARIO.Length > 255)
-                                        //    fl.COMENTARIO = fl.COMENTARIO.Substring(0, 252) + "...";
-                                        var res = pF.procesa(fl, "");
-                                        log.escribeLog("APPR PROCESA - Res = " + res);
-                                        if (res == "1")
+                                        Console.WriteLine(mm.From.Address.Trim()); Console.WriteLine(fl.USUARIO.EMAIL);
+                                        log.escribeLog("APPR mails - " + mm.From.Address.Trim() + " == " + fl.USUARIO.EMAIL);
+                                        if (mm.From.Address.Trim().ToLower() == fl.USUARIO.EMAIL.Trim().ToLower() | mm.From.Address.Trim().ToLower() == fl.USUARIO1.EMAIL.Trim().ToLower())
                                         {
-                                            enviarCorreo(fl.NUM_DOC, 1, pos);
-                                        }
-                                        else if (res == "3")
-                                        {
-                                            enviarCorreo(fl.NUM_DOC, 3, pos);
-                                        }
+                                            Console.WriteLine("true");
+                                            fl.ESTATUS = arrApr[1].Substring(0, 1);
+                                            fl.FECHAM = DateTime.Now;
+                                            Comentario com = new Comentario();
+                                            fl.COMENTARIO = com.getComment(mm.Body, mm.ContentType);
+                                            //fl.COMENTARIO = mm.Body;
+                                            //if (fl.COMENTARIO.Length > 255)
+                                            //    fl.COMENTARIO = fl.COMENTARIO.Substring(0, 252) + "...";
+                                            var res = pF.procesa(fl, "");
+                                            log.escribeLog("APPR PROCESA - Res = " + res);
+                                            if (res == "1")
+                                            {
+                                                enviarCorreo(fl.NUM_DOC, 1, pos);
+                                            }
+                                            else if (res == "3")
+                                            {
+                                                enviarCorreo(fl.NUM_DOC, 3, pos);
+                                            }
 
-                                        using (TAT001Entities db1 = new TAT001Entities())
-                                        {
-                                            FLUJO ff = db1.FLUJOes.Where(x => x.NUM_DOC == fl.NUM_DOC).OrderByDescending(x => x.POS).FirstOrDefault();
-                                            Estatus es = new Estatus();//RSG 18.09.2018
-                                            DOCUMENTO ddoc = db1.DOCUMENTOes.Find(fl.NUM_DOC);
-                                            ff.STATUS = es.getEstatus(ddoc);
-                                            db1.Entry(ff).State = System.Data.Entity.EntityState.Modified;
-                                            db1.SaveChanges();
+                                            using (TAT001Entities db1 = new TAT001Entities())
+                                            {
+                                                FLUJO ff = db1.FLUJOes.Where(x => x.NUM_DOC == fl.NUM_DOC).OrderByDescending(x => x.POS).FirstOrDefault();
+                                                Estatus es = new Estatus();//RSG 18.09.2018
+                                                DOCUMENTO ddoc = db1.DOCUMENTOes.Find(fl.NUM_DOC);
+                                                ff.STATUS = es.getEstatus(ddoc);
+                                                db1.Entry(ff).State = System.Data.Entity.EntityState.Modified;
+                                                db1.SaveChanges();
+                                            }
+                                            Console.WriteLine(res);
                                         }
-                                        Console.WriteLine(res);
                                     }
+                                    ic.AddFlags(Flags.Seen, mm);
                                 }
-                                ic.AddFlags(Flags.Seen, mm);
-                            }
-                            ////else if (arrApr[1] == "Rejected")
-                            ////{
-                            ////    int pos = Convert.ToInt32(arrAprNum[2]);
-                            ////    FLUJO fl = db.FLUJOes.Where(x => x.NUM_DOC == numdoc && x.POS == pos).FirstOrDefault();
-                            ////    fl.ESTATUS = "R";
-                            ////    fl.FECHAM = DateTime.Now;
-                            ////    fl.COMENTARIO = mm.Body;
-                            ////    var res = pF.procesa(fl, "");
-                            ////    if (res == "0")
-                            ////    {
-                            ////        //
-                            ////    }
-                            ////    else if (res == "1")
-                            ////    {
-                            ////        enviarCorreo(fl.NUM_DOC, 1);
-                            ////    }
-                            ////    else if (res == "3")
-                            ////    {
-                            ////        enviarCorreo(fl.NUM_DOC, 3);
-                            ////    }
-                            ////    //para marcar el mensaje como leido
-                            ////    ic.AddFlags(Flags.Seen, mm);
-                            ////}
-                            else if (arrApr[1] == "Recurrent")
-                            {
-                                ////Reversa r = new Reversa();
-                                ////string ts = db.DOCUMENTOes.Find(numdoc).TSOL.TSOLR;
-                                ////int ret = 0;
-                                ////if (ts != null)
-                                ////    ret = r.creaReversa(numdoc.ToString(), ts);
-
-                                //////para marcar el mensaje como leido
-                                ////if (ret != 0)
+                                ////else if (arrApr[1] == "Rejected")
+                                ////{
+                                ////    int pos = Convert.ToInt32(arrAprNum[2]);
+                                ////    FLUJO fl = db.FLUJOes.Where(x => x.NUM_DOC == numdoc && x.POS == pos).FirstOrDefault();
+                                ////    fl.ESTATUS = "R";
+                                ////    fl.FECHAM = DateTime.Now;
+                                ////    fl.COMENTARIO = mm.Body;
+                                ////    var res = pF.procesa(fl, "");
+                                ////    if (res == "0")
+                                ////    {
+                                ////        //
+                                ////    }
+                                ////    else if (res == "1")
+                                ////    {
+                                ////        enviarCorreo(fl.NUM_DOC, 1);
+                                ////    }
+                                ////    else if (res == "3")
+                                ////    {
+                                ////        enviarCorreo(fl.NUM_DOC, 3);
+                                ////    }
+                                ////    //para marcar el mensaje como leido
                                 ////    ic.AddFlags(Flags.Seen, mm);
+                                ////}
+                                else if (arrApr[1] == "Recurrent")
+                                {
+                                    ////Reversa r = new Reversa();
+                                    ////string ts = db.DOCUMENTOes.Find(numdoc).TSOL.TSOLR;
+                                    ////int ret = 0;
+                                    ////if (ts != null)
+                                    ////    ret = r.creaReversa(numdoc.ToString(), ts);
+
+                                    //////para marcar el mensaje como leido
+                                    ////if (ret != 0)
+                                    ////    ic.AddFlags(Flags.Seen, mm);
+                                }
                             }
                         }
-
+                        catch
+                        {
+                            ic.AddFlags(Flags.Seen, mm);
+                            log.escribeLog("ERROR - " + mm.Subject);
+                        }
                     }
                 }
                 //req17
@@ -214,105 +221,110 @@ namespace TATLeerCorreo.Services
                         DOCUMENTOA dz = null;//---
                         for (int y = 0; y < dOCUMENTOes.Count; y++)
                         {
-                            //recupero el numdoc
-                            var de = fs[i].NUM_DOC;
-                            //sino ecuentra una coincidencia con el criterio discriminatorio se agregan o no a la lista
-                            dz = db.DOCUMENTOAs.Where(x => x.NUM_DOC == de && x.CLASE != "OTR").FirstOrDefault();
-                            if (dz == null || dz != null)
-                            {
-                                if (dOCUMENTOes[y].TSOL.NEGO == true)//para el ultimo filtro
-                                {
 
-                                    string estatus = "";
-                                    if (dOCUMENTOes[y].ESTATUS != null) { estatus += dOCUMENTOes[y].ESTATUS; } else { estatus += " "; }
-                                    if (dOCUMENTOes[y].ESTATUS_C != null) { estatus += dOCUMENTOes[y].ESTATUS_C; } else { estatus += " "; }
-                                    if (dOCUMENTOes[y].ESTATUS_SAP != null) { estatus += dOCUMENTOes[y].ESTATUS_SAP; } else { estatus += " "; }
-                                    if (dOCUMENTOes[y].ESTATUS_WF != null) { estatus += dOCUMENTOes[y].ESTATUS_WF; } else { estatus += " "; }
-                                    if (dOCUMENTOes[y].FLUJOes.Count > 0)
-                                    {
-                                        estatus += dOCUMENTOes[y].FLUJOes.OrderByDescending(a => a.POS).FirstOrDefault().WORKFP.ACCION.TIPO;
-                                    }
-                                    else
-                                    {
-                                        estatus += " ";
-                                    }
-                                    if (dOCUMENTOes[y].TSOL.PADRE) { estatus += "P"; } else { estatus += " "; }
-                                    if (dOCUMENTOes[y].FLUJOes.Where(x => x.ESTATUS == "R").ToList().Count > 0)
-                                    {
-                                        estatus += dOCUMENTOes[y].FLUJOes.Where(x => x.ESTATUS == "R").OrderByDescending(a => a.POS).FirstOrDefault().USUARIO.PUESTO_ID;
-                                    }
-                                    else
-                                    {
-                                        estatus += " ";
-                                    }
+                            PorEnviar pe = new PorEnviar();
+                            if (pe.seEnvia(dOCUMENTOes[y], db, log))
+                                lstD.Add(dOCUMENTOes[y]);
+
+                            //////recupero el numdoc
+                            ////var de = fs[i].NUM_DOC;
+                            //////sino ecuentra una coincidencia con el criterio discriminatorio se agregan o no a la lista
+                            ////dz = db.DOCUMENTOAs.Where(x => x.NUM_DOC == de && x.CLASE != "OTR").FirstOrDefault();
+                            ////if (dz == null || dz != null)
+                            ////{
+                            ////    if (dOCUMENTOes[y].TSOL.NEGO == true)//para el ultimo filtro
+                            ////    {
+
+                            ////        string estatus = "";
+                            ////        if (dOCUMENTOes[y].ESTATUS != null) { estatus += dOCUMENTOes[y].ESTATUS; } else { estatus += " "; }
+                            ////        if (dOCUMENTOes[y].ESTATUS_C != null) { estatus += dOCUMENTOes[y].ESTATUS_C; } else { estatus += " "; }
+                            ////        if (dOCUMENTOes[y].ESTATUS_SAP != null) { estatus += dOCUMENTOes[y].ESTATUS_SAP; } else { estatus += " "; }
+                            ////        if (dOCUMENTOes[y].ESTATUS_WF != null) { estatus += dOCUMENTOes[y].ESTATUS_WF; } else { estatus += " "; }
+                            ////        if (dOCUMENTOes[y].FLUJOes.Count > 0)
+                            ////        {
+                            ////            estatus += dOCUMENTOes[y].FLUJOes.OrderByDescending(a => a.POS).FirstOrDefault().WORKFP.ACCION.TIPO;
+                            ////        }
+                            ////        else
+                            ////        {
+                            ////            estatus += " ";
+                            ////        }
+                            ////        if (dOCUMENTOes[y].TSOL.PADRE) { estatus += "P"; } else { estatus += " "; }
+                            ////        if (dOCUMENTOes[y].FLUJOes.Where(x => x.ESTATUS == "R").ToList().Count > 0)
+                            ////        {
+                            ////            estatus += dOCUMENTOes[y].FLUJOes.Where(x => x.ESTATUS == "R").OrderByDescending(a => a.POS).FirstOrDefault().USUARIO.PUESTO_ID;
+                            ////        }
+                            ////        else
+                            ////        {
+                            ////            estatus += " ";
+                            ////        }
 
 
-                                    if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "...[P][R].."))
-                                        lstD.Add(dOCUMENTOes[y]);
-                                    else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "...[R]..[8]"))
-                                        lstD.Add(dOCUMENTOes[y]);
-                                    else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "[P]..[A]..."))
-                                        lstD.Add(dOCUMENTOes[y]);
-                                    else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "..[P][A]..."))
-                                        lstD.Add(dOCUMENTOes[y]);
-                                    else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "..[E][A]..."))
-                                        lstD.Add(dOCUMENTOes[y]);
-                                    else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "...[A].[P]."))
-                                        lstD.Add(dOCUMENTOes[y]);
-                                    else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "...[A]..."))
-                                        lstD.Add(dOCUMENTOes[y]);
-                                    else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "...[T]..."))
-                                        lstD.Add(dOCUMENTOes[y]);
+                            ////        if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "...[P][R].."))
+                            ////            lstD.Add(dOCUMENTOes[y]);
+                            ////        else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "...[R]..[8]"))
+                            ////            lstD.Add(dOCUMENTOes[y]);
+                            ////        else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "[P]..[A]..."))
+                            ////            lstD.Add(dOCUMENTOes[y]);
+                            ////        else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "..[P][A]..."))
+                            ////            lstD.Add(dOCUMENTOes[y]);
+                            ////        else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "..[E][A]..."))
+                            ////            lstD.Add(dOCUMENTOes[y]);
+                            ////        else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "...[A].[P]."))
+                            ////            lstD.Add(dOCUMENTOes[y]);
+                            ////        else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "...[A]..."))
+                            ////            lstD.Add(dOCUMENTOes[y]);
+                            ////        else if (System.Text.RegularExpressions.Regex.IsMatch(estatus, "...[T]..."))
+                            ////            lstD.Add(dOCUMENTOes[y]);
 
-                                    //if (dOCUMENTOes[y].ESTATUS_WF == "P")//LEJ 20.07.2018---------------------------I
-                                    //{
-                                    //    if (dOCUMENTOes[y].FLUJOes.Count > 0)
-                                    //    {
-                                    //        if (dOCUMENTOes[y].FLUJOes.OrderByDescending(a => a.POS).FirstOrDefault().USUARIO != null)
-                                    //        {
-                                    //            //(Pendiente Validación TS)
-                                    //            if (dOCUMENTOes[y].FLUJOes.OrderByDescending(a => a.POS).FirstOrDefault().USUARIO.PUESTO_ID == 8)
-                                    //            {
-                                    //                lstD.Add(dOCUMENTOes[y]);
-                                    //            }
-                                    //        }
-                                    //    }
-                                    //}
-                                    //else if (dOCUMENTOes[y].ESTATUS_WF == "R")//(Pendiente Corrección)
-                                    //{
-                                    //    if (dOCUMENTOes[y].FLUJOes.Count > 0)
-                                    //    {
-                                    //        lstD.Add(dOCUMENTOes[y]);
-                                    //    }
-                                    //}
-                                    //else if (dOCUMENTOes[y].ESTATUS_WF == "T")//(Pendiente Taxeo)
-                                    //{
-                                    //    if (dOCUMENTOes[y].TSOL_ID == "NCIA")
-                                    //    {
-                                    //        if (dOCUMENTOes[y].PAIS_ID == "CO")//(sólo Colombia)
-                                    //        {
-                                    //            lstD.Add(dOCUMENTOes[y]);
-                                    //        }
-                                    //    }
-                                    //}
-                                    //else if (dOCUMENTOes[y].ESTATUS_WF == "A")//(Por Contabilizar)
-                                    //{
-                                    //    if (dOCUMENTOes[y].ESTATUS == "P")
-                                    //    {
-                                    //        lstD.Add(dOCUMENTOes[y]);
-                                    //    }
-                                    //}
-                                    //else if (dOCUMENTOes[y].ESTATUS_SAP == "E")//Error en SAP
-                                    //{
-                                    //    lstD.Add(dOCUMENTOes[y]);
-                                    //}
-                                    //else if (dOCUMENTOes[y].ESTATUS_SAP == "X")//Succes en SAP
-                                    //{
-                                    //    lstD.Add(dOCUMENTOes[y]);
-                                    //}
-                                }
-                                //LEJ 20.07.2018----------------------------------------------------------------T
-                            }
+                            ////        //if (dOCUMENTOes[y].ESTATUS_WF == "P")//LEJ 20.07.2018---------------------------I
+                            ////        //{
+                            ////        //    if (dOCUMENTOes[y].FLUJOes.Count > 0)
+                            ////        //    {
+                            ////        //        if (dOCUMENTOes[y].FLUJOes.OrderByDescending(a => a.POS).FirstOrDefault().USUARIO != null)
+                            ////        //        {
+                            ////        //            //(Pendiente Validación TS)
+                            ////        //            if (dOCUMENTOes[y].FLUJOes.OrderByDescending(a => a.POS).FirstOrDefault().USUARIO.PUESTO_ID == 8)
+                            ////        //            {
+                            ////        //                lstD.Add(dOCUMENTOes[y]);
+                            ////        //            }
+                            ////        //        }
+                            ////        //    }
+                            ////        //}
+                            ////        //else if (dOCUMENTOes[y].ESTATUS_WF == "R")//(Pendiente Corrección)
+                            ////        //{
+                            ////        //    if (dOCUMENTOes[y].FLUJOes.Count > 0)
+                            ////        //    {
+                            ////        //        lstD.Add(dOCUMENTOes[y]);
+                            ////        //    }
+                            ////        //}
+                            ////        //else if (dOCUMENTOes[y].ESTATUS_WF == "T")//(Pendiente Taxeo)
+                            ////        //{
+                            ////        //    if (dOCUMENTOes[y].TSOL_ID == "NCIA")
+                            ////        //    {
+                            ////        //        if (dOCUMENTOes[y].PAIS_ID == "CO")//(sólo Colombia)
+                            ////        //        {
+                            ////        //            lstD.Add(dOCUMENTOes[y]);
+                            ////        //        }
+                            ////        //    }
+                            ////        //}
+                            ////        //else if (dOCUMENTOes[y].ESTATUS_WF == "A")//(Por Contabilizar)
+                            ////        //{
+                            ////        //    if (dOCUMENTOes[y].ESTATUS == "P")
+                            ////        //    {
+                            ////        //        lstD.Add(dOCUMENTOes[y]);
+                            ////        //    }
+                            ////        //}
+                            ////        //else if (dOCUMENTOes[y].ESTATUS_SAP == "E")//Error en SAP
+                            ////        //{
+                            ////        //    lstD.Add(dOCUMENTOes[y]);
+                            ////        //}
+                            ////        //else if (dOCUMENTOes[y].ESTATUS_SAP == "X")//Succes en SAP
+                            ////        //{
+                            ////        //    lstD.Add(dOCUMENTOes[y]);
+                            ////        //}
+                            ////    }
+                            ////    //LEJ 20.07.2018----------------------------------------------------------------T
+                            ////}
                         }
                         //----
                         if (arrAprNum[0].Trim() == "DeAcuerdo" | arrAprNum[0].Trim() == "De Acuerdo")

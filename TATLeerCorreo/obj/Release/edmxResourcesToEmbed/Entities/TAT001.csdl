@@ -1,9 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TAT001Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <ComplexType Name="split_Result">
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="val" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </ComplexType>
+<Schema Namespace="TAT004Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="ACCION">
     <Key>
       <PropertyRef Name="ID" />
@@ -220,6 +216,7 @@
     <Property Name="APOYO_REAX" Type="Boolean" />
     <Property Name="VOLUMEN_ESTX" Type="Boolean" />
     <Property Name="VOLUMEN_REAX" Type="Boolean" />
+    <Property Name="STATUS" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_CARTA_DOCUMENTO" FromRole="CARTA" ToRole="DOCUMENTO" />
     <NavigationProperty Name="USUARIO" Relationship="Self.FK_CARTA_USUARIO" FromRole="CARTA" ToRole="USUARIO" />
     <NavigationProperty Name="CARTAPs" Relationship="Self.FK_CARTAP_CARTA" FromRole="CARTA" ToRole="CARTAP" />
@@ -235,17 +232,17 @@
     <Property Name="POS" Type="Int32" Nullable="false" />
     <Property Name="MATNR" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="MATKL" Type="String" MaxLength="9" FixedLength="false" Unicode="true" />
-    <Property Name="CANTIDAD" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
-    <Property Name="MONTO" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
-    <Property Name="PORC_APOYO" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
-    <Property Name="MONTO_APOYO" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
-    <Property Name="PRECIO_SUG" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
-    <Property Name="VOLUMEN_EST" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
-    <Property Name="VOLUMEN_REAL" Type="Decimal" Precision="13" Scale="5" />
-    <Property Name="APOYO_REAL" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="CANTIDAD" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="MONTO" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="PORC_APOYO" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="MONTO_APOYO" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="PRECIO_SUG" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="VOLUMEN_EST" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="VOLUMEN_REAL" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="APOYO_REAL" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="VIGENCIA_DE" Type="DateTime" Precision="0" />
     <Property Name="VIGENCIA_AL" Type="DateTime" Precision="0" />
-    <Property Name="APOYO_EST" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="APOYO_EST" Type="Decimal" Precision="18" Scale="5" />
     <NavigationProperty Name="CARTA" Relationship="Self.FK_CARTAP_CARTA" FromRole="CARTAP" ToRole="CARTA" />
   </EntityType>
   <EntityType Name="CATEGORIA">
@@ -482,6 +479,7 @@
     <Property Name="BASE_UNIT" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
     <Property Name="MATERIALGP" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="TAXCODEGP" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="ASIGNACIONTXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="CONSOPORTE">
     <Key>
@@ -509,6 +507,7 @@
     <Property Name="KUNNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="ACTIVO" Type="Boolean" />
     <Property Name="DEFECTO" Type="Boolean" />
+    <Property Name="CARTA" Type="Boolean" />
     <NavigationProperty Name="CLIENTE" Relationship="Self.FK_CONTACTOC_CLIENTE" FromRole="CONTACTOC" ToRole="CLIENTE" />
   </EntityType>
   <EntityType Name="COUNTRy">
@@ -542,7 +541,6 @@
     <NavigationProperty Name="CUENTAGL2" Relationship="Self.FK_CUENTA_CUENTAGL2" FromRole="CUENTA" ToRole="CUENTAGL" />
     <NavigationProperty Name="PAI" Relationship="Self.FK_CUENTA_PAIS" FromRole="CUENTA" ToRole="PAIS" />
     <NavigationProperty Name="SOCIEDAD" Relationship="Self.FK_CUENTA_SOCIEDAD" FromRole="CUENTA" ToRole="SOCIEDAD" />
-    <NavigationProperty Name="TALL" Relationship="Self.FK_CUENTA_TALL" FromRole="CUENTA" ToRole="TALL" />
   </EntityType>
   <EntityType Name="CUENTAGL">
     <Key>
@@ -767,6 +765,25 @@
     <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
   </EntityType>
+  <EntityType Name="DOCTOAYUDA">
+    <Key>
+      <PropertyRef Name="ID_DOCUMENTO" />
+    </Key>
+    <Property Name="ID_DOCUMENTO" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_CLASIFICACION" Type="Int32" Nullable="false" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <Property Name="RUTA_DOCUMENTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="DOCTOCLASIF" Relationship="Self.FK_DOCTOAYUDA_DOCTOCLASIF" FromRole="DOCTOAYUDA" ToRole="DOCTOCLASIF" />
+  </EntityType>
+  <EntityType Name="DOCTOCLASIF">
+    <Key>
+      <PropertyRef Name="ID_CLASIFICACION" />
+    </Key>
+    <Property Name="ID_CLASIFICACION" Type="Int32" Nullable="false" />
+    <Property Name="CLASIFICACION_DSC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="DOCTOAYUDAs" Relationship="Self.FK_DOCTOAYUDA_DOCTOCLASIF" FromRole="DOCTOCLASIF" ToRole="DOCTOAYUDA" />
+  </EntityType>
   <EntityType Name="DOCUMENTBORR">
     <Key>
       <PropertyRef Name="USUARIOC_ID" />
@@ -926,6 +943,7 @@
     <Property Name="CUENTAP" Type="Decimal" Precision="10" Scale="0" />
     <Property Name="CUENTAPL" Type="Decimal" Precision="10" Scale="0" />
     <Property Name="EXCEDE_PRES" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CUENTACL" Type="Decimal" Precision="10" Scale="0" />
     <NavigationProperty Name="CARTAs" Relationship="Self.FK_CARTA_DOCUMENTO" FromRole="DOCUMENTO" ToRole="CARTA" />
     <NavigationProperty Name="CLIENTE" Relationship="Self.FK_DOCUMENTO_CLIENTE" FromRole="DOCUMENTO" ToRole="CLIENTE" />
     <NavigationProperty Name="CUENTAGL" Relationship="Self.FK_DOCUMENTO_CUENTAGL" FromRole="DOCUMENTO" ToRole="CUENTAGL" />
@@ -1089,9 +1107,9 @@
     <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="POS" Type="Int32" Nullable="false" />
     <Property Name="FECHAF" Type="DateTime" Precision="0" />
-    <Property Name="MONTO_VENTA" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="MONTO_VENTA" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="ESTATUS" Type="Boolean" />
-    <Property Name="BACKORDER" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="BACKORDER" Type="Decimal" Precision="18" Scale="5" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOL_DOCUMENTO" FromRole="DOCUMENTOL" ToRole="DOCUMENTO" />
   </EntityType>
   <EntityType Name="DOCUMENTOM">
@@ -1105,11 +1123,11 @@
     <Property Name="POS" Type="Int32" Nullable="false" />
     <Property Name="MATNR" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
     <Property Name="PORC_APOYO" Type="Decimal" Precision="13" Scale="5" />
-    <Property Name="APOYO_EST" Type="Decimal" Precision="13" Scale="5" />
-    <Property Name="APOYO_REAL" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="APOYO_EST" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="APOYO_REAL" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="VIGENCIA_DE" Type="DateTime" Precision="0" />
     <Property Name="VIGENCIA_A" Type="DateTime" Precision="0" />
-    <Property Name="VALORH" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="VALORH" Type="Decimal" Precision="18" Scale="5" />
     <NavigationProperty Name="DOCUMENTOP" Relationship="Self.FK_DOCUMENTOM_DOCUMENTOP" FromRole="DOCUMENTOM" ToRole="DOCUMENTOP" />
   </EntityType>
   <EntityType Name="DOCUMENTON">
@@ -1168,7 +1186,7 @@
     <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
     <Property Name="POS" Type="Int32" Nullable="false" />
     <Property Name="LIN" Type="Int32" Nullable="false" />
-    <Property Name="OBJETIVOI" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="OBJETIVOI" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="PORCENTAJE" Type="Decimal" Precision="13" Scale="5" />
     <NavigationProperty Name="DOCUMENTOREC" Relationship="Self.FK_DOCUMENTORAN_DOCUMENTOREC" FromRole="DOCUMENTORAN" ToRole="DOCUMENTOREC" />
   </EntityType>
@@ -1182,10 +1200,10 @@
     <Property Name="FECHAF" Type="DateTime" Precision="0" />
     <Property Name="PERIODO" Type="Int32" />
     <Property Name="EJERCICIO" Type="Int32" />
-    <Property Name="MONTO_BASE" Type="Decimal" Precision="13" Scale="5" />
-    <Property Name="MONTO_FIJO" Type="Decimal" Precision="13" Scale="5" />
-    <Property Name="MONTO_GRS" Type="Decimal" Precision="13" Scale="5" />
-    <Property Name="MONTO_NET" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="MONTO_BASE" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="MONTO_FIJO" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="MONTO_GRS" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="MONTO_NET" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="ESTATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="PORC" Type="Decimal" Precision="13" Scale="5" />
     <Property Name="DOC_REF" Type="Decimal" Precision="10" Scale="0" />
@@ -1225,6 +1243,39 @@
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOTS_DOCUMENTO" FromRole="DOCUMENTOTS" ToRole="DOCUMENTO" />
     <NavigationProperty Name="TS_CAMPO" Relationship="Self.FK_DOCUMENTOTS_TS_CAMPO" FromRole="DOCUMENTOTS" ToRole="TS_CAMPO" />
   </EntityType>
+  <EntityType Name="ESTATU">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CLASS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ESTATUSRs" Relationship="Self.FK_ESTATUSR_ESTATUS" FromRole="ESTATUS" ToRole="ESTATUSR" />
+    <NavigationProperty Name="ESTATUSTs" Relationship="Self.FK_ESTATUST_ESTATUS" FromRole="ESTATUS" ToRole="ESTATUST" />
+  </EntityType>
+  <EntityType Name="ESTATUSR">
+    <Key>
+      <PropertyRef Name="ESTATUS_ID" />
+      <PropertyRef Name="POS" />
+    </Key>
+    <Property Name="ESTATUS_ID" Type="Int32" Nullable="false" />
+    <Property Name="POS" Type="Int32" Nullable="false" />
+    <Property Name="REGEX" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ESTATU" Relationship="Self.FK_ESTATUSR_ESTATUS" FromRole="ESTATUSR" ToRole="ESTATUS" />
+  </EntityType>
+  <EntityType Name="ESTATUST">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="ESTATUS_ID" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ESTATUS_ID" Type="Int32" Nullable="false" />
+    <Property Name="TXT050" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ESTATU" Relationship="Self.FK_ESTATUST_ESTATUS" FromRole="ESTATUST" ToRole="ESTATUS" />
+    <NavigationProperty Name="SPRA" Relationship="Self.FK_ESTATUST_SPRAS" FromRole="ESTATUST" ToRole="SPRAS" />
+  </EntityType>
   <EntityType Name="FACTURASCONF">
     <Key>
       <PropertyRef Name="SOCIEDAD_ID" />
@@ -1260,7 +1311,7 @@
     <Property Name="KUNNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="FECHAC" Type="DateTime" Precision="3" />
     <Property Name="FECHAM" Type="DateTime" Precision="3" />
-    <Property Name="COMENTARIO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="COMENTARIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="FLUJO">
     <Key>
@@ -1284,7 +1335,7 @@
     <Property Name="ESTATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="FECHAC" Type="DateTime" Precision="3" />
     <Property Name="FECHAM" Type="DateTime" Precision="3" />
-    <Property Name="COMENTARIO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="COMENTARIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="FLUJO" ToRole="DOCUMENTO" />
     <NavigationProperty Name="USUARIO" Relationship="Self.FK_FLUJO_USUARIO" FromRole="FLUJO" ToRole="USUARIO" />
@@ -1327,6 +1378,25 @@
     <NavigationProperty Name="DET_AGENTEH" Relationship="Self.FK_DET_AGENTEH_GAUTORIZACION" FromRole="GAUTORIZACION" ToRole="DET_AGENTEH" />
     <NavigationProperty Name="SOCIEDAD" Relationship="Self.FK_GAUTORIZACION_SOCIEDAD" FromRole="GAUTORIZACION" ToRole="SOCIEDAD" />
     <NavigationProperty Name="USUARIOs" Relationship="Self.USUARIOGA" FromRole="GAUTORIZACION" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="Grupo">
+    <Key>
+      <PropertyRef Name="Grupo_ID" />
+      <PropertyRef Name="SPRAS_ID" />
+    </Key>
+    <Property Name="Grupo_ID" Type="Int32" Nullable="false" />
+    <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GrupoCat">
+    <Key>
+      <PropertyRef Name="Grupo_ID" />
+      <PropertyRef Name="SPRAS_ID" />
+    </Key>
+    <Property Name="Grupo_ID" Type="Int32" Nullable="false" />
+    <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Mantto" Type="Int32" />
   </EntityType>
   <EntityType Name="IIMPUESTO">
     <Key>
@@ -1501,6 +1571,9 @@
     <Property Name="ICON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="MOSTRAR" Type="Boolean" Nullable="false" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <Property Name="Mantenimiento" Type="Int32" />
+    <Property Name="Grupo" Type="Int32" />
+    <Property Name="Orden" Type="Int32" />
     <NavigationProperty Name="CAMPOS" Relationship="Self.FK_CAMPOS_PAGINA" FromRole="PAGINA" ToRole="CAMPOS" />
     <NavigationProperty Name="CARPETA" Relationship="Self.FK_PAGINA_CARPETA" FromRole="PAGINA" ToRole="CARPETA" />
     <NavigationProperty Name="PAGINATs" Relationship="Self.FK_PAGINAT_PAGINA" FromRole="PAGINA" ToRole="PAGINAT" />
@@ -1851,6 +1924,7 @@
     <NavigationProperty Name="CARPETATs" Relationship="Self.FK_CARPETAT_SPRAS" FromRole="SPRAS" ToRole="CARPETAT" />
     <NavigationProperty Name="CATEGORIATs" Relationship="Self.FK_CATEGORIAT_SPRAS" FromRole="SPRAS" ToRole="CATEGORIAT" />
     <NavigationProperty Name="CONDICIONTs" Relationship="Self.FK_CONDICIONT_SPRAS" FromRole="SPRAS" ToRole="CONDICIONT" />
+    <NavigationProperty Name="ESTATUSTs" Relationship="Self.FK_ESTATUST_SPRAS" FromRole="SPRAS" ToRole="ESTATUST" />
     <NavigationProperty Name="GALLTs" Relationship="Self.FK_GALLT_SPRAS" FromRole="SPRAS" ToRole="GALLT" />
     <NavigationProperty Name="MATERIALGPTs" Relationship="Self.FK_MATERIALGPT_SPRAS" FromRole="SPRAS" ToRole="MATERIALGPT" />
     <NavigationProperty Name="MATERIALTs" Relationship="Self.FK_MATERIALT_SPRAS" FromRole="SPRAS" ToRole="MATERIALT" />
@@ -1917,7 +1991,6 @@
     <Property Name="FECHAF" Type="DateTime" Precision="0" />
     <Property Name="GALL_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
     <Property Name="ACTIVO" Type="Boolean" />
-    <NavigationProperty Name="CUENTAs" Relationship="Self.FK_CUENTA_TALL" FromRole="TALL" ToRole="CUENTA" />
     <NavigationProperty Name="DOCUMENTOes" Relationship="Self.FK_DOCUMENTO_TALL" FromRole="TALL" ToRole="DOCUMENTO" />
     <NavigationProperty Name="GALL" Relationship="Self.FK_TALL_GALL" FromRole="TALL" ToRole="GALL" />
     <NavigationProperty Name="TALLTs" Relationship="Self.FK_TALLT_TALL" FromRole="TALL" ToRole="TALLT" />
@@ -2048,7 +2121,7 @@
     <Property Name="PAGINA_ID" Type="Int32" Nullable="false" />
     <Property Name="CAMPO_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="TEXTOS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TEXTOS" Type="String" MaxLength="555" FixedLength="false" Unicode="true" />
     <Property Name="ACTIVO" Type="Boolean" />
     <NavigationProperty Name="CAMPOS" Relationship="Self.FK_TEXTO_CAMPOS" FromRole="TEXTO" ToRole="CAMPOS" />
     <NavigationProperty Name="SPRA" Relationship="Self.FK_TEXTO_SPRAS" FromRole="TEXTO" ToRole="SPRAS" />
@@ -2312,7 +2385,7 @@
     <Property Name="EMAIL" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="ACTIVO" Type="Boolean" />
-    <Property Name="PUESTO_ID" Type="Int32" />
+    <Property Name="PUESTO_ID" Type="Int32" Nullable="false" />
     <Property Name="MANAGER" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
     <Property Name="BACKUP_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
     <Property Name="BUNIT" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
@@ -2336,6 +2409,7 @@
     <NavigationProperty Name="SOCIEDAD" Relationship="Self.FK_USUARIO_SOCIEDAD" FromRole="USUARIO" ToRole="SOCIEDAD" />
     <NavigationProperty Name="SPRA" Relationship="Self.FK_USUARIO_SPRAS" FromRole="USUARIO" ToRole="SPRAS" />
     <NavigationProperty Name="USUARIOFs" Relationship="Self.FK_USUARIOF_USUARIO" FromRole="USUARIO" ToRole="USUARIOF" />
+    <NavigationProperty Name="USUARIOLOG" Relationship="Self.FK_USUARIOLOG_USUARIO" FromRole="USUARIO" ToRole="USUARIOLOG" />
     <NavigationProperty Name="GAUTORIZACIONs" Relationship="Self.USUARIOGA" FromRole="USUARIO" ToRole="GAUTORIZACION" />
     <NavigationProperty Name="SOCIEDADs" Relationship="Self.USUARIOSOC" FromRole="USUARIO" ToRole="SOCIEDAD" />
   </EntityType>
@@ -2359,6 +2433,19 @@
     <Property Name="FECHAM" Type="DateTime" Precision="3" />
     <NavigationProperty Name="CLIENTE" Relationship="Self.FK_USUARIOF_CLIENTE" FromRole="USUARIOF" ToRole="CLIENTE" />
     <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIOF_USUARIO" FromRole="USUARIOF" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="USUARIOLOG">
+    <Key>
+      <PropertyRef Name="USUARIO_ID" />
+    </Key>
+    <Property Name="USUARIO_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="POS" Type="Int32" />
+    <Property Name="SESION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NAVEGADOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UBICACION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FECHA" Type="DateTime" Precision="3" />
+    <Property Name="LOGIN" Type="Boolean" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_USUARIOLOG_USUARIO" FromRole="USUARIOLOG" ToRole="USUARIO" />
   </EntityType>
   <EntityType Name="USUARIOSAP">
     <Key>
@@ -2524,167 +2611,6 @@
     <Property Name="CAMPO_ID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="TAB" Relationship="Self.FK_TAB_CAMPO_TAB" FromRole="TAB_CAMPO" ToRole="TAB" />
-  </EntityType>
-  <EntityType Name="CARPETAV">
-    <Key>
-      <PropertyRef Name="USUARIO_ID" />
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="USUARIO_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="TXT50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ICON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="CREADOR">
-    <Key>
-      <PropertyRef Name="ID" />
-      <PropertyRef Name="PUESTOC_ID" />
-      <PropertyRef Name="POS" />
-      <PropertyRef Name="AGROUP_ID" />
-    </Key>
-    <Property Name="ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PUESTOC_ID" Type="Int32" Nullable="false" />
-    <Property Name="POS" Type="Int32" Nullable="false" />
-    <Property Name="AGROUP_ID" Type="Int64" Nullable="false" />
-    <Property Name="ACTIVO" Type="Boolean" />
-    <Property Name="BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
-    <Property Name="LAND" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-  </EntityType>
-  <EntityType Name="CREADOR2">
-    <Key>
-      <PropertyRef Name="ID" />
-      <PropertyRef Name="PUESTOC_ID" />
-      <PropertyRef Name="POS" />
-      <PropertyRef Name="AGROUP_ID" />
-      <PropertyRef Name="ACTIVO" />
-    </Key>
-    <Property Name="ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PUESTOC_ID" Type="Int32" Nullable="false" />
-    <Property Name="POS" Type="Int32" Nullable="false" />
-    <Property Name="AGROUP_ID" Type="Int64" Nullable="false" />
-    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
-    <Property Name="BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
-    <Property Name="LAND" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-  </EntityType>
-  <EntityType Name="DET_APROBV">
-    <Key>
-      <PropertyRef Name="BUKRS" />
-      <PropertyRef Name="PUESTOC_ID" />
-      <PropertyRef Name="SPRAS_ID" />
-    </Key>
-    <Property Name="BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="PUESTOC_ID" Type="Int32" Nullable="false" />
-    <Property Name="TXT50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityType Name="DOCUMENTOV">
-    <Key>
-      <PropertyRef Name="POS" />
-      <PropertyRef Name="NUM_DOC" />
-    </Key>
-    <Property Name="POS" Type="Int32" Nullable="false" />
-    <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="TSOL_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="TALL_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="SOCIEDAD_ID" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
-    <Property Name="PAIS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-    <Property Name="PERIODO" Type="Int32" />
-    <Property Name="EJERCICIO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
-    <Property Name="TIPO_TECNICO" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
-    <Property Name="TIPO_RECURRENTE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
-    <Property Name="CANTIDAD_EV" Type="Decimal" Precision="3" Scale="0" />
-    <Property Name="USUARIOC_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-    <Property Name="FECHAD" Type="DateTime" Precision="3" />
-    <Property Name="FECHAC" Type="DateTime" Precision="3" />
-    <Property Name="HORAC" Type="Time" Precision="7" />
-    <Property Name="FECHAC_PLAN" Type="DateTime" Precision="0" />
-    <Property Name="FECHAC_USER" Type="DateTime" Precision="0" />
-    <Property Name="HORAC_USER" Type="Time" Precision="7" />
-    <Property Name="ESTATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
-    <Property Name="ESTATUS_C" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
-    <Property Name="ESTATUS_SAP" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
-    <Property Name="ESTATUS_WF" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
-    <Property Name="DOCUMENTO_REF" Type="Decimal" Precision="10" Scale="0" />
-    <Property Name="CONCEPTO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="NOTAS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="MONTO_DOC_MD" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_FIJO_MD" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_BASE_GS_PCT_MD" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_BASE_NS_PCT_MD" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_DOC_ML" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_FIJO_ML" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_BASE_GS_PCT_ML" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_BASE_NS_PCT_ML" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_DOC_ML2" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_FIJO_ML2" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_BASE_GS_PCT_ML2" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_BASE_NS_PCT_ML2" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="PORC_ADICIONAL" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="IMPUESTO" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-    <Property Name="FECHAI_VIG" Type="DateTime" Precision="0" />
-    <Property Name="FECHAF_VIG" Type="DateTime" Precision="0" />
-    <Property Name="ESTATUS_EXT" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
-    <Property Name="SOLD_TO_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="PAYER_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="PAYER_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="PAYER_EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="GRUPO_CTE_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="CANAL_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-    <Property Name="MONEDA_ID" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
-    <Property Name="MONEDAL_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="MONEDAL2_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="TIPO_CAMBIO" Type="Decimal" Precision="10" Scale="6" />
-    <Property Name="TIPO_CAMBIOL" Type="Decimal" Precision="10" Scale="6" />
-    <Property Name="TIPO_CAMBIOL2" Type="Decimal" Precision="10" Scale="6" />
-    <Property Name="NO_FACTURA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="FECHAD_SOPORTE" Type="DateTime" Precision="3" />
-    <Property Name="METODO_PAGO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="NO_PROVEEDOR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="PASO_ACTUAL" Type="Int32" />
-    <Property Name="AGENTE_ACTUAL" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-    <Property Name="FECHA_PASO_ACTUAL" Type="DateTime" Precision="3" />
-    <Property Name="VKORG" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
-    <Property Name="VTWEG" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-    <Property Name="SPART" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-    <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-    <Property Name="EXPR2" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
-    <Property Name="CIUDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="PAGINAV">
-    <Key>
-      <PropertyRef Name="ID" />
-      <PropertyRef Name="PAGINA_ID" />
-      <PropertyRef Name="CARPETA_ID" />
-      <PropertyRef Name="SPRAS_ID" />
-      <PropertyRef Name="USUARIO_SPRAS" />
-    </Key>
-    <Property Name="ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="PAGINA_ID" Type="Int32" Nullable="false" />
-    <Property Name="PAGINA_URL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="TXT50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CARPETA_ID" Type="Int32" Nullable="false" />
-    <Property Name="CARPETA_URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ICON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-    <Property Name="PERMISO" Type="Boolean" />
-    <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="USUARIO_SPRAS" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityType Name="WARNINGV">
-    <Key>
-      <PropertyRef Name="PAGINA_ID" />
-      <PropertyRef Name="ID" />
-      <PropertyRef Name="SPRAS_ID" />
-    </Key>
-    <Property Name="PAGINA_ID" Type="Int32" Nullable="false" />
-    <Property Name="ID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="TIPO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="WARNING" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="POSICION" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="ACTIVO" Type="Boolean" />
   </EntityType>
   <Association Name="FK_ACCIONT_ACCION">
     <End Role="ACCION" Type="Self.ACCION" Multiplicity="1" />
@@ -3304,18 +3230,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_CUENTA_TALL">
-    <End Role="TALL" Type="Self.TALL" Multiplicity="1" />
-    <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TALL">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="CUENTA">
-        <PropertyRef Name="TALL_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_DOCUMENTO_CUENTAGL">
     <End Role="CUENTAGL" Type="Self.CUENTAGL" Multiplicity="0..1" />
     <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="*" />
@@ -3623,6 +3537,18 @@
       </Principal>
       <Dependent Role="DET_TAXEO">
         <PropertyRef Name="USUARIOC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCTOAYUDA_DOCTOCLASIF">
+    <End Role="DOCTOCLASIF" Type="Self.DOCTOCLASIF" Multiplicity="1" />
+    <End Role="DOCTOAYUDA" Type="Self.DOCTOAYUDA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCTOCLASIF">
+        <PropertyRef Name="ID_CLASIFICACION" />
+      </Principal>
+      <Dependent Role="DOCTOAYUDA">
+        <PropertyRef Name="ID_CLASIFICACION" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3941,6 +3867,42 @@
       </Principal>
       <Dependent Role="DOCUMENTOTS">
         <PropertyRef Name="TSFORM_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ESTATUSR_ESTATUS">
+    <End Role="ESTATUS" Type="Self.ESTATU" Multiplicity="1" />
+    <End Role="ESTATUSR" Type="Self.ESTATUSR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTATUS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ESTATUSR">
+        <PropertyRef Name="ESTATUS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ESTATUST_ESTATUS">
+    <End Role="ESTATUS" Type="Self.ESTATU" Multiplicity="1" />
+    <End Role="ESTATUST" Type="Self.ESTATUST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ESTATUS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ESTATUST">
+        <PropertyRef Name="ESTATUS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ESTATUST_SPRAS">
+    <End Role="SPRAS" Type="Self.SPRA" Multiplicity="1" />
+    <End Role="ESTATUST" Type="Self.ESTATUST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRAS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ESTATUST">
+        <PropertyRef Name="SPRAS_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -4457,7 +4419,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_USUARIO_PUESTO">
-    <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="0..1" />
+    <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="1" />
     <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="PUESTO">
@@ -5020,6 +4982,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_USUARIOLOG_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="USUARIOLOG" Type="Self.USUARIOLOG" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USUARIOLOG">
+        <PropertyRef Name="USUARIO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_WORKV_WORKFH">
     <End Role="WORKFH" Type="Self.WORKFH" Multiplicity="1" />
     <End Role="WORKFV" Type="Self.WORKFV" Multiplicity="*" />
@@ -5110,6 +5084,8 @@
     <EntitySet Name="DET_TAX" EntityType="Self.DET_TAX" />
     <EntitySet Name="DET_TAXEO" EntityType="Self.DET_TAXEO" />
     <EntitySet Name="DET_TAXEOC" EntityType="Self.DET_TAXEOC" />
+    <EntitySet Name="DOCTOAYUDAs" EntityType="Self.DOCTOAYUDA" />
+    <EntitySet Name="DOCTOCLASIFs" EntityType="Self.DOCTOCLASIF" />
     <EntitySet Name="DOCUMENTBORRs" EntityType="Self.DOCUMENTBORR" />
     <EntitySet Name="DOCUMENTOes" EntityType="Self.DOCUMENTO" />
     <EntitySet Name="DOCUMENTOAs" EntityType="Self.DOCUMENTOA" />
@@ -5128,12 +5104,17 @@
     <EntitySet Name="DOCUMENTORECs" EntityType="Self.DOCUMENTOREC" />
     <EntitySet Name="DOCUMENTOSAPs" EntityType="Self.DOCUMENTOSAP" />
     <EntitySet Name="DOCUMENTOTS" EntityType="Self.DOCUMENTOT" />
+    <EntitySet Name="ESTATUS" EntityType="Self.ESTATU" />
+    <EntitySet Name="ESTATUSRs" EntityType="Self.ESTATUSR" />
+    <EntitySet Name="ESTATUSTs" EntityType="Self.ESTATUST" />
     <EntitySet Name="FACTURASCONFs" EntityType="Self.FACTURASCONF" />
     <EntitySet Name="FLUJNEGOes" EntityType="Self.FLUJNEGO" />
     <EntitySet Name="FLUJOes" EntityType="Self.FLUJO" />
     <EntitySet Name="GALLs" EntityType="Self.GALL" />
     <EntitySet Name="GALLTs" EntityType="Self.GALLT" />
     <EntitySet Name="GAUTORIZACIONs" EntityType="Self.GAUTORIZACION" />
+    <EntitySet Name="Grupoes" EntityType="Self.Grupo" />
+    <EntitySet Name="GrupoCats" EntityType="Self.GrupoCat" />
     <EntitySet Name="IIMPUESTOes" EntityType="Self.IIMPUESTO" />
     <EntitySet Name="IMPUESTOes" EntityType="Self.IMPUESTO" />
     <EntitySet Name="LEYENDAs" EntityType="Self.LEYENDA" />
@@ -5205,6 +5186,7 @@
     <EntitySet Name="UMEDIDATs" EntityType="Self.UMEDIDAT" />
     <EntitySet Name="USUARIOs" EntityType="Self.USUARIO" />
     <EntitySet Name="USUARIOFs" EntityType="Self.USUARIOF" />
+    <EntitySet Name="USUARIOLOGs" EntityType="Self.USUARIOLOG" />
     <EntitySet Name="USUARIOSAPs" EntityType="Self.USUARIOSAP" />
     <EntitySet Name="WARNINGs" EntityType="Self.WARNING" />
     <EntitySet Name="WARNING_COND" EntityType="Self.WARNING_COND" />
@@ -5217,13 +5199,6 @@
     <EntitySet Name="ZBRANDs" EntityType="Self.ZBRAND" />
     <EntitySet Name="ZCTGRs" EntityType="Self.ZCTGR" />
     <EntitySet Name="TAB_CAMPO" EntityType="Self.TAB_CAMPO" />
-    <EntitySet Name="CARPETAVs" EntityType="Self.CARPETAV" />
-    <EntitySet Name="CREADORs" EntityType="Self.CREADOR" />
-    <EntitySet Name="CREADOR2" EntityType="Self.CREADOR2" />
-    <EntitySet Name="DET_APROBV" EntityType="Self.DET_APROBV" />
-    <EntitySet Name="DOCUMENTOVs" EntityType="Self.DOCUMENTOV" />
-    <EntitySet Name="PAGINAVs" EntityType="Self.PAGINAV" />
-    <EntitySet Name="WARNINGVs" EntityType="Self.WARNINGV" />
     <AssociationSet Name="FK_ACCIONT_ACCION" Association="Self.FK_ACCIONT_ACCION">
       <End Role="ACCION" EntitySet="ACCIONs" />
       <End Role="ACCIONT" EntitySet="ACCIONTs" />
@@ -5412,10 +5387,6 @@
       <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
       <End Role="CUENTA" EntitySet="CUENTAs" />
     </AssociationSet>
-    <AssociationSet Name="FK_CUENTA_TALL" Association="Self.FK_CUENTA_TALL">
-      <End Role="TALL" EntitySet="TALLs" />
-      <End Role="CUENTA" EntitySet="CUENTAs" />
-    </AssociationSet>
     <AssociationSet Name="FK_DOCUMENTO_CUENTAGL" Association="Self.FK_DOCUMENTO_CUENTAGL">
       <End Role="CUENTAGL" EntitySet="CUENTAGLs" />
       <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
@@ -5515,6 +5486,10 @@
     <AssociationSet Name="FK_DET_TAXEO_USUARIO" Association="Self.FK_DET_TAXEO_USUARIO">
       <End Role="USUARIO" EntitySet="USUARIOs" />
       <End Role="DET_TAXEO" EntitySet="DET_TAXEO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCTOAYUDA_DOCTOCLASIF" Association="Self.FK_DOCTOAYUDA_DOCTOCLASIF">
+      <End Role="DOCTOCLASIF" EntitySet="DOCTOCLASIFs" />
+      <End Role="DOCTOAYUDA" EntitySet="DOCTOAYUDAs" />
     </AssociationSet>
     <AssociationSet Name="FK_DOCUMENTOBORRF_DOCUMENTBORR" Association="Self.FK_DOCUMENTOBORRF_DOCUMENTBORR">
       <End Role="DOCUMENTBORR" EntitySet="DOCUMENTBORRs" />
@@ -5619,6 +5594,18 @@
     <AssociationSet Name="FK_DOCUMENTOTS_TS_CAMPO" Association="Self.FK_DOCUMENTOTS_TS_CAMPO">
       <End Role="TS_CAMPO" EntitySet="TS_CAMPO" />
       <End Role="DOCUMENTOTS" EntitySet="DOCUMENTOTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ESTATUSR_ESTATUS" Association="Self.FK_ESTATUSR_ESTATUS">
+      <End Role="ESTATUS" EntitySet="ESTATUS" />
+      <End Role="ESTATUSR" EntitySet="ESTATUSRs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ESTATUST_ESTATUS" Association="Self.FK_ESTATUST_ESTATUS">
+      <End Role="ESTATUS" EntitySet="ESTATUS" />
+      <End Role="ESTATUST" EntitySet="ESTATUSTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ESTATUST_SPRAS" Association="Self.FK_ESTATUST_SPRAS">
+      <End Role="SPRAS" EntitySet="SPRAS" />
+      <End Role="ESTATUST" EntitySet="ESTATUSTs" />
     </AssociationSet>
     <AssociationSet Name="FK_FLUJO_USUARIO" Association="Self.FK_FLUJO_USUARIO">
       <End Role="USUARIO" EntitySet="USUARIOs" />
@@ -5972,6 +5959,10 @@
       <End Role="USUARIO" EntitySet="USUARIOs" />
       <End Role="USUARIOF" EntitySet="USUARIOFs" />
     </AssociationSet>
+    <AssociationSet Name="FK_USUARIOLOG_USUARIO" Association="Self.FK_USUARIOLOG_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIOs" />
+      <End Role="USUARIOLOG" EntitySet="USUARIOLOGs" />
+    </AssociationSet>
     <AssociationSet Name="FK_WORKV_WORKFH" Association="Self.FK_WORKV_WORKFH">
       <End Role="WORKFH" EntitySet="WORKFHs" />
       <End Role="WORKFV" EntitySet="WORKFVs" />
@@ -5992,248 +5983,5 @@
       <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
       <End Role="USUARIO" EntitySet="USUARIOs" />
     </AssociationSet>
-    <FunctionImport Name="split" IsComposable="true" ReturnType="Collection(TAT001Model.split_Result)">
-      <Parameter Name="delimited" Mode="In" Type="String" />
-      <Parameter Name="delimiter" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="CPS_LISTA_CLI_PRO" ReturnType="Collection(TAT001Model.CPS_LISTA_CLI_PRO_Result)" />
-    <FunctionImport Name="CSP_BANNERSINCANAL" ReturnType="Collection(TAT001Model.CSP_BANNERSINCANAL_Result)">
-      <Parameter Name="sociedad" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="CSP_CAMBIO" ReturnType="Collection(TAT001Model.CSP_CAMBIO_Result)">
-      <Parameter Name="sociedad" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="CSP_CARPETA" ReturnType="Collection(TAT001Model.CSP_CARPETA_Result)">
-      <Parameter Name="ID" Mode="In" Type="String" />
-      <Parameter Name="ACCION" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="CSP_CONSULTARPRESUPUESTO" ReturnType="Collection(TAT001Model.CSP_CONSULTARPRESUPUESTO_Result)">
-      <Parameter Name="SOCIEDAD" Mode="In" Type="String" />
-      <Parameter Name="ANIOC" Mode="In" Type="String" />
-      <Parameter Name="ANIOS" Mode="In" Type="String" />
-      <Parameter Name="PERIODOC" Mode="In" Type="String" />
-      <Parameter Name="PERIODOS" Mode="In" Type="String" />
-      <Parameter Name="MONEDAD" Mode="In" Type="String" />
-      <Parameter Name="MONEDAA" Mode="In" Type="String" />
-      <Parameter Name="CPT" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="CSP_DOCUMENTOSXUSER" ReturnType="Collection(TAT001Model.CSP_DOCUMENTOSXUSER_Result)">
-      <Parameter Name="USUARIO" Mode="In" Type="String" />
-      <Parameter Name="SPRAS" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="CSP_PERMISO" ReturnType="Collection(TAT001Model.CSP_PERMISO_Result)">
-      <Parameter Name="ID" Mode="In" Type="String" />
-      <Parameter Name="ACCION" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="CSP_PRESU_CLIENT" ReturnType="Collection(TAT001Model.CSP_PRESU_CLIENT_Result)">
-      <Parameter Name="CLIENTE" Mode="In" Type="String" />
-      <Parameter Name="PERIODO" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="CSP_PRESUPUESTO_ADD" ReturnType="Collection(Int32)">
-      <Parameter Name="anio" Mode="In" Type="Int32" />
-      <Parameter Name="sociedad" Mode="In" Type="String" />
-      <Parameter Name="periodo" Mode="In" Type="String" />
-      <Parameter Name="usuario_id" Mode="In" Type="String" />
-      <Parameter Name="auto" Mode="In" Type="String" />
-      <Parameter Name="caso" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="CSP_PRESUPUESTO_ADDP" ReturnType="Collection(TAT001Model.CSP_PRESUPUESTO_ADDP_Result)">
-      <Parameter Name="path" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="CSP_USUARIO" ReturnType="Collection(TAT001Model.CSP_USUARIO_Result)">
-      <Parameter Name="ID" Mode="In" Type="String" />
-      <Parameter Name="PASS" Mode="In" Type="String" />
-      <Parameter Name="NOMBRE" Mode="In" Type="String" />
-      <Parameter Name="APELLIDO_P" Mode="In" Type="String" />
-      <Parameter Name="APELLIDO_M" Mode="In" Type="String" />
-      <Parameter Name="EMAIL" Mode="In" Type="String" />
-      <Parameter Name="SPRAS_ID" Mode="In" Type="String" />
-      <Parameter Name="ACTIVO" Mode="In" Type="Boolean" />
-      <Parameter Name="ACCION" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_alterdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_creatediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_dropdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TAT001Model.sp_helpdiagramdefinition_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TAT001Model.sp_helpdiagrams_Result)">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_renamediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="new_diagramname" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
-  <ComplexType Name="CPS_LISTA_CLI_PRO_Result">
-    <Property Type="String" Name="KUNNR" Nullable="false" MaxLength="10" />
-    <Property Type="String" Name="NAME1" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="PROVEEDOR_ID" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="NOMBRE" Nullable="true" MaxLength="250" />
-    <Property Type="String" Name="LANDX" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="VKORG" Nullable="false" MaxLength="4" />
-    <Property Type="String" Name="CANAL" Nullable="true" MaxLength="62" />
-    <Property Type="String" Name="CONTAC" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="CONT_EMAIL" Nullable="true" MaxLength="100" />
-  </ComplexType>
-  <ComplexType Name="CSP_BANNERSINCANAL_Result">
-    <Property Type="String" Name="BANNER" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="SOCIEDAD" Nullable="true" MaxLength="4" />
-  </ComplexType>
-  <ComplexType Name="CSP_CAMBIO_Result">
-    <Property Type="String" Name="FCURR" Nullable="false" MaxLength="3" />
-    <Property Type="String" Name="TCURR" Nullable="false" MaxLength="3" />
-  </ComplexType>
-  <ComplexType Name="CSP_CARPETA_Result">
-    <Property Type="Int32" Name="CAR_ID" Nullable="false" />
-    <Property Type="String" Name="CAR_URL" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="CAR_TIT" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="ICONO" Nullable="true" MaxLength="20" />
-  </ComplexType>
-  <ComplexType Name="CSP_CONSULTARPRESUPUESTO_Result">
-    <Property Type="String" Name="CANAL" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="CDESCRIPCION" Nullable="true" MaxLength="50" />
-    <Property Type="Double" Name="PPTOC" Nullable="false" />
-    <Property Type="String" Name="BANNER" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="BDESCRIPCION" Nullable="true" MaxLength="50" />
-    <Property Type="Double" Name="PPTO" Nullable="false" />
-    <Property Type="String" Name="PERIODO" Nullable="true" MaxLength="3" />
-    <Property Type="Double" Name="CSHDC" Nullable="false" />
-    <Property Type="Double" Name="RECUN" Nullable="false" />
-    <Property Type="Double" Name="OTHTA" Nullable="false" />
-    <Property Type="Double" Name="SPA" Nullable="false" />
-    <Property Type="Double" Name="FREEG" Nullable="false" />
-    <Property Type="Double" Name="CONPR" Nullable="false" />
-    <Property Type="Double" Name="RSRDV" Nullable="false" />
-    <Property Type="Double" Name="CORPM" Nullable="false" />
-    <Property Type="Double" Name="POP" Nullable="false" />
-    <Property Type="Double" Name="PMVAR" Nullable="false" />
-    <Property Type="Double" Name="ADVER" Nullable="false" />
-    <Property Type="Double" Name="DSTRB" Nullable="false" />
-    <Property Type="Double" Name="VVX17" Nullable="false" />
-    <Property Type="Double" Name="ALLB" Nullable="false" />
-    <Property Type="Double" Name="ALLF" Nullable="false" />
-    <Property Type="Double" Name="PROCESO" Nullable="false" />
-    <Property Type="Double" Name="CONSU" Nullable="false" />
-    <Property Type="Double" Name="TOTAL" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="CSP_DOCUMENTOSXUSER_Result">
-    <Property Type="Decimal" Name="NUM_DOC" Nullable="false" Precision="10" Scale="0" />
-    <Property Type="Boolean" Name="PADRE" Nullable="false" />
-    <Property Type="Boolean" Name="REVERSO" Nullable="false" />
-    <Property Type="String" Name="BUTTON" Nullable="false" MaxLength="11" />
-    <Property Type="String" Name="ESTATUS" Nullable="true" MaxLength="1" />
-    <Property Type="String" Name="USUARIOA_ID" Nullable="true" MaxLength="16" />
-    <Property Type="String" Name="NUM_DOC_TEXT" Nullable="false" MaxLength="7" />
-    <Property Type="String" Name="SOCIEDAD_ID" Nullable="true" MaxLength="4" />
-    <Property Type="String" Name="PAIS_ID" Nullable="true" MaxLength="2" />
-    <Property Type="DateTime" Name="FECHAD" Nullable="true" Precision="23" />
-    <Property Type="Time" Name="HORAC" Nullable="true" />
-    <Property Type="Int32" Name="PERIODO" Nullable="true" />
-    <Property Type="String" Name="ESTATUSS" Nullable="false" MaxLength="7" />
-    <Property Type="String" Name="PAYER_ID" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="NAME1" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="CANAL" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="TXT020" Nullable="true" MaxLength="20" />
-    <Property Type="String" Name="TXT50" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="CONCEPTO" Nullable="true" MaxLength="100" />
-    <Property Type="Decimal" Name="MONTO_DOC_MD" Nullable="true" Precision="13" Scale="2" />
-    <Property Type="String" Name="FACTURA" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="FACTURAK" Nullable="true" MaxLength="4000" />
-    <Property Type="String" Name="USUARIOD_ID" Nullable="true" MaxLength="16" />
-    <Property Type="String" Name="DOCUMENTO_SAP" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="BLART" Nullable="true" MaxLength="2" />
-    <Property Type="String" Name="KUNNR" Nullable="true" MaxLength="10" />
-    <Property Type="String" Name="DESCR" Nullable="true" MaxLength="60" />
-    <Property Type="Decimal" Name="IMPORTE" Nullable="true" Precision="13" Scale="5" />
-    <Property Type="String" Name="CUENTA_C" Nullable="true" MaxLength="10" />
-    <Property Type="Decimal" Name="CARGO" Nullable="true" Precision="10" Scale="0" />
-  </ComplexType>
-  <ComplexType Name="CSP_PERMISO_Result">
-    <Property Type="String" Name="ID" Nullable="false" MaxLength="16" />
-    <Property Type="Int32" Name="ID_PAG" Nullable="false" />
-    <Property Type="String" Name="URL" Nullable="true" MaxLength="255" />
-    <Property Type="String" Name="TITULO" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="CAR_ID" Nullable="false" />
-    <Property Type="String" Name="CAR_URL" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="ICONO" Nullable="true" MaxLength="20" />
-  </ComplexType>
-  <ComplexType Name="CSP_PRESU_CLIENT_Result">
-    <Property Type="String" Name="DESCRIPCION" Nullable="true" MaxLength="100" />
-    <Property Type="Double" Name="VALOR" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="CSP_PRESUPUESTO_ADDP_Result">
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="ANIO" Nullable="false" MaxLength="4" />
-    <Property Type="Int32" Name="POS" Nullable="false" />
-    <Property Type="String" Name="MES" Nullable="true" MaxLength="3" />
-    <Property Type="String" Name="VERSION" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="PAIS" Nullable="true" MaxLength="15" />
-    <Property Type="String" Name="REGION" Nullable="true" MaxLength="15" />
-    <Property Type="String" Name="MONEDA" Nullable="true" MaxLength="2" />
-    <Property Type="String" Name="MATERIAL" Nullable="true" MaxLength="18" />
-    <Property Type="String" Name="BANNER" Nullable="true" MaxLength="10" />
-    <Property Type="Double" Name="ADVER" Nullable="true" />
-    <Property Type="Double" Name="CONPR" Nullable="true" />
-    <Property Type="Double" Name="CSHDC" Nullable="true" />
-    <Property Type="Double" Name="DIRLB" Nullable="true" />
-    <Property Type="Double" Name="DSTRB" Nullable="true" />
-    <Property Type="Double" Name="FREEG" Nullable="true" />
-    <Property Type="Double" Name="GRSLS" Nullable="true" />
-    <Property Type="Double" Name="NETLB" Nullable="true" />
-    <Property Type="Double" Name="OVHDF" Nullable="true" />
-    <Property Type="Double" Name="OVHDV" Nullable="true" />
-    <Property Type="Double" Name="PKGMT" Nullable="true" />
-    <Property Type="Double" Name="PMVAR" Nullable="true" />
-    <Property Type="Double" Name="POP" Nullable="true" />
-    <Property Type="Double" Name="PURCH" Nullable="true" />
-    <Property Type="Double" Name="RAWMT" Nullable="true" />
-    <Property Type="Double" Name="RECUN" Nullable="true" />
-    <Property Type="Double" Name="RSRDV" Nullable="true" />
-    <Property Type="Double" Name="TOTCS" Nullable="true" />
-    <Property Type="Double" Name="VVX17" Nullable="true" />
-    <Property Type="Double" Name="OTHTA" Nullable="true" />
-    <Property Type="Double" Name="CORPM" Nullable="true" />
-    <Property Type="Double" Name="SPA" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="CSP_USUARIO_Result">
-    <Property Type="String" Name="ID" Nullable="false" MaxLength="16" />
-    <Property Type="String" Name="PASS" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="NOMBRE" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="APELLIDO_P" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="APELLIDO_M" Nullable="true" MaxLength="50" />
-    <Property Type="String" Name="EMAIL" Nullable="false" MaxLength="256" />
-    <Property Type="String" Name="SPRAS_ID" Nullable="false" MaxLength="2" />
-    <Property Type="Boolean" Name="ACTIVO" Nullable="true" />
-    <Property Type="Int32" Name="ID_GR" Nullable="false" />
-    <Property Type="String" Name="NOMBRE_GR" Nullable="true" MaxLength="50" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagramdefinition_Result">
-    <Property Type="Int32" Name="version" Nullable="true" />
-    <Property Type="Binary" Name="definition" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="sp_helpdiagrams_Result">
-    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-    <Property Type="Int32" Name="ID" Nullable="false" />
-    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-    <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
 </Schema>
