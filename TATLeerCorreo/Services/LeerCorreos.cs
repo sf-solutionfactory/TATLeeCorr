@@ -20,15 +20,15 @@ namespace TATLeerCorreo.Services
         public void correos2()
         {
             ImapClient ic = new ImapClient();
-            List<AE.Net.Mail.MailMessage> mx = new List<AE.Net.Mail.MailMessage>();
-            List<AE.Net.Mail.MailMessage> emRq17 = new List<AE.Net.Mail.MailMessage>();
-            APPSETTING lg = db.APPSETTINGs.Where(x => x.NOMBRE == "logPath" & x.ACTIVO == true).FirstOrDefault();
+            List<AE.Net.Mail.MailMessage> mx;
+            List<AE.Net.Mail.MailMessage> emRq17;
+            APPSETTING lg = db.APPSETTINGs.Where(x => x.NOMBRE == "logPath" && x.ACTIVO).FirstOrDefault();
             log.ruta = lg.VALUE + "LeerCorreos_";
             log.escribeLog("-----------------------------------------------------------------------START");
             try
             {
                 List<CONMAIL> cc = db.CONMAILs.ToList();
-                CONMAIL conmail = cc.Where(x => x.ID == "LE").FirstOrDefault();
+                CONMAIL conmail = cc.FirstOrDefault(x => x.ID == "LE");
                 if (conmail == null) { log.escribeLog("Falta configurar inbox."); return; }
                 ic = new ImapClient(conmail.HOST, conmail.MAIL, conmail.PASS,
                                   AuthMethods.Login, (int)conmail.PORT, conmail.SSL);
@@ -49,7 +49,7 @@ namespace TATLeerCorreo.Services
             {
                 mx = new List<AE.Net.Mail.MailMessage>();
                 emRq17 = new List<AE.Net.Mail.MailMessage>();
-                log.escribeLog("Error al leer");
+                log.escribeLog("Error al leer" + e.Message.ToString());
             }
             try
             {
@@ -67,15 +67,15 @@ namespace TATLeerCorreo.Services
                         //Valido que tenga los datos necesarios para el req 17
                         if (arrClaves.Length > 1)
                         {
-                            decimal numdoc = Decimal.Parse(arrClaves[1]);
+                            arrClaves[1] = Decimal.Parse(arrClaves[1]).ToString();
                         }
-                        var xy = arrAprNum[0].Trim();
-                        if (arrAprNum[0].Trim() == "De Acuerdo" | arrAprNum[0].Trim() == "DeAcuerdo")
+                        ////var xy = arrAprNum[0].Trim();
+                        if (arrAprNum[0].Trim() == "De Acuerdo" || arrAprNum[0].Trim() == "DeAcuerdo")
                         {
                             emRq17.Add(mm);
                             log.escribeLog("NEGO A - " + arrClaves[1]);
                         }
-                        else if (arrAprNum[0].Trim() == "Tengo Observaciones" | arrAprNum[0].Trim() == "TengoObservaciones")
+                        else if (arrAprNum[0].Trim() == "Tengo Observaciones" || arrAprNum[0].Trim() == "TengoObservaciones")
                         {
                             emRq17.Add(mm);
                             log.escribeLog("NEGO O - " + arrClaves[1]);
@@ -106,7 +106,7 @@ namespace TATLeerCorreo.Services
                             if (arrApr.Length > 1)
                             {
                                 ProcesaFlujo pF = new ProcesaFlujo();
-                                if (arrApr[1] == "Approved" | arrApr[1] == "Rejected")
+                                if (arrApr[1] == "Approved" || arrApr[1] == "Rejected")
                                 {
                                     log.escribeLog("APPR AR - " + arrClaves[0]);
                                     int pos = Convert.ToInt32(arrAprNum[2]);
@@ -115,16 +115,16 @@ namespace TATLeerCorreo.Services
                                     {
                                         Console.WriteLine(mm.From.Address.Trim()); Console.WriteLine(fl.USUARIO.EMAIL);
                                         log.escribeLog("APPR mails - " + mm.From.Address.Trim() + " == " + fl.USUARIO.EMAIL);
-                                        if (mm.From.Address.Trim().ToLower() == fl.USUARIO.EMAIL.Trim().ToLower() | mm.From.Address.Trim().ToLower() == fl.USUARIO1.EMAIL.Trim().ToLower())
+                                        if (mm.From.Address.Trim().ToLower() == fl.USUARIO.EMAIL.Trim().ToLower() || mm.From.Address.Trim().ToLower() == fl.USUARIO1.EMAIL.Trim().ToLower())
                                         {
                                             Console.WriteLine("true");
                                             fl.ESTATUS = arrApr[1].Substring(0, 1);
                                             fl.FECHAM = DateTime.Now;
                                             Comentario com = new Comentario();
                                             fl.COMENTARIO = com.getComment(mm.Body, mm.ContentType);
-                                            //fl.COMENTARIO = mm.Body;
-                                            //if (fl.COMENTARIO.Length > 255)
-                                            //    fl.COMENTARIO = fl.COMENTARIO.Substring(0, 252) + "...";
+                                            ////fl.COMENTARIO = mm.Body;
+                                            ////if (fl.COMENTARIO.Length > 255)
+                                            ////    fl.COMENTARIO = fl.COMENTARIO.Substring(0, 252) + "...";
                                             var res = pF.procesa(fl, "");
                                             log.escribeLog("APPR PROCESA - Res = " + res);
                                             if (res == "1")
@@ -195,7 +195,7 @@ namespace TATLeerCorreo.Services
                     }
                 }
                 //req17
-                //FLUJNEGO fn = new FLUJNEGO();
+                ////FLUJNEGO fn = new FLUJNEGO();
                 for (int i = 0; i < emRq17.Count; i++)
                 {
                     AE.Net.Mail.MailMessage mm = emRq17[i];
@@ -208,17 +208,17 @@ namespace TATLeerCorreo.Services
                         string[] arrPiNN = arrAprNum[1].Split('.');
                         var _id = int.Parse(arrPiNN[1]);
                         var vkorg = arrPiNN[2];
-                        var _correo = arrPiNN[4].Replace('*', '.').Replace('+', '-').Replace('/', '@').Replace('#', '-'); ;
+                        var _correo = arrPiNN[4].Replace('*', '.').Replace('+', '-').Replace('/', '@').Replace('#', '-');
                         //recupero las fechas de envio
                         var _xres = db.NEGOCIACIONs.Where(x => x.ID == _id).FirstOrDefault();
                         var pid = arrPiNN[0];
-                        // var fs = db.DOCUMENTOes.Where(f => f.PAYER_ID == pid && f.FECHAC.Value.Month == DateTime.Now.Month  && f.FECHAC.Value.Year == DateTime.Now.Year && f.DOCUMENTO_REF == null).ToList();
+                        //// var fs = db.DOCUMENTOes.Where(f => f.PAYER_ID == pid && f.FECHAC.Value.Month == DateTime.Now.Month  && f.FECHAC.Value.Year == DateTime.Now.Year && f.DOCUMENTO_REF == null).ToList();
                         var _xff = _xres.FECHAF.AddDays(1);
                         var fs = db.DOCUMENTOes.Where(f => f.PAYER_ID == pid && f.VKORG == vkorg && f.PAYER_EMAIL == _correo && f.FECHAC >= _xres.FECHAI && f.FECHAC < _xff && f.DOCUMENTO_REF == null).ToList();
                         //LEJ 20.07.2018-----
                         var dOCUMENTOes = fs;
                         var lstD = new List<DOCUMENTO>();//---
-                        DOCUMENTOA dz = null;//---
+                        ////DOCUMENTOA dz = null;//---
                         for (int y = 0; y < dOCUMENTOes.Count; y++)
                         {
 
@@ -327,7 +327,7 @@ namespace TATLeerCorreo.Services
                             ////}
                         }
                         //----
-                        if (arrAprNum[0].Trim() == "DeAcuerdo" | arrAprNum[0].Trim() == "De Acuerdo")
+                        if (arrAprNum[0].Trim() == "DeAcuerdo" || arrAprNum[0].Trim() == "De Acuerdo")
                         {
                             for (int x = 0; x < lstD.Count; x++)
                             {
@@ -340,7 +340,7 @@ namespace TATLeerCorreo.Services
                                 var cm = arrAprNum[0].ToString();
                                 Comentario com = new Comentario();
                                 cm += com.getComment(mm.Body, mm.ContentType);
-                                //cm += " - " + mm.Body;
+                                ////cm += " - " + mm.Body;
                                 var cpos = db.FLUJNEGOes.Where(h => h.NUM_DOC.Equals(fn.NUM_DOC)).ToList().Count;
                                 fn.POS = cpos + 1;
                                 fn.COMENTARIO = cm;
@@ -348,7 +348,7 @@ namespace TATLeerCorreo.Services
                                 db.SaveChanges();
                             }
                         }
-                        else if (arrAprNum[0].Trim() == "TengoObservaciones" | arrAprNum[0].Trim() == "Tengo Observaciones")
+                        else if (arrAprNum[0].Trim() == "TengoObservaciones" || arrAprNum[0].Trim() == "Tengo Observaciones")
                         {
                             for (int x = 0; x < lstD.Count; x++)
                             {
@@ -361,7 +361,7 @@ namespace TATLeerCorreo.Services
                                 var cm = arrAprNum[0] + " ";
                                 Comentario com = new Comentario();
                                 cm += com.getComment(mm.Body, mm.ContentType);
-                                //cm += " - " + mm.Body;
+                                ////cm += " - " + mm.Body;
                                 var cpos = db.FLUJNEGOes.Where(h => h.NUM_DOC.Equals(fn.NUM_DOC)).ToList().Count;
                                 fn.POS = cpos + 1;
                                 fn.COMENTARIO = cm;
@@ -382,7 +382,7 @@ namespace TATLeerCorreo.Services
             catch (Exception ex)
             {
                 log.escribeLog("ERROR - " + ex.InnerException.ToString());
-                throw new Exception(ex.InnerException.ToString());
+                ////throw new Exception(ex.InnerException.ToString());
             }
             finally
             {
@@ -395,10 +395,10 @@ namespace TATLeerCorreo.Services
 
             try
             {
-                var workflow = db.FLUJOes.Where(a => a.NUM_DOC.Equals(nd) & a.POS == pos).OrderByDescending(a => a.POS).FirstOrDefault();
-                APPSETTING mailtC = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("mail") & x.ACTIVO).FirstOrDefault();
+                var workflow = db.FLUJOes.Where(a => a.NUM_DOC.Equals(nd) && a.POS == pos).OrderByDescending(a => a.POS).FirstOrDefault();
+                APPSETTING mailtC = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("mail") && x.ACTIVO).FirstOrDefault();
                 string mailt = mailtC.VALUE;
-                APPSETTING mailTestC = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("mailTest") & x.ACTIVO).FirstOrDefault();
+                APPSETTING mailTestC = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("mailTest") && x.ACTIVO).FirstOrDefault();
                 string mtest = mailTestC.VALUE;
                 string mailTo = "";
                 if (mtest == "X")
@@ -424,34 +424,20 @@ namespace TATLeerCorreo.Services
                     }
                     client.DeliveryMethod = SmtpDeliveryMethod.Network;
                     client.Host = conmail.HOST;
-                    //    System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
 
-                    //mail.From = new MailAddress("lejgg017@gmail.com");
-
-                    //mail.To.Add("rogelio.sanchez@sf-solutionfactory.com");
-                    ////mail.To.Add("luisengonzalez25@hotmail.com");
-
-
-                    //SmtpClient smtp = new SmtpClient();
-
-                    //smtp.Host = "smtp.gmail.com";
-                    //smtp.Port = 25; //465; //587
-                    //smtp.Credentials = new NetworkCredential("lejgg017@gmail.com", "24abril14");
-                    //smtp.EnableSsl = true;
-
-                    APPSETTING urlC = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("url") & x.ACTIVO).FirstOrDefault();
+                    APPSETTING urlC = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("url") && x.ACTIVO).FirstOrDefault();
                     string cadUrl = urlC.VALUE;
                     string UrlDirectory = "";
                     if (c == 1)
                     {
                         UrlDirectory = cadUrl + "Correos/Index/" + nd;
-                        //mail.Subject = "Aprobado";
+                        ////mail.Subject = "Aprobado";
                         mail.Subject = "A" + nd + "-" + DateTime.Now.ToShortTimeString();
                     }
                     if (c == 3)
                     {
                         UrlDirectory = cadUrl + "Correos/Details/" + nd;
-                        //mail.Subject = "Rechazado";
+                        ////mail.Subject = "Rechazado";
                         mail.Subject = "R" + nd + "-" + DateTime.Now.ToShortTimeString();
                     }
                     WebRequest myRequest = WebRequest.Create(UrlDirectory);
@@ -472,106 +458,106 @@ namespace TATLeerCorreo.Services
             catch (Exception ex)
             {
                 log.escribeLog("ERROR - " + ex.InnerException.ToString());
-                throw new Exception("No se ha podido enviar el email", ex.InnerException);
+                ////throw new Exception("No se ha podido enviar el email", ex.InnerException);
             }
         }
 
-        //public void correo()
-        //{
-        //    ImapClient ic = new ImapClient("outlook.office365.com", "LA_TAT@kellogg.com", "Wpbcgc9*",
-        //          AuthMethods.Login, 993, true);
-        //    // Select a mailbox. Case-insensitive
-        //    ic.SelectMailbox("INBOX");
-        //    List<AE.Net.Mail.MailMessage> mx = ic.GetMessages(0, ic.GetMessageCount() - 1, false, false)
-        //                                    .Where(m => !m.Flags.HasFlag(Flags.Seen) && !m.Flags.HasFlag(Flags.Deleted)).ToList();
-        //    //En esta lista ingresaremos a los mails que sean recibidos como cc
-        //    List<AE.Net.Mail.MailMessage> emRq17 = new List<AE.Net.Mail.MailMessage>();
-        //    try
-        //    {
-        //        //ingresamos los correos 
-        //        for (int i = 0; i < mx.Count; i++)
-        //        {
-        //            AE.Net.Mail.MailMessage mm = mx[i];
-        //            string[] arrAsunto = mm.Subject.Split(']');
-        //            //Recupero el asunto y lo separo del numdoc y pos
-        //            string[] arrAprNum = arrAsunto[1].Split('-');
-        //            decimal numdoc = Decimal.Parse(arrAprNum[1]);
-        //            var xy = arrAprNum[0].Trim();
-        //            if (arrAprNum[0].Trim() == "De Acuerdo")
-        //            {
-        //                emRq17.Add(mm);
-        //            }
-        //            else if (arrAprNum[0].Trim() == "Tengo Observaciones")
-        //            {
-        //                emRq17.Add(mm);
-        //            }
-        //        }
+        ////public void correo()
+        ////{
+        ////    ImapClient ic = new ImapClient("outlook.office365.com", "LA_TAT@kellogg.com", "Wpbcgc9*",
+        ////          AuthMethods.Login, 993, true);
+        ////    // Select a mailbox. Case-insensitive
+        ////    ic.SelectMailbox("INBOX");
+        ////    List<AE.Net.Mail.MailMessage> mx = ic.GetMessages(0, ic.GetMessageCount() - 1, false, false)
+        ////                                    .Where(m => !m.Flags.HasFlag(Flags.Seen) && !m.Flags.HasFlag(Flags.Deleted)).ToList();
+        ////    //En esta lista ingresaremos a los mails que sean recibidos como cc
+        ////    List<AE.Net.Mail.MailMessage> emRq17 = new List<AE.Net.Mail.MailMessage>();
+        ////    try
+        ////    {
+        ////        //ingresamos los correos 
+        ////        for (int i = 0; i < mx.Count; i++)
+        ////        {
+        ////            AE.Net.Mail.MailMessage mm = mx[i];
+        ////            string[] arrAsunto = mm.Subject.Split(']');
+        ////            //Recupero el asunto y lo separo del numdoc y pos
+        ////            string[] arrAprNum = arrAsunto[1].Split('-');
+        ////            decimal numdoc = Decimal.Parse(arrAprNum[1]);
+        ////            var xy = arrAprNum[0].Trim();
+        ////            if (arrAprNum[0].Trim() == "De Acuerdo")
+        ////            {
+        ////                emRq17.Add(mm);
+        ////            }
+        ////            else if (arrAprNum[0].Trim() == "Tengo Observaciones")
+        ////            {
+        ////                emRq17.Add(mm);
+        ////            }
+        ////        }
 
-        //        FLUJNEGO fn = new FLUJNEGO();
-        //        for (int i = 0; i < emRq17.Count; i++)
-        //        {
-        //            AE.Net.Mail.MailMessage mm = emRq17[i];
-        //            string[] arrAsunto = mm.Subject.Split(']');
-        //            //Recupero el asunto y lo separo del numdoc y pos
-        //            string[] arrAprNum = arrAsunto[1].Split('-');
-        //            var pid = arrAprNum[1];
-        //            var fs = db.DOCUMENTOes.Where(f => f.PAYER_ID == pid && f.FECHAC.Value.Month == DateTime.Now.Month && f.FECHAC.Value.Year == DateTime.Now.Year && f.DOCUMENTO_REF == null).ToList();
-        //            if (arrAprNum[0].Trim() == "De Acuerdo")
-        //            {                       
-        //                for (int x = 0; x < fs.Count; x++)
-        //                {
-        //                    fn = new FLUJNEGO();
-        //                    fn.NUM_DOC = fs[x].NUM_DOC;
-        //                    DateTime fecham = mm.Date;
-        //                    fn.FECHAM = fecham;
-        //                    fn.FECHAC = fs[x].FECHAC;
-        //                    fn.KUNNR = arrAprNum[1];
-        //                    var cm = arrAprNum[0] + " ";
-        //                    cm += mm.Body;
-        //                    var cpos = db.FLUJNEGOes.ToList().Count;
-        //                    fn.POS = cpos + 1;
-        //                    fn.COMENTARIO = cm;
-        //                    db.FLUJNEGOes.Add(fn);
-        //                    db.SaveChanges();
-        //                }
-        //            }
-        //            else if (arrAprNum[0].Trim() == "Tengo Observaciones")
-        //            {
-        //                for (int x = 0; x < fs.Count; x++)
-        //                {
-        //                    fn = new FLUJNEGO();
-        //                    fn.NUM_DOC = fs[x].NUM_DOC;
-        //                     fn.FECHAC = fs[x].FECHAC;
-        //                    DateTime fecham = mm.Date;
-        //                    fn.FECHAM = fecham;
-        //                    fn.KUNNR = arrAprNum[1];
-        //                    var cm = arrAprNum[0] + " ";
-        //                    cm += mm.Body;
-        //                    var cpos = db.FLUJNEGOes.ToList().Count;
-        //                    fn.POS = cpos + 1;
-        //                    fn.COMENTARIO = cm;
-        //                    db.FLUJNEGOes.Add(fn);
-        //                    db.SaveChanges();
-        //                }
-        //            }
-        //            else
-        //            {
-        //                //Hubo algun error
-        //                break;
-        //            }
-        //            //para marcar el mensaje como leido
-        //            ic.AddFlags(Flags.Seen, mm);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.InnerException.ToString());
-        //    }
-        //    finally
-        //    {
-        //        ic.Dispose();
-        //    }
-        //}
+        ////        FLUJNEGO fn = new FLUJNEGO();
+        ////        for (int i = 0; i < emRq17.Count; i++)
+        ////        {
+        ////            AE.Net.Mail.MailMessage mm = emRq17[i];
+        ////            string[] arrAsunto = mm.Subject.Split(']');
+        ////            //Recupero el asunto y lo separo del numdoc y pos
+        ////            string[] arrAprNum = arrAsunto[1].Split('-');
+        ////            var pid = arrAprNum[1];
+        ////            var fs = db.DOCUMENTOes.Where(f => f.PAYER_ID == pid && f.FECHAC.Value.Month == DateTime.Now.Month && f.FECHAC.Value.Year == DateTime.Now.Year && f.DOCUMENTO_REF == null).ToList();
+        ////            if (arrAprNum[0].Trim() == "De Acuerdo")
+        ////            {                       
+        ////                for (int x = 0; x < fs.Count; x++)
+        ////                {
+        ////                    fn = new FLUJNEGO();
+        ////                    fn.NUM_DOC = fs[x].NUM_DOC;
+        ////                    DateTime fecham = mm.Date;
+        ////                    fn.FECHAM = fecham;
+        ////                    fn.FECHAC = fs[x].FECHAC;
+        ////                    fn.KUNNR = arrAprNum[1];
+        ////                    var cm = arrAprNum[0] + " ";
+        ////                    cm += mm.Body;
+        ////                    var cpos = db.FLUJNEGOes.ToList().Count;
+        ////                    fn.POS = cpos + 1;
+        ////                    fn.COMENTARIO = cm;
+        ////                    db.FLUJNEGOes.Add(fn);
+        ////                    db.SaveChanges();
+        ////                }
+        ////            }
+        ////            else if (arrAprNum[0].Trim() == "Tengo Observaciones")
+        ////            {
+        ////                for (int x = 0; x < fs.Count; x++)
+        ////                {
+        ////                    fn = new FLUJNEGO();
+        ////                    fn.NUM_DOC = fs[x].NUM_DOC;
+        ////                     fn.FECHAC = fs[x].FECHAC;
+        ////                    DateTime fecham = mm.Date;
+        ////                    fn.FECHAM = fecham;
+        ////                    fn.KUNNR = arrAprNum[1];
+        ////                    var cm = arrAprNum[0] + " ";
+        ////                    cm += mm.Body;
+        ////                    var cpos = db.FLUJNEGOes.ToList().Count;
+        ////                    fn.POS = cpos + 1;
+        ////                    fn.COMENTARIO = cm;
+        ////                    db.FLUJNEGOes.Add(fn);
+        ////                    db.SaveChanges();
+        ////                }
+        ////            }
+        ////            else
+        ////            {
+        ////                //Hubo algun error
+        ////                break;
+        ////            }
+        ////            //para marcar el mensaje como leido
+        ////            ic.AddFlags(Flags.Seen, mm);
+        ////        }
+        ////    }
+        ////    catch (Exception ex)
+        ////    {
+        ////        throw new Exception(ex.InnerException.ToString());
+        ////    }
+        ////    finally
+        ////    {
+        ////        ic.Dispose();
+        ////    }
+        ////}
 
     }
 }

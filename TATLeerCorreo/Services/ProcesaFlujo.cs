@@ -255,6 +255,8 @@ namespace TATLeerCorreo.Services
 
                         if (paso_a.EMAIL.Equals("X"))
                             correcto = "1";
+                        if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S")
+                            correcto = "";
                         d.ESTATUS_WF = "P";
 
                         db.FLUJOes.Add(nuevo);

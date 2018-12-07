@@ -27,3 +27,4 @@ C:\Users\mxvr1s02\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerC
 C:\Users\mxvr1s02\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerCorreo.csproj.CopyComplete
 C:\Users\mxvr1s02\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerCorreo.exe
 C:\Users\mxvr1s02\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerCorreo.pdb
+C:\Users\mxvr1s02\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerCorreo.csprojResolveAssemblyReference.cache
