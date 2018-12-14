@@ -266,7 +266,7 @@ namespace TATLeerCorreo.Services
                     db.SaveChanges();
                 }
                 else if (!actual.ESTATUS.Equals("P"))
-                    return "1";//-----------------YA FUE PROCESADA
+                    return "10";//-----------------YA FUE PROCESADA
                 else
                 {
                     var wf = actual.WORKFP;
@@ -454,6 +454,8 @@ namespace TATLeerCorreo.Services
                                         db.FLUJOes.Add(nuevo);
                                         if (paso_a.EMAIL.Equals("X"))
                                             correcto = "1";
+                                        if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S")
+                                            correcto = "";
                                     }
                                 }
                                 //else if(nuevo.DETPOS == 99)
@@ -471,6 +473,8 @@ namespace TATLeerCorreo.Services
                                     db.FLUJOes.Add(nuevo);
                                     if (paso_a.EMAIL.Equals("X"))
                                         correcto = "1";
+                                    if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S")
+                                        correcto = "";
 
                                     d.ESTATUS_WF = "P";
                                 }
@@ -625,6 +629,8 @@ namespace TATLeerCorreo.Services
                                         db.FLUJOes.Add(nuevo);
                                         if (paso_a.EMAIL.Equals("X"))
                                             correcto = "1";
+                                        if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S")
+                                            correcto = "";
                                     }
                                 }
                                 //else if(nuevo.DETPOS == 99)
@@ -642,6 +648,8 @@ namespace TATLeerCorreo.Services
                                     db.FLUJOes.Add(nuevo);
                                     if (paso_a.EMAIL.Equals("X"))
                                         correcto = "1";
+                                    if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S")
+                                        correcto = "";
 
                                     d.ESTATUS_WF = "P";
                                 }

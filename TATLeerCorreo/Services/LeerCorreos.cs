@@ -37,7 +37,7 @@ namespace TATLeerCorreo.Services
                 ic.SelectMailbox("INBOX");
 
                 //Esto traera los emails recibidos y no leidos
-                mx = ic.GetMessages(0, ic.GetMessageCount() - 1, false, false)
+                mx = ic.GetMessages(0, ic.GetMessageCount() - 1, true, false)
                                                 .Where(m => !m.Flags.HasFlag(Flags.Seen) && !m.Flags.HasFlag(Flags.Deleted)).ToList();
 
                 //En esta lista ingresaremos a los mails que sean recibidos como cc
@@ -56,7 +56,7 @@ namespace TATLeerCorreo.Services
                 //ingresamos los correos CORREO
                 for (int i = 0; i < mx.Count; i++)
                 {
-                    AE.Net.Mail.MailMessage mm = mx[i];
+                    AE.Net.Mail.MailMessage mm = ic.GetMessage(mx[i].Uid,false);
                     try
                     {
                         string[] arrAsunto = mm.Subject.Split(']');
@@ -92,7 +92,7 @@ namespace TATLeerCorreo.Services
                 {
                     for (int i = 0; i < mx.Count; i++)
                     {
-                        AE.Net.Mail.MailMessage mm = mx[i];
+                        AE.Net.Mail.MailMessage mm = ic.GetMessage(mx[i].Uid, false);
                         try
                         {
                             string[] arrAsunto = mm.Subject.Split(']');
@@ -198,7 +198,8 @@ namespace TATLeerCorreo.Services
                 ////FLUJNEGO fn = new FLUJNEGO();
                 for (int i = 0; i < emRq17.Count; i++)
                 {
-                    AE.Net.Mail.MailMessage mm = emRq17[i];
+                    ////AE.Net.Mail.MailMessage mm = emRq17[i];
+                    AE.Net.Mail.MailMessage mm = ic.GetMessage(emRq17[i].Uid, false);
                     if (true)
                     {
                         string[] arrAsunto = mm.Subject.Split(']');
@@ -430,13 +431,13 @@ namespace TATLeerCorreo.Services
                     string UrlDirectory = "";
                     if (c == 1)
                     {
-                        UrlDirectory = cadUrl + "Correos/Index/" + nd;
+                        UrlDirectory = cadUrl + "Correos/Index/" + nd + "?spras=" + workflow.USUARIO.SPRAS_ID;
                         ////mail.Subject = "Aprobado";
                         mail.Subject = "A" + nd + "-" + DateTime.Now.ToShortTimeString();
                     }
                     if (c == 3)
                     {
-                        UrlDirectory = cadUrl + "Correos/Details/" + nd;
+                        UrlDirectory = cadUrl + "Correos/Details/" + nd + "?spras=" + workflow.USUARIO.SPRAS_ID;
                         ////mail.Subject = "Rechazado";
                         mail.Subject = "R" + nd + "-" + DateTime.Now.ToShortTimeString();
                     }
