@@ -37,13 +37,18 @@ namespace TATLeerCorreo.Services
                 ic.SelectMailbox("INBOX");
 
                 //Esto traera los emails recibidos y no leidos
-                mx = ic.GetMessages(0, ic.GetMessageCount() - 1, true, false)
-                                                .Where(m => !m.Flags.HasFlag(Flags.Seen) && !m.Flags.HasFlag(Flags.Deleted)).ToList();
+                //mx = ic.GetMessages(0, ic.GetMessageCount() - 1, true, false)
+                long a = ic.GetMessageCount();
+                if (a > 100)
+                    mx = ic.GetMessages(ic.GetMessageCount() - 100, ic.GetMessageCount() - 1, true, false)
+                                                    .Where(m => !m.Flags.HasFlag(Flags.Seen) && !m.Flags.HasFlag(Flags.Deleted)).ToList();
+                else
+                    mx = ic.GetMessages(0, ic.GetMessageCount() - 1, true, false)
+                                                    .Where(m => !m.Flags.HasFlag(Flags.Seen) && !m.Flags.HasFlag(Flags.Deleted)).ToList();
 
                 //En esta lista ingresaremos a los mails que sean recibidos como cc
                 emRq17 = new List<AE.Net.Mail.MailMessage>();
                 log.escribeLog("Leer inbox - numReg=(" + mx.Count + ")");
-
             }
             catch (Exception e)
             {
@@ -56,7 +61,7 @@ namespace TATLeerCorreo.Services
                 //ingresamos los correos CORREO
                 for (int i = 0; i < mx.Count; i++)
                 {
-                    AE.Net.Mail.MailMessage mm = ic.GetMessage(mx[i].Uid,false);
+                    AE.Net.Mail.MailMessage mm = ic.GetMessage(mx[i].Uid, false);
                     try
                     {
                         string[] arrAsunto = mm.Subject.Split(']');
@@ -396,7 +401,8 @@ namespace TATLeerCorreo.Services
 
             try
             {
-                var workflow = db.FLUJOes.Where(a => a.NUM_DOC.Equals(nd) && a.POS == pos).OrderByDescending(a => a.POS).FirstOrDefault();
+                ////var workflow = db.FLUJOes.Where(a => a.NUM_DOC.Equals(nd) && a.POS == pos).OrderByDescending(a => a.POS).FirstOrDefault();
+                var workflow = db.FLUJOes.Where(a => a.NUM_DOC.Equals(nd)).OrderByDescending(a => a.POS).FirstOrDefault();
                 APPSETTING mailtC = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("mail") && x.ACTIVO).FirstOrDefault();
                 string mailt = mailtC.VALUE;
                 APPSETTING mailTestC = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("mailTest") && x.ACTIVO).FirstOrDefault();

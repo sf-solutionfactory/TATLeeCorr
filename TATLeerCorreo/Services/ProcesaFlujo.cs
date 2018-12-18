@@ -454,7 +454,7 @@ namespace TATLeerCorreo.Services
                                         db.FLUJOes.Add(nuevo);
                                         if (paso_a.EMAIL.Equals("X"))
                                             correcto = "1";
-                                        if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S")
+                                        if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S" && detA.POS != -1)
                                             correcto = "";
                                     }
                                 }
@@ -473,7 +473,7 @@ namespace TATLeerCorreo.Services
                                     db.FLUJOes.Add(nuevo);
                                     if (paso_a.EMAIL.Equals("X"))
                                         correcto = "1";
-                                    if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S")
+                                    if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S" && detA.POS != -1)
                                         correcto = "";
 
                                     d.ESTATUS_WF = "P";
@@ -629,7 +629,7 @@ namespace TATLeerCorreo.Services
                                         db.FLUJOes.Add(nuevo);
                                         if (paso_a.EMAIL.Equals("X"))
                                             correcto = "1";
-                                        if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S")
+                                        if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S" && detA.POS != -1)
                                             correcto = "";
                                     }
                                 }
@@ -648,7 +648,7 @@ namespace TATLeerCorreo.Services
                                     db.FLUJOes.Add(nuevo);
                                     if (paso_a.EMAIL.Equals("X"))
                                         correcto = "1";
-                                    if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S")
+                                    if (paso_a.ACCION.TIPO == "A" && next.ACCION.TIPO == "S" && detA.POS != -1)
                                         correcto = "";
 
                                     d.ESTATUS_WF = "P";
