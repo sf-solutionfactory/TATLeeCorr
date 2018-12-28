@@ -27,3 +27,7 @@ C:\Users\mxvr1s02\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerC
 C:\Users\mxvr1s02\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerCorreo.csproj.CopyComplete
 C:\Users\mxvr1s02\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerCorreo.exe
 C:\Users\mxvr1s02\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerCorreo.pdb
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\SimpleImpersonation.dll
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\System.Security.Principal.Windows.dll
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\bin\Release\SimpleImpersonation.xml
+C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Release\TATLeerCorreo.csprojAssemblyReference.cache

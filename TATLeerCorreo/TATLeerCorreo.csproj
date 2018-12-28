@@ -48,6 +48,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Security.Principal.Windows, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -546,8 +547,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\ArchivosContable.cs" />
     <Compile Include="Services\Comentario.cs" />
+    <Compile Include="Services\Email.cs" />
     <Compile Include="Services\Estatus.cs" />
     <Compile Include="Services\Log.cs" />
     <Compile Include="Services\LeerCorreos.cs" />
@@ -576,6 +583,31 @@
     <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\images\logo_kellogg.png" />
+    <None Include="bin\Debug\images\flags\mini\ar.png" />
+    <None Include="bin\Debug\images\flags\mini\as.png" />
+    <None Include="bin\Debug\images\flags\mini\at.png" />
+    <None Include="bin\Debug\images\flags\mini\be.png" />
+    <None Include="bin\Debug\images\flags\mini\bo.png" />
+    <None Include="bin\Debug\images\flags\mini\br.png" />
+    <None Include="bin\Debug\images\flags\mini\bs.png" />
+    <None Include="bin\Debug\images\flags\mini\bz.png" />
+    <None Include="bin\Debug\images\flags\mini\cl.png" />
+    <None Include="bin\Debug\images\flags\mini\co.png" />
+    <None Include="bin\Debug\images\flags\mini\cr.png" />
+    <None Include="bin\Debug\images\flags\mini\do.png" />
+    <None Include="bin\Debug\images\flags\mini\ec.png" />
+    <None Include="bin\Debug\images\flags\mini\gt.png" />
+    <None Include="bin\Debug\images\flags\mini\hn.png" />
+    <None Include="bin\Debug\images\flags\mini\jm.png" />
+    <None Include="bin\Debug\images\flags\mini\mx.png" />
+    <None Include="bin\Debug\images\flags\mini\ni.png" />
+    <None Include="bin\Debug\images\flags\mini\pa.png" />
+    <None Include="bin\Debug\images\flags\mini\pe.png" />
+    <None Include="bin\Debug\images\flags\mini\pr.png" />
+    <None Include="bin\Debug\images\flags\mini\py.png" />
+    <None Include="bin\Debug\images\flags\mini\sg.png" />
+    <None Include="bin\Debug\images\flags\mini\sv.png" />
     <Content Include="Entities\TAT001.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TAT001.edmx</DependentUpon>
@@ -586,6 +618,38 @@
       <DependentUpon>TAT001.edmx</DependentUpon>
       <LastGenOutput>TAT001.cs</LastGenOutput>
     </Content>
+    <Content Include="images\flags\mini\ar.png" />
+    <Content Include="images\flags\mini\as.png" />
+    <Content Include="images\flags\mini\at.png" />
+    <Content Include="images\flags\mini\be.png" />
+    <Content Include="images\flags\mini\bo.png" />
+    <Content Include="images\flags\mini\br.png" />
+    <Content Include="images\flags\mini\bs.png" />
+    <Content Include="images\flags\mini\bz.png" />
+    <Content Include="images\flags\mini\cl.png" />
+    <Content Include="images\flags\mini\co.png" />
+    <Content Include="images\flags\mini\cr.png" />
+    <Content Include="images\flags\mini\do.png" />
+    <Content Include="images\flags\mini\ec.png" />
+    <Content Include="images\flags\mini\gt.png" />
+    <Content Include="images\flags\mini\hn.png" />
+    <Content Include="images\flags\mini\jm.png" />
+    <Content Include="images\flags\mini\mx.png" />
+    <Content Include="images\flags\mini\ni.png" />
+    <Content Include="images\flags\mini\pa.png" />
+    <Content Include="images\flags\mini\pe.png" />
+    <Content Include="images\flags\mini\pr.png" />
+    <Content Include="images\flags\mini\py.png" />
+    <Content Include="images\flags\mini\sg.png" />
+    <Content Include="images\flags\mini\sv.png" />
+    <Content Include="images\logo_kellogg.png" />
+    <None Include="Resources\logo_kellogg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
