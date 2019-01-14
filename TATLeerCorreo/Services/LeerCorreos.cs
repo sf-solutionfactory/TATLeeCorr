@@ -187,10 +187,10 @@ namespace TATLeerCorreo.Services
                                 }
                             }
                         }
-                        catch
+                        catch(Exception ee)
                         {
                             ic.AddFlags(Flags.Seen, mm);
-                            log.escribeLog("ERROR - " + mm.Subject);
+                            log.escribeLog("ERROR - " + ee.Message.ToString());
                         }
                     }
                 }

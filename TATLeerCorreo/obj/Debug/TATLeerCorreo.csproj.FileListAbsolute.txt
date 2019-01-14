@@ -98,3 +98,8 @@ C:\Users\mxvr1s02\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCor
 C:\Users\mxvr1s02\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csprojResolveAssemblyReference.cache
 C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.Properties.Resources.resources
 C:\Users\SF-0022\Documents\GitHub\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.GenerateResource.cache
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\SimpleImpersonation.dll
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\System.Security.Principal.Windows.dll
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\bin\Debug\SimpleImpersonation.xml
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.Properties.Resources.resources
+F:\RSG\Visual\Kelloggs\TATLeeCorr\TATLeerCorreo\obj\Debug\TATLeerCorreo.csproj.GenerateResource.Cache
